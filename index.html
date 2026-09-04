@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>經典調酒吧 16-bit</title>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000022;
+            --panel-bg: #000000;
+            --text-color: #ffffff;
+            --border-color: #ffffff;
+            --btn-primary: #FFB800; /* 黃金色 */
+            --btn-secondary: #FF6B00; /* 橘色 */
+            --shadow-color: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'DotGothic16', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* 手機優先容器 */
+        #app-container {
+            width: 100%;
+            max-width: 480px; /* 模擬手機寬度 */
+            min-height: 100vh;
+            position: relative;
+            background-color: var(--bg-color);
+            background-image: linear-gradient(#000044 1px, transparent 1px), linear-gradient(90deg, #000044 1px, transparent 1px);
+            background-size: 20px 20px; /* 像素網格背景 */
+        }
+
+        /* RPG 風格視窗框 */
+        .rpg-box {
+            background-color: var(--panel-bg);
+            border: 4px solid var(--border-color);
+            padding: 16px;
+            box-shadow: 6px 6px 0 var(--shadow-color);
+            margin-bottom: 20px;
+        }
+
+        /* 按鈕風格 */
+        .btn {
+            background-color: var(--btn-primary);
+            color: #000;
+            border: 4px solid #fff;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 var(--shadow-color);
+            text-align: center;
+            display: inline-block;
+            transition: transform 0.1s;
+        }
+        .btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0 var(--shadow-color);
+        }
+        .btn-orange {
+            background-color: var(--btn-secondary);
+            color: #fff;
+        }
+
+        /* 標題區 */
+        header {
+            padding: 20px 15px 10px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 28px; text-shadow: 4px 4px 0 #000; color: var(--btn-primary); }
+
+        /* 搜尋與篩選區 */
+        .controls { padding: 0 15px; }
+        .input-group { margin-bottom: 15px; }
+        .input-rpg {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 3px solid #fff;
+            color: #fff;
+            font-size: 16px;
+            box-shadow: inset 2px 2px 0 #333;
+        }
+        .input-rpg:focus { outline: none; border-color: var(--btn-primary); }
+        
+        .filter-row { display: flex; gap: 10px; }
+        .filter-row select { flex: 1; }
+
+        /* 酒譜列表 */
+        .cocktail-list { padding: 15px; display: flex; flex-direction: column; gap: 15px; padding-bottom: 80px; }
+        .cocktail-card {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cocktail-info h3 { margin: 0 0 5px 0; font-size: 18px; color: var(--btn-primary); }
+        .cocktail-info p { margin: 0; font-size: 14px; color: #aaa; }
+        .fav-icon { font-size: 24px; color: var(--btn-secondary); }
+
+        /* 年齡確認蓋板 */
+        #age-gate {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; padding: 20px; text-align: center;
+        }
+        #age-gate h2 { color: red; font-size: 32px; margin-bottom: 10px; text-shadow: 3px 3px 0 #500;}
+
+        /* 詳細資訊 Modal */
+        #modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); display: none;
+            justify-content: center; align-items: center; z-index: 500;
+        }
+        .modal-content {
+            width: 90%; max-width: 420px; max-height: 90vh; overflow-y: auto;
+        }
+        .modal-content h2 { color: var(--btn-primary); border-bottom: 2px dashed #fff; padding-bottom: 10px; }
+        .detail-row { margin-bottom: 10px; line-height: 1.5; }
+        .detail-label { color: var(--btn-secondary); font-weight: bold; }
+        .tag { display: inline-block; background: #333; border: 1px solid #fff; padding: 2px 6px; font-size: 12px; margin: 2px 2px 2px 0; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <div id="age-gate" class="rpg-box">
+        <h2>警告 WARNING</h2>
+        <p>前方區域為成人專屬<br>您是否已年滿 18 歲？</p>
+        <p style="font-size:12px; color:#aaa;">(飲酒過量，有害健康)</p>
+        <br>
+        <button class="btn" onclick="enterTavern()">[ 是的，我已滿18歲 ]</button>
+        <br><br>
+        <button class="btn btn-orange" onclick="leaveTavern()">[ 否，我先離開 ]</button>
+    </div>
+
+    <div id="main-app" class="hidden">
+        <header>
+            <h1>🍸 經典調酒吧</h1>
+        </header>
+
+        <div class="controls rpg-box" style="margin: 15px;">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="input-rpg" placeholder="搜尋酒名或材料 (如: 琴酒)">
+            </div>
+            <div class="filter-row">
+                <select id="baseFilter" class="input-rpg">
+                    <option value="">-- 六大基酒 --</option>
+                    <option value="琴酒">琴酒 Gin</option>
+                    <option value="伏特加">伏特加 Vodka</option>
+                    <option value="蘭姆酒">蘭姆酒 Rum</option>
+                    <option value="龍舌蘭">龍舌蘭 Tequila</option>
+                    <option value="威士忌">威士忌 Whiskey</option>
+                    <option value="白蘭地">白蘭地 Brandy</option>
+                </select>
+                <select id="techFilter" class="input-rpg">
+                    <option value="">-- 調製手法 --</option>
+                    <option value="搖盪">搖盪 Shake</option>
+                    <option value="攪拌">攪拌 Stir</option>
+                    <option value="直調">直調 Build</option>
+                    <option value="混合">混合 Blend</option>
+                </select>
+            </div>
+            <div class="input-group" style="margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
+                <label style="cursor:pointer;"><input type="checkbox" id="favFilter"> 只顯示收藏 ♥</label>
+                <span id="resultCount" style="color:#aaa;">30 款</span>
+            </div>
+        </div>
+
+        <div id="cocktail-list" class="cocktail-list">
+            </div>
+    </div>
+
+    <div id="modal">
+        <div class="rpg-box modal-content" id="modal-content-box">
+            </div>
+    </div>
+</div>
+
+<script>
+    // 30 款經典調酒資料庫
+    const cocktails = [
+        // 琴酒 Gin
+        { id: 1, zh: "馬丁尼", en: "Dry Martini", base: "琴酒", ingredients: ["琴酒", "不甜香艾酒", "柑橘苦精"], proportion: "琴酒 60ml, 香艾酒 10ml, 苦精 1 dash", technique: "攪拌", glass: "馬丁尼杯", garnish: "橄欖或檸檬皮", desc: "被譽為雞尾酒之王，經典中的經典，口感辛辣凜冽。" },
+        { id: 2, zh: "尼格羅尼", en: "Negroni", base: "琴酒", ingredients: ["琴酒", "金巴利苦酒", "甜香艾酒"], proportion: "各 30ml", technique: "攪拌", glass: "古典杯", garnish: "橙皮", desc: "義大利經典，完美平衡了苦、甜與草本風味。" },
+        { id: 3, zh: "琴蕾", en: "Gimlet", base: "琴酒", ingredients: ["琴酒", "檸檬汁", "糖漿"], proportion: "琴酒 60ml, 檸檬汁 20ml, 糖漿 15ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "檸檬片", desc: "早期水手為了防壞血病而誕生的清爽調酒。" },
+        { id: 4, zh: "湯姆可林斯", en: "Tom Collins", base: "琴酒", ingredients: ["琴酒", "檸檬汁", "糖漿", "蘇打水"], proportion: "琴酒 45ml, 檸檬汁 30ml, 糖漿 15ml, 蘇打水補滿", technique: "直調", glass: "可林斯杯", garnish: "檸檬片與櫻桃", desc: "夏日必備，像是一杯充滿成人風味的檸檬汽水。" },
+        { id: 5, zh: "新加坡司令", en: "Singapore Sling", base: "琴酒", ingredients: ["琴酒", "櫻桃香甜酒", "法國廊酒", "柑橘酒", "鳳梨汁", "檸檬汁", "紅石榴糖漿"], proportion: "琴酒 30ml, 櫻桃酒 15ml, 鳳梨汁 120ml...", technique: "搖盪", glass: "司令杯", garnish: "鳳梨片與櫻桃", desc: "源自新加坡萊佛士酒店，充滿熱帶風情。" },
+        // 伏特加 Vodka
+        { id: 6, zh: "莫斯科驢子", en: "Moscow Mule", base: "伏特加", ingredients: ["伏特加", "薑汁啤酒", "萊姆汁"], proportion: "伏特加 45ml, 萊姆汁 15ml, 薑汁啤酒補滿", technique: "直調", glass: "銅杯", garnish: "萊姆角", desc: "用標誌性的銅杯盛裝，辛辣清爽的氣泡感。" },
+        { id: 7, zh: "柯夢波丹", en: "Cosmopolitan", base: "伏特加", ingredients: ["檸檬伏特加", "蔓越莓汁", "橙酒", "萊姆汁"], proportion: "伏特加 40ml, 橙酒 15ml, 蔓越莓汁 30ml, 萊姆汁 15ml", technique: "搖盪", glass: "馬丁尼杯", garnish: "橙皮", desc: "因《慾望城市》而紅遍全球的粉紅迷人調酒。" },
+        { id: 8, zh: "血腥瑪麗", en: "Bloody Mary", base: "伏特加", ingredients: ["伏特加", "番茄汁", "檸檬汁", "梅林辣醬", "塔巴斯科辣椒醬", "黑胡椒", "芹菜鹽"], proportion: "伏特加 45ml, 番茄汁 90ml...", technique: "直調 / 滾動", glass: "高球杯", garnish: "西芹段與檸檬", desc: "知名的「解酒液」，充滿蔬菜與辛香料的鹹鮮味。" },
+        { id: 9, zh: "黑俄羅斯", en: "Black Russian", base: "伏特加", ingredients: ["伏特加", "咖啡利口酒"], proportion: "伏特加 50ml, 咖啡利口酒 20ml", technique: "直調", glass: "古典杯", garnish: "無", desc: "冷戰時期誕生的硬漢調酒，濃郁咖啡香。" },
+        { id: 10, zh: "白俄羅斯", en: "White Russian", base: "伏特加", ingredients: ["伏特加", "咖啡利口酒", "鮮奶油"], proportion: "伏特加 50ml, 咖啡酒 20ml, 鮮奶油 30ml", technique: "直調", glass: "古典杯", garnish: "無", desc: "在黑俄羅斯中加入鮮奶油，口感滑順如甜點。" },
+        // 蘭姆酒 Rum
+        { id: 11, zh: "莫西多", en: "Mojito", base: "蘭姆酒", ingredients: ["白蘭姆酒", "新鮮薄荷", "白糖", "萊姆汁", "蘇打水"], proportion: "蘭姆酒 50ml, 萊姆汁 20ml, 蘇打水補滿", technique: "直調 (需搗碎)", glass: "高球杯", garnish: "薄荷葉", desc: "古巴經典，薄荷與萊姆的絕佳消暑組合。" },
+        { id: 12, zh: "黛綺麗", en: "Daiquiri", base: "蘭姆酒", ingredients: ["白蘭姆酒", "萊姆汁", "糖漿"], proportion: "蘭姆酒 60ml, 萊姆汁 20ml, 糖漿 15ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "萊姆片", desc: "海明威的最愛之一，考驗調酒師基本功的三合一調酒。" },
+        { id: 13, zh: "鳳梨可樂達", en: "Pina Colada", base: "蘭姆酒", ingredients: ["白蘭姆酒", "椰漿", "鳳梨汁"], proportion: "蘭姆酒 30ml, 椰漿 30ml, 鳳梨汁 90ml", technique: "混合", glass: "颶風杯", garnish: "鳳梨片與櫻桃", desc: "波多黎各國飲，充滿度假風情的冰沙調酒。" },
+        { id: 14, zh: "邁泰", en: "Mai Tai", base: "蘭姆酒", ingredients: ["陳年蘭姆酒", "橙酒", "杏仁糖漿", "萊姆汁"], proportion: "蘭姆酒 40ml, 橙酒 15ml, 杏仁糖漿 15ml, 萊姆汁 15ml", technique: "搖盪", glass: "古典杯", garnish: "薄荷與萊姆", desc: "Tiki 風格的代表作，Mai Tai 在大溪地語意為「極好的」。" },
+        { id: 15, zh: "自由古巴", en: "Cuba Libre", base: "蘭姆酒", ingredients: ["白蘭姆酒", "可樂", "萊姆角"], proportion: "蘭姆酒 50ml, 可樂 120ml", technique: "直調", glass: "高球杯", garnish: "萊姆角", desc: "慶祝古巴獨立的簡單混酒，萊姆是靈魂。" },
+        // 龍舌蘭 Tequila
+        { id: 16, zh: "瑪格麗特", en: "Margarita", base: "龍舌蘭", ingredients: ["龍舌蘭", "橙酒", "萊姆汁"], proportion: "龍舌蘭 50ml, 橙酒 20ml, 萊姆汁 15ml", technique: "搖盪", glass: "瑪格麗特杯", garnish: "鹽口圈與萊姆", desc: "龍舌蘭最著名的代表作，鹽口圈提升了整體層次。" },
+        { id: 17, zh: "龍舌蘭日出", en: "Tequila Sunrise", base: "龍舌蘭", ingredients: ["龍舌蘭", "柳橙汁", "紅石榴糖漿"], proportion: "龍舌蘭 45ml, 柳橙汁 90ml, 紅石榴糖漿 15ml", technique: "直調", glass: "高球杯", garnish: "柳橙片與櫻桃", desc: "漸層色彩宛如日出般美麗，果香濃郁。" },
+        { id: 18, zh: "帕洛瑪", en: "Paloma", base: "龍舌蘭", ingredients: ["龍舌蘭", "葡萄柚汽水", "萊姆汁"], proportion: "龍舌蘭 50ml, 萊姆汁 10ml, 葡萄柚汽水補滿", technique: "直調", glass: "高球杯", garnish: "葡萄柚角 (可加鹽口)", desc: "在墨西哥當地比瑪格麗特更受歡迎的國民調酒。" },
+        { id: 19, zh: "湯米的瑪格麗特", en: "Tommy's Margarita", base: "龍舌蘭", ingredients: ["龍舌蘭", "萊姆汁", "龍舌蘭糖漿"], proportion: "龍舌蘭 60ml, 萊姆汁 30ml, 龍舌蘭糖漿 15ml", technique: "搖盪", glass: "古典杯", garnish: "萊姆角", desc: "現代經典，捨棄橙酒改用龍舌蘭糖漿，凸顯基酒風味。" },
+        { id: 20, zh: "惡魔", en: "El Diablo", base: "龍舌蘭", ingredients: ["龍舌蘭", "黑醋栗酒", "萊姆汁", "薑汁啤酒"], proportion: "龍舌蘭 45ml, 黑醋栗酒 15ml, 萊姆汁 15ml, 薑汁啤酒補滿", technique: "搖盪後直調", glass: "高球杯", garnish: "萊姆角", desc: "名字驚悚但其實非常清爽順口，帶有莓果與薑的香氣。" },
+        // 威士忌 Whiskey
+        { id: 21, zh: "古典", en: "Old Fashioned", base: "威士忌", ingredients: ["波本或裸麥威士忌", "方糖", "安格斯苦精", "水"], proportion: "威士忌 45ml, 苦精 2 dashes, 方糖 1 顆", technique: "攪拌", glass: "古典杯", garnish: "橙皮", desc: "歷史最悠久的雞尾酒之一，展現威士忌純粹之美。" },
+        { id: 22, zh: "曼哈頓", en: "Manhattan", base: "威士忌", ingredients: ["裸麥威士忌", "甜香艾酒", "安格斯苦精"], proportion: "威士忌 50ml, 甜香艾酒 20ml, 苦精 1 dash", technique: "攪拌", glass: "馬丁尼杯", garnish: "酒漬櫻桃", desc: "雞尾酒之后，優雅且帶有深沈的草本與橡木氣息。" },
+        { id: 23, zh: "威士忌酸酒", en: "Whiskey Sour", base: "威士忌", ingredients: ["波本威士忌", "檸檬汁", "糖漿", "蛋白(選配)"], proportion: "威士忌 45ml, 檸檬汁 30ml, 糖漿 15ml", technique: "搖盪 (Dry Shake)", glass: "古典杯", garnish: "櫻桃與柳橙", desc: "酸甜平衡的完美典範，加入蛋白能製造綿密泡沫。" },
+        { id: 24, zh: "薄荷茱麗普", en: "Mint Julep", base: "威士忌", ingredients: ["波本威士忌", "新鮮薄荷", "糖漿", "碎冰"], proportion: "威士忌 60ml, 糖漿 15ml, 薄荷 8-10 葉", technique: "直調 (需搗碎)", glass: "銀杯或銅杯", garnish: "大量薄荷", desc: "美國南方經典，肯塔基打吡賽馬的官方飲品。" },
+        { id: 25, zh: "花花公子", en: "Boulevardier", base: "威士忌", ingredients: ["波本或裸麥威士忌", "金巴利苦酒", "甜香艾酒"], proportion: "威士忌 45ml, 金巴利 30ml, 香艾酒 30ml", technique: "攪拌", glass: "古典杯", garnish: "橙皮", desc: "可以看作是威士忌版本的 Negroni，更加厚實溫暖。" },
+        // 白蘭地 Brandy
+        { id: 26, zh: "側車", en: "Sidecar", base: "白蘭地", ingredients: ["干邑白蘭地", "橙酒", "檸檬汁"], proportion: "白蘭地 50ml, 橙酒 20ml, 檸檬汁 20ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "糖口圈(選配)", desc: "白蘭地調酒的指標，據說是為了機車側車裡的軍官發明的。" },
+        { id: 27, zh: "白蘭地亞歷山大", en: "Brandy Alexander", base: "白蘭地", ingredients: ["干邑白蘭地", "黑可可香甜酒", "鮮奶油"], proportion: "各 30ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "現磨肉豆蔻", desc: "濃郁如巧克力牛奶般的甜點系調酒。" },
+        { id: 28, zh: "B與B", en: "B&B", base: "白蘭地", ingredients: ["干邑白蘭地", "班尼迪克汀(DOM)"], proportion: "各 30ml", technique: "攪拌或直調", glass: "白蘭地杯", garnish: "無", desc: "兩種材料名字的首字母，草本與葡萄香氣交織，常作餐後酒。" },
+        { id: 29, zh: "皮斯可酸酒", en: "Pisco Sour", base: "白蘭地", ingredients: ["皮斯可(葡萄蒸餾酒)", "檸檬汁", "糖漿", "蛋白", "安格斯苦精"], proportion: "皮斯可 60ml, 檸檬汁 30ml, 糖漿 20ml, 蛋白 1顆", technique: "搖盪", glass: "高球杯或淺碟", garnish: "苦精滴在泡沫上", desc: "秘魯與智利的國寶級調酒，酸甜且帶著特殊的葡萄香。" },
+        { id: 30, zh: "白蘭地庫斯塔", en: "Brandy Crusta", base: "白蘭地", ingredients: ["干邑白蘭地", "橙酒", "黑櫻桃酒", "檸檬汁", "糖漿", "安格斯苦精"], proportion: "白蘭地 52ml, 橙酒 7ml, 檸檬汁 15ml...", technique: "搖盪", glass: "鬱金香杯", garnish: "半顆檸檬皮圈與糖口", desc: "Sidecar 的華麗前身，杯口的整圈檸檬皮是最大特色。" }
+    ];
+
+    // 初始化收藏清單 (讀取 localStorage)
+    let favorites = JSON.parse(localStorage.getItem('pixelBarFavs')) || [];
+
+    // DOM 元素
+    const app = document.getElementById('main-app');
+    const ageGate = document.getElementById('age-gate');
+    const listContainer = document.getElementById('cocktail-list');
+    const searchInput = document.getElementById('searchInput');
+    const baseFilter = document.getElementById('baseFilter');
+    const techFilter = document.getElementById('techFilter');
+    const favFilter = document.getElementById('favFilter');
+    const resultCount = document.getElementById('resultCount');
+    const modal = document.getElementById('modal');
+    const modalContentBox = document.getElementById('modal-content-box');
+
+    // 年齡確認邏輯
+    function enterTavern() {
+        ageGate.classList.add('hidden');
+        app.classList.remove('hidden');
+        renderList();
+    }
+
+    function leaveTavern() {
+        alert("未滿18歲請勿飲酒，期待您成年後再來拜訪！");
+        window.location.href = "https://www.google.com";
+    }
+
+    // 渲染酒譜列表
+    function renderList() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const base = baseFilter.value;
+        const tech = techFilter.value;
+        const showFavs = favFilter.checked;
+
+        // 篩選資料
+        const filtered = cocktails.filter(c => {
+            const matchSearch = c.zh.includes(searchTerm) || c.en.toLowerCase().includes(searchTerm) || c.ingredients.join('').includes(searchTerm);
+            const matchBase = base === "" || c.base === base;
+            const matchTech = tech === "" || c.technique.includes(tech);
+            const matchFav = !showFavs || favorites.includes(c.id);
+            return matchSearch && matchBase && matchTech && matchFav;
+        });
+
+        resultCount.innerText = `${filtered.length} 款`;
+        listContainer.innerHTML = '';
+
+        if(filtered.length === 0) {
+            listContainer.innerHTML = '<div class="rpg-box" style="text-align:center;">找不到符合的酒譜...</div>';
+            return;
+        }
+
+        filtered.forEach(c => {
+            const isFav = favorites.includes(c.id);
+            const card = document.createElement('div');
+            card.className = 'rpg-box cocktail-card';
+            card.onclick = () => openModal(c);
+            
+            card.innerHTML = `
+                <div class="cocktail-info">
+                    <h3>${c.zh}</h3>
+                    <p>${c.en}</p>
+                    <div style="margin-top:5px;">
+                        <span class="tag">${c.base}</span>
+                        <span class="tag">${c.technique}</span>
+                    </div>
+                </div>
+                <div class="fav-icon" onclick="toggleFav(event, ${c.id})">
+                    ${isFav ? '♥' : '♡'}
+                </div>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+
+    // 收藏功能切換
+    function toggleFav(e, id) {
+        e.stopPropagation(); // 阻止點擊事件傳遞到卡片開啟 Modal
+        if(favorites.includes(id)) {
+            favorites = favorites.filter(favId => favId !== id);
+        } else {
+            favorites.push(id);
+        }
+        localStorage.setItem('pixelBarFavs', JSON.stringify(favorites));
+        renderList(); // 重新渲染更新愛心圖示
+    }
+
+    // 開啟詳細資訊
+    function openModal(c) {
+        const isFav = favorites.includes(c.id);
+        modalContentBox.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2 style="margin:0;">${c.zh} <span style="font-size:14px; color:#aaa;">${c.en}</span></h2>
+            </div>
+            
+            <div style="margin-top:15px;">
+                <div class="detail-row"><span class="detail-label">▶ 基酒：</span>${c.base}</div>
+                <div class="detail-row"><span class="detail-label">▶ 手法：</span>${c.technique}</div>
+                <div class="detail-row"><span class="detail-label">▶ 杯型：</span>${c.glass}</div>
+                <div class="detail-row"><span class="detail-label">▶ 裝飾：</span>${c.garnish}</div>
+                <div class="detail-row"><span class="detail-label">▶ 材料：</span><br>${c.ingredients.map(i=>` - ${i}`).join('<br>')}</div>
+                <div class="detail-row"><span class="detail-label">▶ 比例：</span><br>${c.proportion}</div>
+                <div class="detail-row"><span class="detail-label">▶ 筆記：</span><br>${c.desc}</div>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+                <button class="btn btn-orange" onclick="closeModal()">[ 關閉視窗 ]</button>
+            </div>
+        `;
+        modal.style.display = 'flex';
+    }
+
+    // 關閉詳細資訊
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // 點擊 Modal 背景關閉
+    modal.addEventListener('click', (e) => {
+        if(e.target === modal) closeModal();
+    });
+
+    // 綁定事件監聽
+    searchInput.addEventListener('input', renderList);
+    baseFilter.addEventListener('change', renderList);
+    techFilter.addEventListener('change', renderList);
+    favFilter.addEventListener('change', renderList);
+
+</script>
+</body>
+</html>
