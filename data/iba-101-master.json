@@ -1,0 +1,3163 @@
+{
+  "meta": {
+    "title": "IBA 101 Master List",
+    "version": "master-001-101",
+    "scope": "IBA app learning IDs 001-101",
+    "cocktail_count": 101,
+    "app_id_note": "app_id is our learning order, not an official IBA ranking.",
+    "iba_id_note": "iba_id is reserved and remains null unless a reliable official IBA numeric identifier is confirmed.",
+    "source": "International Bartenders Association official cocktail pages",
+    "generated_on": "2026-09-06"
+  },
+  "cocktails": [
+    {
+      "app_id": "001",
+      "iba_id": null,
+      "iba_slug": "dry-martini",
+      "official_name": "Dry Martini",
+      "chinese_name": "乾馬丁尼",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Dry Vermouth",
+          "amount": "10 ml"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass, then strain into a chilled martini cocktail glass.",
+      "glassware": "Martini cocktail glass",
+      "garnish": "Express lemon peel oil over the drink, or garnish with a green olive if requested.",
+      "official_url": "https://iba-world.com/iba-cocktail/dry-martini/",
+      "icon_filename": "dry-martini.png"
+    },
+    {
+      "app_id": "002",
+      "iba_id": null,
+      "iba_slug": "negroni",
+      "official_name": "Negroni",
+      "chinese_name": "尼格羅尼",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Bitter Campari",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Build directly in a chilled old fashioned glass filled with ice and stir gently.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Half orange slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/negroni/",
+      "icon_filename": "negroni.png"
+    },
+    {
+      "app_id": "003",
+      "iba_id": null,
+      "iba_slug": "old-fashioned",
+      "official_name": "Old Fashioned",
+      "chinese_name": "古典",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Bourbon or Rye Whiskey",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Sugar Cube",
+          "amount": "1"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "Few dashes"
+        },
+        {
+          "name": "Plain Water",
+          "amount": "Few dashes"
+        }
+      ],
+      "method": "Muddle the sugar cube with bitters and water in an old fashioned glass until dissolved, add ice and whiskey, then stir gently.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Orange slice or zest, and a cocktail cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/old-fashioned/",
+      "icon_filename": "old-fashioned.png"
+    },
+    {
+      "app_id": "004",
+      "iba_id": null,
+      "iba_slug": "manhattan",
+      "official_name": "Manhattan",
+      "chinese_name": "曼哈頓",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Rye Whiskey",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "1 dash"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Cocktail cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/manhattan/",
+      "icon_filename": "manhattan.png"
+    },
+    {
+      "app_id": "005",
+      "iba_id": null,
+      "iba_slug": "margarita",
+      "official_name": "Margarita",
+      "chinese_name": "瑪格麗特",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Tequila 100% Agave",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Triple Sec",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Freshly Squeezed Lime Juice",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Half salt rim (optional).",
+      "official_url": "https://iba-world.com/iba-cocktail/margarita/",
+      "icon_filename": "margarita.png"
+    },
+    {
+      "app_id": "006",
+      "iba_id": null,
+      "iba_slug": "mojito",
+      "official_name": "Mojito",
+      "chinese_name": "莫西多",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "White Cuban Ron",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Mint Sprigs",
+          "amount": "6 pcs"
+        },
+        {
+          "name": "White Cane Sugar",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "Soda Water",
+          "amount": "To top"
+        }
+      ],
+      "method": "Mix mint, sugar and lime juice; add a splash of soda and ice, add rum, top with soda, then stir lightly.",
+      "glassware": "Highball glass",
+      "garnish": "Mint sprigs and a lime slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/mojito/",
+      "icon_filename": "mojito.png"
+    },
+    {
+      "app_id": "007",
+      "iba_id": null,
+      "iba_slug": "daiquiri",
+      "official_name": "Daiquiri",
+      "chinese_name": "黛綺麗",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "White Cuban Ron",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Superfine Sugar",
+          "amount": "2 bar spoons"
+        }
+      ],
+      "method": "Stir ingredients in a shaker to dissolve sugar, add ice, shake, and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/daiquiri/",
+      "icon_filename": "daiquiri.png"
+    },
+    {
+      "app_id": "008",
+      "iba_id": null,
+      "iba_slug": "whiskey-sour",
+      "official_name": "Whiskey Sour",
+      "chinese_name": "威士忌酸酒",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Bourbon Whiskey",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "25 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Egg White",
+          "amount": "Few drops (optional)"
+        }
+      ],
+      "method": "Shake with ice and strain into a cobbler glass; if served on the rocks, strain into an old fashioned glass with ice.",
+      "glassware": "Cobbler glass / old fashioned glass when served on the rocks",
+      "garnish": "Half orange slice and maraschino cherry; orange zest optional.",
+      "official_url": "https://iba-world.com/iba-cocktail/whiskey-sour/",
+      "icon_filename": "whiskey-sour.png"
+    },
+    {
+      "app_id": "009",
+      "iba_id": null,
+      "iba_slug": "cosmopolitan",
+      "official_name": "Cosmopolitan",
+      "chinese_name": "柯夢波丹",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka Citron",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Cointreau",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Cranberry Juice",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Shake with ice and strain into a large cocktail glass.",
+      "glassware": "Large cocktail glass",
+      "garnish": "Lemon twist.",
+      "official_url": "https://iba-world.com/iba-cocktail/cosmopolitan/",
+      "icon_filename": "cosmopolitan.png"
+    },
+    {
+      "app_id": "010",
+      "iba_id": null,
+      "iba_slug": "bloody-mary",
+      "official_name": "Bloody Mary",
+      "chinese_name": "血腥瑪麗",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Tomato Juice",
+          "amount": "90 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Worcestershire Sauce",
+          "amount": "2 dashes"
+        },
+        {
+          "name": "Tabasco",
+          "amount": "To taste"
+        },
+        {
+          "name": "Celery Salt",
+          "amount": "To taste"
+        },
+        {
+          "name": "Pepper",
+          "amount": "To taste"
+        }
+      ],
+      "method": "Stir gently with ice in a mixing glass and pour into a rocks glass; if requested with ice, use a highball glass.",
+      "glassware": "Rocks glass / highball glass if served with ice",
+      "garnish": "Celery and lemon wedge (optional).",
+      "official_url": "https://iba-world.com/iba-cocktail/bloody-mary/",
+      "icon_filename": "bloody-mary.png"
+    },
+    {
+      "app_id": "011",
+      "iba_id": null,
+      "iba_slug": "singapore-sling",
+      "official_name": "Singapore Sling",
+      "chinese_name": "新加坡司令",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cherry Sangue Morlacco",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Cointreau",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "DOM Bénédictine",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "120 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Grenadine Syrup",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "1 dash"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a Hurricane glass.",
+      "glassware": "Hurricane glass",
+      "garnish": "Pineapple and maraschino cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/singapore-sling/",
+      "icon_filename": "singapore-sling.png"
+    },
+    {
+      "app_id": "012",
+      "iba_id": null,
+      "iba_slug": "tequila-sunrise",
+      "official_name": "Tequila Sunrise",
+      "chinese_name": "龍舌蘭日出",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Tequila",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Orange Juice",
+          "amount": "90 ml"
+        },
+        {
+          "name": "Grenadine Syrup",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Build tequila and orange juice in an ice-filled highball glass; add grenadine last to create the sunrise effect and do not stir.",
+      "glassware": "Highball glass",
+      "garnish": "Half orange slice or orange zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/tequila-sunrise/",
+      "icon_filename": "tequila-sunrise.png"
+    },
+    {
+      "app_id": "013",
+      "iba_id": null,
+      "iba_slug": "cuba-libre",
+      "official_name": "Cuba Libre",
+      "chinese_name": "自由古巴",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "White Rum",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Cola",
+          "amount": "120 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "10 ml"
+        }
+      ],
+      "method": "Build all ingredients in a highball glass filled with ice.",
+      "glassware": "Highball glass",
+      "garnish": "Lime wedge.",
+      "official_url": "https://iba-world.com/iba-cocktail/cuba-libre/",
+      "icon_filename": "cuba-libre.png"
+    },
+    {
+      "app_id": "014",
+      "iba_id": null,
+      "iba_slug": "pina-colada",
+      "official_name": "Pina Colada",
+      "chinese_name": "鳳梨可樂達",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "White Rum",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Coconut Cream",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "50 ml"
+        }
+      ],
+      "method": "Blend all ingredients with ice and pour into a large glass.",
+      "glassware": "Large glass",
+      "garnish": "Pineapple slice and cocktail cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/pina-colada/",
+      "icon_filename": "pina-colada.png"
+    },
+    {
+      "app_id": "015",
+      "iba_id": null,
+      "iba_slug": "moscow-mule",
+      "official_name": "Moscow Mule",
+      "chinese_name": "莫斯科騾子",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Smirnoff Vodka",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Ginger Beer",
+          "amount": "120 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "10 ml"
+        }
+      ],
+      "method": "Combine vodka and ginger beer in a Mule Cup or rocks glass, add lime juice, and stir gently.",
+      "glassware": "Mule Cup or rocks glass",
+      "garnish": "Lime slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/moscow-mule/",
+      "icon_filename": "moscow-mule.png"
+    },
+    {
+      "app_id": "016",
+      "iba_id": null,
+      "iba_slug": "long-island-iced-tea",
+      "official_name": "Long Island Iced Tea",
+      "chinese_name": "長島冰茶",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Tequila",
+          "amount": "15 ml"
+        },
+        {
+          "name": "White Rum",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Gin",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Cointreau",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Lemon Juice",
+          "amount": "25 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cola",
+          "amount": "To top"
+        }
+      ],
+      "method": "Build all ingredients in an ice-filled highball glass and stir gently.",
+      "glassware": "Highball glass",
+      "garnish": "Lemon slice (optional).",
+      "official_url": "https://iba-world.com/iba-cocktail/long-island-iced-tea/",
+      "icon_filename": "long-island-iced-tea.png"
+    },
+    {
+      "app_id": "017",
+      "iba_id": null,
+      "iba_slug": "john-collins",
+      "official_name": "John Collins",
+      "chinese_name": "約翰可林斯",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Soda Water",
+          "amount": "60 ml"
+        }
+      ],
+      "method": "Build all ingredients directly in an ice-filled highball glass and stir gently.",
+      "glassware": "Highball glass",
+      "garnish": "Lemon slice and maraschino cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/john-collins/",
+      "icon_filename": "john-collins.png",
+      "notes": "IBA notes that using Old Tom Gin makes it a Tom Collins."
+    },
+    {
+      "app_id": "018",
+      "iba_id": null,
+      "iba_slug": "sidecar",
+      "official_name": "Sidecar",
+      "chinese_name": "側車",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Triple Sec",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "20 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/sidecar/",
+      "icon_filename": "sidecar.png"
+    },
+    {
+      "app_id": "019",
+      "iba_id": null,
+      "iba_slug": "mai-tai",
+      "official_name": "Mai-Tai",
+      "chinese_name": "邁泰",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Amber Jamaican Rum",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Martinique Molasses Rhum",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Orange Curacao",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Orgeat Syrup (Almond)",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Squeezed Lime Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "7.5 ml"
+        }
+      ],
+      "method": "Shake with ice and pour into a double rocks glass or highball glass.",
+      "glassware": "Double rocks glass or highball glass",
+      "garnish": "Pineapple spear, mint leaves and lime peel.",
+      "official_url": "https://iba-world.com/iba-cocktail/mai-tai/",
+      "icon_filename": "mai-tai.png"
+    },
+    {
+      "app_id": "020",
+      "iba_id": null,
+      "iba_slug": "americano",
+      "official_name": "Americano",
+      "chinese_name": "美國佬",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Bitter Campari",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Soda Water",
+          "amount": "A splash"
+        }
+      ],
+      "method": "Build in an ice-filled old fashioned glass, add soda water, and stir gently.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Half orange slice and lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/americano/",
+      "icon_filename": "americano.png"
+    },
+    {
+      "app_id": "021",
+      "iba_id": null,
+      "iba_slug": "aviation",
+      "official_name": "Aviation",
+      "chinese_name": "航空",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Crème de Violette",
+          "amount": "1 bar spoon"
+        }
+      ],
+      "method": "Shake with cracked ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Maraschino cherry (optional).",
+      "official_url": "https://iba-world.com/iba-cocktail/aviation/",
+      "icon_filename": "aviation.png"
+    },
+    {
+      "app_id": "022",
+      "iba_id": null,
+      "iba_slug": "boulevardier",
+      "official_name": "Boulevardier",
+      "chinese_name": "花花公子",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Bourbon or Rye Whiskey",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Bitter Campari",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Stir with ice in a mixing glass and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Orange zest; lemon zest optional.",
+      "official_url": "https://iba-world.com/iba-cocktail/boulevardier/",
+      "icon_filename": "boulevardier.png"
+    },
+    {
+      "app_id": "023",
+      "iba_id": null,
+      "iba_slug": "sazerac",
+      "official_name": "Sazerac",
+      "chinese_name": "薩澤拉克",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Absinthe",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Sugar Cube",
+          "amount": "1"
+        },
+        {
+          "name": "Peychaud’s Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Rinse a chilled old fashioned glass with absinthe. Stir remaining ingredients with ice, discard rinse ice/excess absinthe, then strain into the prepared glass.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/sazerac/",
+      "icon_filename": "sazerac.png"
+    },
+    {
+      "app_id": "024",
+      "iba_id": null,
+      "iba_slug": "last-word",
+      "official_name": "Last Word",
+      "chinese_name": "最後一語",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Green Chartreuse",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "22.5 ml"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/last-word/",
+      "icon_filename": "last-word.png"
+    },
+    {
+      "app_id": "025",
+      "iba_id": null,
+      "iba_slug": "corpse-reviver-2",
+      "official_name": "Corpse Reviver #2",
+      "chinese_name": "殭屍復甦二號",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cointreau",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Lillet Blanc",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1 dash"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Orange zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/corpse-reviver-2/",
+      "icon_filename": "corpse-reviver-2.png"
+    },
+    {
+      "app_id": "026",
+      "iba_id": null,
+      "iba_slug": "french-75",
+      "official_name": "French 75",
+      "chinese_name": "法國75",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Champagne",
+          "amount": "60 ml"
+        }
+      ],
+      "method": "Shake all ingredients except Champagne with ice, strain into a Champagne flute, top with Champagne, and stir gently.",
+      "glassware": "Champagne flute",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/french-75/",
+      "icon_filename": "french-75.png"
+    },
+    {
+      "app_id": "027",
+      "iba_id": null,
+      "iba_slug": "vesper",
+      "official_name": "Vesper",
+      "chinese_name": "維斯帕",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Vodka",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Lillet Blanc",
+          "amount": "7.5 ml"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/vesper/",
+      "icon_filename": "vesper.png"
+    },
+    {
+      "app_id": "028",
+      "iba_id": null,
+      "iba_slug": "mint-julep",
+      "official_name": "Mint Julep",
+      "chinese_name": "薄荷茱麗普",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Bourbon Whiskey",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Mint Sprigs",
+          "amount": "4"
+        },
+        {
+          "name": "Powdered Sugar",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "Water",
+          "amount": "2 tsp"
+        }
+      ],
+      "method": "Gently muddle mint with sugar and water in a julep cup, fill with cracked ice, add Bourbon, and stir until the cup frosts.",
+      "glassware": "Julep stainless steel cup",
+      "garnish": "Mint sprig.",
+      "official_url": "https://iba-world.com/iba-cocktail/mint-julep/",
+      "icon_filename": "mint-julep.png"
+    },
+    {
+      "app_id": "029",
+      "iba_id": null,
+      "iba_slug": "paloma",
+      "official_name": "Paloma",
+      "chinese_name": "帕洛瑪",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "100% Agave Tequila",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Fresh Lime",
+          "amount": "5 ml"
+        },
+        {
+          "name": "Salt",
+          "amount": "A pinch"
+        },
+        {
+          "name": "Pink Grapefruit Soda",
+          "amount": "100 ml"
+        }
+      ],
+      "method": "Pour tequila into a highball glass, add lime juice, ice and salt, top with pink grapefruit soda, and stir gently.",
+      "glassware": "Highball glass",
+      "garnish": "Lime slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/paloma/",
+      "icon_filename": "paloma.png"
+    },
+    {
+      "app_id": "030",
+      "iba_id": null,
+      "iba_slug": "caipirinha",
+      "official_name": "Caipirinha",
+      "chinese_name": "卡琵莉亞",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Cachaça",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Lime",
+          "amount": "1, cut into small wedges"
+        },
+        {
+          "name": "White Cane Sugar",
+          "amount": "4 tsp"
+        }
+      ],
+      "method": "Gently muddle lime and sugar in a double old fashioned glass, fill with cracked ice, add Cachaça, and stir gently.",
+      "glassware": "Double old fashioned glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/caipirinha/",
+      "icon_filename": "caipirinha.png"
+    },
+    {
+      "app_id": "031",
+      "iba_id": null,
+      "iba_slug": "bellini",
+      "official_name": "Bellini",
+      "chinese_name": "貝里尼",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Prosecco",
+          "amount": "100 ml"
+        },
+        {
+          "name": "White Peach Puree",
+          "amount": "50 ml"
+        }
+      ],
+      "method": "Pour peach puree into a mixing glass with ice, add Prosecco, stir gently, and pour into a chilled flute glass.",
+      "glassware": "Flute glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/bellini/",
+      "icon_filename": "bellini.png"
+    },
+    {
+      "app_id": "032",
+      "iba_id": null,
+      "iba_slug": "black-russian",
+      "official_name": "Black Russian",
+      "chinese_name": "黑俄羅斯",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Coffee Liqueur",
+          "amount": "20 ml"
+        }
+      ],
+      "method": "Pour the ingredients into an old fashioned glass filled with ice cubes and stir gently.",
+      "glassware": "Old fashioned glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/black-russian/",
+      "icon_filename": "black-russian.png",
+      "notes": "IBA notes that floating fresh cream on top creates a White Russian."
+    },
+    {
+      "app_id": "033",
+      "iba_id": null,
+      "iba_slug": "pisco-sour",
+      "official_name": "Pisco Sour",
+      "chinese_name": "皮斯可酸酒",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Pisco",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Raw Whole Egg White",
+          "amount": "1"
+        }
+      ],
+      "method": "Add all ingredients to a shaker with ice, shake, and strain into a chilled goblet glass.",
+      "glassware": "Goblet glass",
+      "garnish": "A few dashes of Amargo bitters on top.",
+      "official_url": "https://iba-world.com/iba-cocktail/pisco-sour/",
+      "icon_filename": "pisco-sour.png"
+    },
+    {
+      "app_id": "034",
+      "iba_id": null,
+      "iba_slug": "dark-n-stormy",
+      "official_name": "Dark ‘N’ Stormy",
+      "chinese_name": "黑暗風暴",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Goslings Rum",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Ginger Beer",
+          "amount": "100 ml"
+        }
+      ],
+      "method": "In a highball glass filled with ice, pour the ginger beer and float the rum on top.",
+      "glassware": "Highball glass",
+      "garnish": "Lime wedge or slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/dark-n-stormy/",
+      "icon_filename": "dark-n-stormy.png"
+    },
+    {
+      "app_id": "035",
+      "iba_id": null,
+      "iba_slug": "tommys-margarita",
+      "official_name": "Tommy’s Margarita",
+      "chinese_name": "湯米瑪格麗特",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Tequila 100% Agave",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Agave Nectar",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a chilled rocks glass filled with ice.",
+      "glassware": "Rocks glass",
+      "garnish": "Lime slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/tommys-margarita/",
+      "icon_filename": "tommys-margarita.png"
+    },
+    {
+      "app_id": "036",
+      "iba_id": null,
+      "iba_slug": "espresso-martini",
+      "official_name": "Espresso Martini",
+      "chinese_name": "濃縮咖啡馬丁尼",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Kahlúa",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Strong Espresso",
+          "amount": "1"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "3 coffee beans.",
+      "official_url": "https://iba-world.com/iba-cocktail/espresso-martini/",
+      "icon_filename": "espresso-martini.png"
+    },
+    {
+      "app_id": "037",
+      "iba_id": null,
+      "iba_slug": "paper-plane",
+      "official_name": "Paper Plane",
+      "chinese_name": "紙飛機",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Bourbon Whiskey",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Amaro Nonino",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Aperol",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/paper-plane/",
+      "icon_filename": "paper-plane.png"
+    },
+    {
+      "app_id": "038",
+      "iba_id": null,
+      "iba_slug": "penicillin",
+      "official_name": "Penicillin",
+      "chinese_name": "盤尼西林",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Blended Scotch Whisky",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Lagavulin 16y",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Honey Syrup",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Fresh Ginger",
+          "amount": "2–3 quarter-size slices"
+        }
+      ],
+      "method": "Muddle ginger in a shaker, add all ingredients except the Islay single malt, shake with ice, fine strain into a chilled old fashioned glass with ice, then float the single malt on top.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Candied ginger slices.",
+      "official_url": "https://iba-world.com/iba-cocktail/penicillin/",
+      "icon_filename": "penicillin.png"
+    },
+    {
+      "app_id": "039",
+      "iba_id": null,
+      "iba_slug": "jungle-bird",
+      "official_name": "Jungle Bird",
+      "chinese_name": "叢林鳥",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Blackstrap Rum",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Campari",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Pineapple Juice",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Freshly Squeezed Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Demerara Sugar Syrup",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a rocks glass filled with ice.",
+      "glassware": "Rocks glass",
+      "garnish": "Pineapple wedge.",
+      "official_url": "https://iba-world.com/iba-cocktail/jungle-bird/",
+      "icon_filename": "jungle-bird.png"
+    },
+    {
+      "app_id": "040",
+      "iba_id": null,
+      "iba_slug": "clover-club",
+      "official_name": "Clover Club",
+      "chinese_name": "三葉草俱樂部",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Raspberry Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Egg White",
+          "amount": "Few drops"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Fresh raspberries.",
+      "official_url": "https://iba-world.com/iba-cocktail/clover-club/",
+      "icon_filename": "clover-club.png"
+    },
+    {
+      "app_id": "041",
+      "iba_id": null,
+      "iba_slug": "white-lady",
+      "official_name": "White Lady",
+      "chinese_name": "白色佳人",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Triple Sec",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "20 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/white-lady/",
+      "icon_filename": "white-lady.png"
+    },
+    {
+      "app_id": "042",
+      "iba_id": null,
+      "iba_slug": "bramble",
+      "official_name": "Bramble",
+      "chinese_name": "荊棘",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "25 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "12.5 ml"
+        },
+        {
+          "name": "Crème de Mûre",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients except Crème de Mûre with ice, strain into an old fashioned glass filled with crushed ice, then pour the blackberry liqueur over the top in a circular motion.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Optional lemon slice and blackberries.",
+      "official_url": "https://iba-world.com/iba-cocktail/bramble/",
+      "icon_filename": "bramble.png"
+    },
+    {
+      "app_id": "043",
+      "iba_id": null,
+      "iba_slug": "gin-fizz",
+      "official_name": "Gin Fizz",
+      "chinese_name": "琴費士",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Soda Water",
+          "amount": "Splash"
+        }
+      ],
+      "method": "Shake all ingredients except soda water with ice, pour into a thin tall tumbler glass, and top with soda water. Serve without ice.",
+      "glassware": "Thin tall tumbler glass",
+      "garnish": "Lemon slice; lemon zest optional.",
+      "official_url": "https://iba-world.com/iba-cocktail/gin-fizz/",
+      "icon_filename": "gin-fizz.png"
+    },
+    {
+      "app_id": "044",
+      "iba_id": null,
+      "iba_slug": "irish-coffee",
+      "official_name": "Irish Coffee",
+      "chinese_name": "愛爾蘭咖啡",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Irish Whiskey",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Hot Coffee",
+          "amount": "120 ml"
+        },
+        {
+          "name": "Fresh Cream (chilled)",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Sugar",
+          "amount": "1 teaspoon"
+        }
+      ],
+      "method": "Pour warm black coffee into a preheated Irish coffee glass, add whiskey and sugar and stir until dissolved, then float thick chilled cream over the back of a spoon.",
+      "glassware": "Irish coffee glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/irish-coffee/",
+      "icon_filename": "irish-coffee.png"
+    },
+    {
+      "app_id": "045",
+      "iba_id": null,
+      "iba_slug": "mimosa",
+      "official_name": "Mimosa",
+      "chinese_name": "含羞草",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Freshly Squeezed Orange Juice",
+          "amount": "75 ml"
+        },
+        {
+          "name": "Prosecco",
+          "amount": "75 ml"
+        }
+      ],
+      "method": "Pour orange juice into a flute glass, gently add the sparkling wine, and stir gently.",
+      "glassware": "Flute glass",
+      "garnish": "Orange twist (optional).",
+      "official_url": "https://iba-world.com/iba-cocktail/mimosa/",
+      "icon_filename": "mimosa.png",
+      "notes": "IBA notes this is also known as Buck’s Fizz."
+    },
+    {
+      "app_id": "046",
+      "iba_id": null,
+      "iba_slug": "kir",
+      "official_name": "Kir",
+      "chinese_name": "基爾",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Dry White Wine",
+          "amount": "90 ml"
+        },
+        {
+          "name": "Crème de Cassis",
+          "amount": "10 ml"
+        }
+      ],
+      "method": "Pour Crème de Cassis into the glass and top with white wine.",
+      "glassware": "Wine glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/kir/",
+      "icon_filename": "kir.png",
+      "notes": "IBA notes that Kir Royal uses Champagne instead of white wine."
+    },
+    {
+      "app_id": "047",
+      "iba_id": null,
+      "iba_slug": "sex-on-the-beach",
+      "official_name": "Sex on the Beach",
+      "chinese_name": "性感海灘",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Peach Schnapps",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Fresh Orange Juice",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Cranberry Juice",
+          "amount": "40 ml"
+        }
+      ],
+      "method": "Build all ingredients in a highball glass filled with ice.",
+      "glassware": "Highball glass",
+      "garnish": "Half orange slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/sex-on-the-beach/",
+      "icon_filename": "sex-on-the-beach.png"
+    },
+    {
+      "app_id": "048",
+      "iba_id": null,
+      "iba_slug": "spritz",
+      "official_name": "Spritz",
+      "chinese_name": "斯普里茲",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Prosecco",
+          "amount": "90 ml"
+        },
+        {
+          "name": "Aperol",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Soda Water",
+          "amount": "Splash"
+        }
+      ],
+      "method": "Build all ingredients in a wine glass filled with ice and stir gently.",
+      "glassware": "Wine glass",
+      "garnish": "Orange slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/spritz/",
+      "icon_filename": "spritz.png"
+    },
+    {
+      "app_id": "049",
+      "iba_id": null,
+      "iba_slug": "ramos-fizz",
+      "official_name": "Ramos Fizz",
+      "chinese_name": "拉莫斯費士",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cream",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Egg White",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Orange Flower Water",
+          "amount": "3 dashes"
+        },
+        {
+          "name": "Vanilla Extract",
+          "amount": "2 drops"
+        },
+        {
+          "name": "Soda Water",
+          "amount": "To top"
+        }
+      ],
+      "method": "Shake all ingredients except soda water with ice for two minutes, double strain, return to the shaker and hard shake without ice for one minute, strain into a highball glass, and top with soda.",
+      "glassware": "Highball glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/ramos-fizz/",
+      "icon_filename": "ramos-fizz.png"
+    },
+    {
+      "app_id": "050",
+      "iba_id": null,
+      "iba_slug": "french-connection",
+      "official_name": "French Connection",
+      "chinese_name": "法國情緣",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "35 ml"
+        },
+        {
+          "name": "Amaretto",
+          "amount": "35 ml"
+        }
+      ],
+      "method": "Pour all ingredients directly into an old fashioned glass filled with ice cubes and stir gently.",
+      "glassware": "Old fashioned glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/french-connection/",
+      "icon_filename": "french-connection.png"
+    },
+    {
+      "app_id": "051",
+      "iba_id": null,
+      "iba_slug": "hemingway-special",
+      "official_name": "Hemingway Special",
+      "chinese_name": "海明威特調",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Rum",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Grapefruit Juice",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lime",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a large cocktail glass.",
+      "glassware": "Large cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/hemingway-special/",
+      "icon_filename": "hemingway-special.png"
+    },
+    {
+      "app_id": "052",
+      "iba_id": null,
+      "iba_slug": "mary-pickford",
+      "official_name": "Mary Pickford",
+      "chinese_name": "瑪麗・碧克馥",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "White Rum",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "Grenadine Syrup",
+          "amount": "5 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/mary-pickford/",
+      "icon_filename": "mary-pickford.png"
+    },
+    {
+      "app_id": "053",
+      "iba_id": null,
+      "iba_slug": "monkey-gland",
+      "official_name": "Monkey Gland",
+      "chinese_name": "猴腺",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Dry Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Orange Juice",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1 tablespoon"
+        },
+        {
+          "name": "Grenadine Syrup",
+          "amount": "1 tablespoon"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/monkey-gland/",
+      "icon_filename": "monkey-gland.png"
+    },
+    {
+      "app_id": "054",
+      "iba_id": null,
+      "iba_slug": "alexander",
+      "official_name": "Alexander",
+      "chinese_name": "亞歷山大",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Crème de Cacao (Brown)",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Cream",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Freshly ground nutmeg.",
+      "official_url": "https://iba-world.com/iba-cocktail/alexander/",
+      "icon_filename": "alexander.png"
+    },
+    {
+      "app_id": "055",
+      "iba_id": null,
+      "iba_slug": "between-the-sheets",
+      "official_name": "Between the Sheets",
+      "chinese_name": "床笫之間",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "White Rum",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cognac",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Triple Sec",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "20 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/between-the-sheets/",
+      "icon_filename": "between-the-sheets.png"
+    },
+    {
+      "app_id": "056",
+      "iba_id": null,
+      "iba_slug": "brandy-crusta",
+      "official_name": "Brandy Crusta",
+      "chinese_name": "白蘭地庫斯塔",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Brandy",
+          "amount": "52.5 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "Curacao",
+          "amount": "1 bar spoon"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "1 bar spoon"
+        },
+        {
+          "name": "Aromatic Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a prepared slim cocktail glass.",
+      "glassware": "Slim cocktail glass",
+      "garnish": "Sugar rim, with a long orange or lemon peel curled around the inside of the glass.",
+      "official_url": "https://iba-world.com/iba-cocktail/brandy-crusta/",
+      "icon_filename": "brandy-crusta.png"
+    },
+    {
+      "app_id": "057",
+      "iba_id": null,
+      "iba_slug": "casino",
+      "official_name": "Casino",
+      "chinese_name": "賭場",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Old Tom Gin",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Orange Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled rocks glass with ice.",
+      "glassware": "Rocks glass",
+      "garnish": "Lemon zest and maraschino cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/casino/",
+      "icon_filename": "casino.png"
+    },
+    {
+      "app_id": "058",
+      "iba_id": null,
+      "iba_slug": "champagne-cocktail",
+      "official_name": "Champagne Cocktail",
+      "chinese_name": "香檳雞尾酒",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Chilled Champagne",
+          "amount": "90 ml"
+        },
+        {
+          "name": "Cognac",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "2 dashes"
+        },
+        {
+          "name": "Grand Marnier",
+          "amount": "Few drops (optional)"
+        },
+        {
+          "name": "Sugar Cube",
+          "amount": "1"
+        }
+      ],
+      "method": "Place the sugar cube with bitters in a large Champagne glass, add Cognac, then gently pour in chilled Champagne.",
+      "glassware": "Large Champagne glass",
+      "garnish": "Orange zest and maraschino cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/champagne-cocktail/",
+      "icon_filename": "champagne-cocktail.png"
+    },
+    {
+      "app_id": "059",
+      "iba_id": null,
+      "iba_slug": "cardinale",
+      "official_name": "Cardinale",
+      "chinese_name": "卡迪納爾",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Dry Vermouth",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Bitter Campari",
+          "amount": "10 ml"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/cardinale/",
+      "icon_filename": "cardinale.png"
+    },
+    {
+      "app_id": "060",
+      "iba_id": null,
+      "iba_slug": "bees-knees",
+      "official_name": "Bee’s Knees",
+      "chinese_name": "蜜蜂之膝",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Dry Gin",
+          "amount": "52.5 ml"
+        },
+        {
+          "name": "Honey Syrup",
+          "amount": "2 teaspoons"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Fresh Orange Juice",
+          "amount": "22.5 ml"
+        }
+      ],
+      "method": "Stir honey with lemon and orange juices until dissolved, add gin, shake with ice, and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Optional lemon or orange zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/bees-knees/",
+      "icon_filename": "bees-knees.png"
+    },
+    {
+      "app_id": "061",
+      "iba_id": null,
+      "iba_slug": "angel-face",
+      "official_name": "Angel Face",
+      "chinese_name": "天使之顏",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Apricot Brandy",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Calvados",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/angel-face/",
+      "icon_filename": "angel-face.png"
+    },
+    {
+      "app_id": "062",
+      "iba_id": null,
+      "iba_slug": "canchanchara",
+      "official_name": "Canchanchara",
+      "chinese_name": "坎昌恰拉",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Cuban Aguardiente",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Raw Honey",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Water",
+          "amount": "50 ml"
+        }
+      ],
+      "method": "Mix honey with water and lime juice on the bottom and sides of the glass, add cracked ice and rum, then stir energetically from bottom to top.",
+      "glassware": "Glass used for service",
+      "garnish": "Lime wedge.",
+      "official_url": "https://iba-world.com/iba-cocktail/canchanchara/",
+      "icon_filename": "canchanchara.png"
+    },
+    {
+      "app_id": "063",
+      "iba_id": null,
+      "iba_slug": "chartreuse-swizzle",
+      "official_name": "Chartreuse Swizzle",
+      "chinese_name": "夏翠絲 Swizzle",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Green Chartreuse",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Falernum",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Pour all ingredients into a tall glass, add pebble ice, swizzle vigorously, then fill with more pebble ice.",
+      "glassware": "Tall glass",
+      "garnish": "Mint leaves and grated nutmeg.",
+      "official_url": "https://iba-world.com/iba-cocktail/chartreuse-swizzle/",
+      "icon_filename": "chartreuse-swizzle.png"
+    },
+    {
+      "app_id": "064",
+      "iba_id": null,
+      "iba_slug": "dons-special-daiquiri",
+      "official_name": "Don’s Special Daiquiri",
+      "chinese_name": "Don 特製黛綺麗",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Gold Jamaican Rum",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cuban Rum",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Passion Fruit Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Honey Syrup",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Blend for a few seconds with crushed ice in a milkshake mixer, pour into a footed copo glass, then fill with more crushed ice.",
+      "glassware": "Footed copo glass",
+      "garnish": "Half passion fruit.",
+      "official_url": "https://iba-world.com/iba-cocktail/dons-special-daiquiri/",
+      "icon_filename": "dons-special-daiquiri.png"
+    },
+    {
+      "app_id": "065",
+      "iba_id": null,
+      "iba_slug": "fernandito",
+      "official_name": "Fernandito",
+      "chinese_name": "費爾南迪托",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Fernet Branca",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Cola",
+          "amount": "Fill up"
+        }
+      ],
+      "method": "Pour Fernet Branca into a double old fashioned glass with ice, fill with cola, and stir gently.",
+      "glassware": "Double old fashioned glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/fernandito/",
+      "icon_filename": "fernandito.png"
+    },
+    {
+      "app_id": "066",
+      "iba_id": null,
+      "iba_slug": "french-martini",
+      "official_name": "French Martini",
+      "chinese_name": "法式馬丁尼",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Raspberry Liqueur",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Express lemon peel oil over the drink.",
+      "official_url": "https://iba-world.com/iba-cocktail/french-martini/",
+      "icon_filename": "french-martini.png"
+    },
+    {
+      "app_id": "067",
+      "iba_id": null,
+      "iba_slug": "garibaldi",
+      "official_name": "Garibaldi",
+      "chinese_name": "加里波第",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Bitter Campari",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Freshly Squeezed Orange Juice",
+          "amount": "120 ml"
+        }
+      ],
+      "method": "Build all ingredients in a highball glass filled with ice.",
+      "glassware": "Highball glass",
+      "garnish": "Orange wedge.",
+      "official_url": "https://iba-world.com/iba-cocktail/garibaldi/",
+      "icon_filename": "garibaldi.png"
+    },
+    {
+      "app_id": "068",
+      "iba_id": null,
+      "iba_slug": "gin-basil-smash",
+      "official_name": "Gin Basil Smash",
+      "chinese_name": "琴酒羅勒 Smash",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Freshly Squeezed Lemon Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Italian Basil Leaves",
+          "amount": "10 pcs"
+        }
+      ],
+      "method": "Add all ingredients to a shaker with ice, shake vigorously, and pour into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/gin-basil-smash/",
+      "icon_filename": "gin-basil-smash.png"
+    },
+    {
+      "app_id": "069",
+      "iba_id": null,
+      "iba_slug": "grand-margarita",
+      "official_name": "Grand Margarita",
+      "chinese_name": "Grand 瑪格麗特",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Tequila 100% Agave",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Grand Marnier",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Salt-rim a rocks glass. Add ingredients to a shaker, add ice to glass and shaker, shake hard for 10 seconds, and strain into the glass.",
+      "glassware": "Rocks glass",
+      "garnish": "Lime slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/grand-margarita/",
+      "icon_filename": "grand-margarita.png"
+    },
+    {
+      "app_id": "070",
+      "iba_id": null,
+      "iba_slug": "grasshopper",
+      "official_name": "Grasshopper",
+      "chinese_name": "蚱蜢",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Crème de Cacao (White)",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Crème de Menthe (Green)",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Fresh Cream",
+          "amount": "20 ml"
+        }
+      ],
+      "method": "Shake briskly with ice for a few seconds and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A; mint leaf optional.",
+      "official_url": "https://iba-world.com/iba-cocktail/grasshopper/",
+      "icon_filename": "grasshopper.png"
+    },
+    {
+      "app_id": "071",
+      "iba_id": null,
+      "iba_slug": "hanky-panky",
+      "official_name": "Hanky Panky",
+      "chinese_name": "Hanky Panky",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "London Dry Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fernet",
+          "amount": "7.5 ml"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Orange zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/hanky-panky/",
+      "icon_filename": "hanky-panky.png"
+    },
+    {
+      "app_id": "072",
+      "iba_id": null,
+      "iba_slug": "horses-neck",
+      "official_name": "Horse’s Neck",
+      "chinese_name": "馬頸",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Ginger Ale",
+          "amount": "120 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "Dash (optional)"
+        }
+      ],
+      "method": "Pour Cognac and ginger ale directly into a highball glass with ice cubes and stir gently. Add bitters if preferred.",
+      "glassware": "Highball glass",
+      "garnish": "Spiral rind of one lemon.",
+      "official_url": "https://iba-world.com/iba-cocktail/horses-neck/",
+      "icon_filename": "horses-neck.png"
+    },
+    {
+      "app_id": "073",
+      "iba_id": null,
+      "iba_slug": "iba-tiki",
+      "official_name": "IBA Tiki",
+      "chinese_name": "IBA Tiki",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Ron Profundo Havana Club",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Ron Smoky Havana Club",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Amaretto Liqueur",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Frangelico Liqueur",
+          "amount": "5 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "5 drops"
+        },
+        {
+          "name": "Passion Fruit Puree",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "90 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Ginger Slice",
+          "amount": "1 pc"
+        }
+      ],
+      "method": "Muddle a thin ginger slice in a shaker, add remaining ingredients, shake vigorously with ice, and strain into a chilled Tiki glass filled with pebble ice.",
+      "glassware": "Tiki glass",
+      "garnish": "Citrus and dehydrated pineapple slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/iba-tiki/",
+      "icon_filename": "iba-tiki.png"
+    },
+    {
+      "app_id": "074",
+      "iba_id": null,
+      "iba_slug": "illegal",
+      "official_name": "Illegal",
+      "chinese_name": "Illegal",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Espadin Mezcal",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Jamaica Overproof White Rum",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Falernum",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "1 bar spoon"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Egg White",
+          "amount": "Few drops (optional)"
+        }
+      ],
+      "method": "Shake vigorously with ice and strain into a chilled cocktail glass, or serve on the rocks in a traditional clay or terracotta mug.",
+      "glassware": "Cocktail glass / clay or terracotta mug",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/illegal/",
+      "icon_filename": "illegal.png"
+    },
+    {
+      "app_id": "075",
+      "iba_id": null,
+      "iba_slug": "lemon-drop-martini",
+      "official_name": "Lemon Drop Martini",
+      "chinese_name": "檸檬滴馬丁尼",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Triple Sec",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Fresh Squeezed Lemon Juice",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/lemon-drop-martini/",
+      "icon_filename": "lemon-drop-martini.png"
+    },
+    {
+      "app_id": "076",
+      "iba_id": null,
+      "iba_slug": "martinez",
+      "official_name": "Martinez",
+      "chinese_name": "馬丁尼茲",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "London Dry Gin",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "1 bar spoon"
+        },
+        {
+          "name": "Orange Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/martinez/",
+      "icon_filename": "martinez.png"
+    },
+    {
+      "app_id": "077",
+      "iba_id": null,
+      "iba_slug": "missionarys-downfall",
+      "official_name": "Missionary’s Downfall",
+      "chinese_name": "傳教士的墮落",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "White Rum",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Peach Brandy",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Honey Mix",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Mint Leaves",
+          "amount": "10 pcs"
+        },
+        {
+          "name": "Pineapple Chunks",
+          "amount": "3–4 pcs"
+        }
+      ],
+      "method": "Blend all ingredients with half a cup of crushed ice and serve in a Coppa grande.",
+      "glassware": "Coppa grande",
+      "garnish": "Mint sprig and a slice of pineapple.",
+      "official_url": "https://iba-world.com/iba-cocktail/missionarys-downfall/",
+      "icon_filename": "missionarys-downfall.png"
+    },
+    {
+      "app_id": "078",
+      "iba_id": null,
+      "iba_slug": "naked-and-famous",
+      "official_name": "Naked and Famous",
+      "chinese_name": "裸與成名",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Mezcal",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Yellow Chartreuse",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Aperol",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "22.5 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/naked-and-famous/",
+      "icon_filename": "naked-and-famous.png"
+    },
+    {
+      "app_id": "079",
+      "iba_id": null,
+      "iba_slug": "new-york-sour",
+      "official_name": "New York Sour",
+      "chinese_name": "紐約酸酒",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Rye Whiskey or Bourbon",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Egg White",
+          "amount": "Few drops"
+        },
+        {
+          "name": "Red Wine (Shiraz or Malbec)",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients except red wine vigorously with ice, strain into a chilled rocks glass filled with ice, then float the wine on top.",
+      "glassware": "Rocks glass",
+      "garnish": "Lemon or orange zest with cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/new-york-sour/",
+      "icon_filename": "new-york-sour.png"
+    },
+    {
+      "app_id": "080",
+      "iba_id": null,
+      "iba_slug": "old-cuban",
+      "official_name": "Old Cuban",
+      "chinese_name": "老古巴",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Mint Leaves",
+          "amount": "6–8 pcs"
+        },
+        {
+          "name": "Aged Rum",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "2 dashes"
+        },
+        {
+          "name": "Brut Champagne or Prosecco",
+          "amount": "60 ml"
+        }
+      ],
+      "method": "Shake all ingredients except sparkling wine with ice, strain into a chilled elegant cocktail glass, and top with sparkling wine.",
+      "glassware": "Elegant cocktail glass",
+      "garnish": "Mint sprigs.",
+      "official_url": "https://iba-world.com/iba-cocktail/old-cuban/",
+      "icon_filename": "old-cuban.png"
+    },
+    {
+      "app_id": "081",
+      "iba_id": null,
+      "iba_slug": "paradise",
+      "official_name": "Paradise",
+      "chinese_name": "天堂",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Apricot Brandy",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Fresh Orange Juice",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/paradise/",
+      "icon_filename": "paradise.png"
+    },
+    {
+      "app_id": "082",
+      "iba_id": null,
+      "iba_slug": "pisco-punch",
+      "official_name": "Pisco Punch",
+      "chinese_name": "皮斯可潘趣",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Pisco",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Pineapple Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Dry White Wine",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cloves",
+          "amount": "3 pcs"
+        }
+      ],
+      "method": "Gently mash simple syrup with cloves, add remaining ingredients except wine, shake vigorously, double strain into a large goblet, top with wine, and stir gently.",
+      "glassware": "Large goblet",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/pisco-punch/",
+      "icon_filename": "pisco-punch.png"
+    },
+    {
+      "app_id": "083",
+      "iba_id": null,
+      "iba_slug": "planters-punch",
+      "official_name": "Planters Punch",
+      "chinese_name": "種植園潘趣",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Jamaican Rum",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Sugar Cane Juice",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Pour all ingredients directly into a small tumbler or a typical terracotta glass; add dilution to taste with water, ice, or fresh juices.",
+      "glassware": "Small tumbler or terracotta glass",
+      "garnish": "Orange zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/planters-punch/",
+      "icon_filename": "planters-punch.png"
+    },
+    {
+      "app_id": "084",
+      "iba_id": null,
+      "iba_slug": "porn-star-martini",
+      "official_name": "Porn Star Martini",
+      "chinese_name": "Porn Star Martini",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Vanilla Vodka",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Passion Fruit Liqueur",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Passion Fruit Puree",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Vanilla Sugar",
+          "amount": "2 bar spoons"
+        },
+        {
+          "name": "Champagne",
+          "amount": "50 ml, served on the side"
+        }
+      ],
+      "method": "Shake cocktail ingredients well with ice, double strain into a large chilled cocktail glass, and serve with a shot of Champagne on the side.",
+      "glassware": "Large cocktail glass + shot glass",
+      "garnish": "Passion fruit cup and sugar.",
+      "official_url": "https://iba-world.com/iba-cocktail/porn-star-martini/",
+      "icon_filename": "porn-star-martini.png"
+    },
+    {
+      "app_id": "085",
+      "iba_id": null,
+      "iba_slug": "porto-flip",
+      "official_name": "Porto Flip",
+      "chinese_name": "波特 Flip",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Brandy",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Red Tawny Port Wine",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Egg Yolk",
+          "amount": "10 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Fresh ground nutmeg.",
+      "official_url": "https://iba-world.com/iba-cocktail/porto-flip/",
+      "icon_filename": "porto-flip.png"
+    },
+    {
+      "app_id": "086",
+      "iba_id": null,
+      "iba_slug": "rabo-de-galo",
+      "official_name": "Rabo de Galo",
+      "chinese_name": "公雞尾",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Cachaça",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Sweet Vermouth Cinzano Rosso",
+          "amount": "20 ml"
+        },
+        {
+          "name": "Cynar",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Angostura",
+          "amount": "2 drops (optional)"
+        }
+      ],
+      "method": "Combine all ingredients in a rocks glass, add ice, and stir briefly.",
+      "glassware": "Rocks glass",
+      "garnish": "Orange twist.",
+      "official_url": "https://iba-world.com/iba-cocktail/rabo-de-galo/",
+      "icon_filename": "rabo-de-galo.png"
+    },
+    {
+      "app_id": "087",
+      "iba_id": null,
+      "iba_slug": "remember-the-maine",
+      "official_name": "Remember the Maine",
+      "chinese_name": "緬因號之憶",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Rye Whiskey",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Sweet Vermouth",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Cherry Brandy Luxardo",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Absinthe",
+          "amount": "7.5 ml"
+        }
+      ],
+      "method": "Rinse a coupe glass with absinthe and discard excess. Stir remaining ingredients with ice and strain into the prepared glass.",
+      "glassware": "Coupe glass",
+      "garnish": "Lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/remember-the-maine/",
+      "icon_filename": "remember-the-maine.png"
+    },
+    {
+      "app_id": "088",
+      "iba_id": null,
+      "iba_slug": "russian-spring-punch",
+      "official_name": "Russian Spring Punch",
+      "chinese_name": "俄羅斯春日潘趣",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "25 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "25 ml"
+        },
+        {
+          "name": "Crème de Cassis",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Sugar Syrup",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Sparkling Wine",
+          "amount": "Top up"
+        }
+      ],
+      "method": "Shake all ingredients except sparkling wine with ice, strain into a chilled tall tumbler filled with ice, and top with sparkling wine.",
+      "glassware": "Tall tumbler glass",
+      "garnish": "Blackberries and optionally a lemon slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/russian-spring-punch/",
+      "icon_filename": "russian-spring-punch.png"
+    },
+    {
+      "app_id": "089",
+      "iba_id": null,
+      "iba_slug": "rusty-nail",
+      "official_name": "Rusty Nail",
+      "chinese_name": "鏽釘",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Scotch Whisky",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Drambuie",
+          "amount": "25 ml"
+        }
+      ],
+      "method": "Pour all ingredients directly into an old fashioned glass filled with ice and stir gently.",
+      "glassware": "Old fashioned glass",
+      "garnish": "Lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/rusty-nail/",
+      "icon_filename": "rusty-nail.png"
+    },
+    {
+      "app_id": "090",
+      "iba_id": null,
+      "iba_slug": "sea-breeze",
+      "official_name": "Sea Breeze",
+      "chinese_name": "海風",
+      "category": "Contemporary Classics",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "40 ml"
+        },
+        {
+          "name": "Cranberry Juice",
+          "amount": "120 ml"
+        },
+        {
+          "name": "Grapefruit Juice",
+          "amount": "30 ml"
+        }
+      ],
+      "method": "Build all ingredients in a highball glass filled with ice.",
+      "glassware": "Highball glass",
+      "garnish": "Orange zest and cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/sea-breeze/",
+      "icon_filename": "sea-breeze.png"
+    },
+    {
+      "app_id": "091",
+      "iba_id": null,
+      "iba_slug": "sherry-cobbler",
+      "official_name": "Sherry Cobbler",
+      "chinese_name": "雪莉 Cobbler",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Amontillado Sherry",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Palo Cortado",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Superfine Sugar",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "Orange Wheel",
+          "amount": "1/2"
+        },
+        {
+          "name": "Lemon Wheel",
+          "amount": "1/2"
+        }
+      ],
+      "method": "Shake sherry, sugar, and quarter wheels of orange and lemon with ice, strain into a Julep cup filled with crushed ice.",
+      "glassware": "Julep cocktail cup",
+      "garnish": "Fresh berries plus quarter wheels of orange and lemon; serve with straws.",
+      "official_url": "https://iba-world.com/iba-cocktail/sherry-cobbler/",
+      "icon_filename": "sherry-cobbler.png"
+    },
+    {
+      "app_id": "092",
+      "iba_id": null,
+      "iba_slug": "south-side",
+      "official_name": "South Side",
+      "chinese_name": "南區",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "London Dry Gin",
+          "amount": "60 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Simple Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Mint Leaves",
+          "amount": "5–6"
+        },
+        {
+          "name": "Egg White",
+          "amount": "Few drops (optional)"
+        }
+      ],
+      "method": "Shake all ingredients well with ice, double strain into a chilled cocktail glass; shake vigorously if using egg white.",
+      "glassware": "Cocktail glass",
+      "garnish": "Mint sprigs.",
+      "official_url": "https://iba-world.com/iba-cocktail/south-side/",
+      "icon_filename": "south-side.png"
+    },
+    {
+      "app_id": "093",
+      "iba_id": null,
+      "iba_slug": "spicy-fifty",
+      "official_name": "Spicy Fifty",
+      "chinese_name": "辣味五十",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Vanilla Vodka",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Elderflower Cordial",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Honey Syrup",
+          "amount": "10 ml"
+        },
+        {
+          "name": "Red Chili Pepper",
+          "amount": "2 thin slices"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and double strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Red chili pepper.",
+      "official_url": "https://iba-world.com/iba-cocktail/spicy-fifty/",
+      "icon_filename": "spicy-fifty.png"
+    },
+    {
+      "app_id": "094",
+      "iba_id": null,
+      "iba_slug": "stinger",
+      "official_name": "Stinger",
+      "chinese_name": "刺針",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "50 ml"
+        },
+        {
+          "name": "White Crème de Menthe",
+          "amount": "20 ml"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled martini cocktail glass.",
+      "glassware": "Martini cocktail glass",
+      "garnish": "Mint leaf (optional).",
+      "official_url": "https://iba-world.com/iba-cocktail/stinger/",
+      "icon_filename": "stinger.png"
+    },
+    {
+      "app_id": "095",
+      "iba_id": null,
+      "iba_slug": "suffering-bastard",
+      "official_name": "Suffering Bastard",
+      "chinese_name": "苦命雜種",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Cognac or Brandy",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "2 dashes"
+        },
+        {
+          "name": "Ginger Beer",
+          "amount": "Top up"
+        }
+      ],
+      "method": "Shake all ingredients except ginger beer with ice, pour unstrained into a Collins glass or original Suffering Bastard mug, and top with ginger beer.",
+      "glassware": "Collins glass or Suffering Bastard mug",
+      "garnish": "Mint sprig and optionally an orange slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/suffering-bastard/",
+      "icon_filename": "suffering-bastard.png"
+    },
+    {
+      "app_id": "096",
+      "iba_id": null,
+      "iba_slug": "three-dots-and-a-dash",
+      "official_name": "Three Dots and a Dash",
+      "chinese_name": "三點一線",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Rhum Martinique Agricole",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Blended Aged Rum",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Falernum",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "Allspice St. Elizabeth",
+          "amount": "7.5 ml"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Fresh Orange Juice",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Honey Syrup",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Flash blend all ingredients with 12 ounces of crushed ice, pour into a footed copo glass, and fill with more crushed ice.",
+      "glassware": "Footed copo glass",
+      "garnish": "Three cherries and a rectangular chunk of pineapple.",
+      "official_url": "https://iba-world.com/iba-cocktail/three-dots-and-a-dash/",
+      "icon_filename": "three-dots-and-a-dash.png",
+      "notes": "IBA page currently renders the Allspice and Lime Juice lines without a separator; amounts have been normalized as 7.5 ml Allspice and 15 ml lime."
+    },
+    {
+      "app_id": "097",
+      "iba_id": null,
+      "iba_slug": "tipperary",
+      "official_name": "Tipperary",
+      "chinese_name": "蒂珀雷里",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Irish Whiskey",
+          "amount": "50 ml"
+        },
+        {
+          "name": "Sweet Red Vermouth",
+          "amount": "25 ml"
+        },
+        {
+          "name": "Green Chartreuse",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled martini cocktail glass.",
+      "glassware": "Martini cocktail glass",
+      "garnish": "Orange slice.",
+      "official_url": "https://iba-world.com/iba-cocktail/tipperary/",
+      "icon_filename": "tipperary.png"
+    },
+    {
+      "app_id": "098",
+      "iba_id": null,
+      "iba_slug": "trinidad-sour",
+      "official_name": "Trinidad Sour",
+      "chinese_name": "千里達酸酒",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "Angostura Bitters",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Orgeat Syrup",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Rye Whiskey",
+          "amount": "15 ml"
+        }
+      ],
+      "method": "Shake all ingredients well with ice and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "N/A",
+      "official_url": "https://iba-world.com/iba-cocktail/trinidad-sour/",
+      "icon_filename": "trinidad-sour.png"
+    },
+    {
+      "app_id": "099",
+      "iba_id": null,
+      "iba_slug": "tuxedo",
+      "official_name": "Tuxedo",
+      "chinese_name": "燕尾服",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Old Tom Gin",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Dry Vermouth",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Maraschino Luxardo",
+          "amount": "1/2 bar spoon"
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1/4 bar spoon"
+        },
+        {
+          "name": "Orange Bitters",
+          "amount": "3 dashes"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled martini cocktail glass.",
+      "glassware": "Martini cocktail glass",
+      "garnish": "Cherry and lemon zest.",
+      "official_url": "https://iba-world.com/iba-cocktail/tuxedo/",
+      "icon_filename": "tuxedo.png"
+    },
+    {
+      "app_id": "100",
+      "iba_id": null,
+      "iba_slug": "ve-n-to",
+      "official_name": "Ve.N.To",
+      "chinese_name": "Ve.N.To",
+      "category": "New Era",
+      "ingredients": [
+        {
+          "name": "White Smooth Grappa",
+          "amount": "45 ml"
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "22.5 ml"
+        },
+        {
+          "name": "Honey Mix",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Chamomile Cordial",
+          "amount": "15 ml"
+        },
+        {
+          "name": "Egg White",
+          "amount": "Few drops (optional)"
+        }
+      ],
+      "method": "Shake all ingredients vigorously with ice and strain into a chilled small tumbler glass filled with ice.",
+      "glassware": "Small tumbler glass",
+      "garnish": "Lemon zest and white grapes.",
+      "official_url": "https://iba-world.com/iba-cocktail/ve-n-to/",
+      "icon_filename": "ve-n-to.png",
+      "notes": "IBA notes that water in the honey mix may be replaced by chamomile infusion."
+    },
+    {
+      "app_id": "101",
+      "iba_id": null,
+      "iba_slug": "vieux-carre",
+      "official_name": "Vieux Carré",
+      "chinese_name": "老廣場",
+      "category": "The Unforgettables",
+      "ingredients": [
+        {
+          "name": "Rye Whiskey",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Cognac",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Sweet Vermouth",
+          "amount": "30 ml"
+        },
+        {
+          "name": "Bénédictine",
+          "amount": "1 bar spoon"
+        },
+        {
+          "name": "Peychaud’s Bitters",
+          "amount": "2 dashes"
+        }
+      ],
+      "method": "Stir all ingredients with ice in a mixing glass and strain into a chilled cocktail glass.",
+      "glassware": "Cocktail glass",
+      "garnish": "Orange zest and maraschino cherry.",
+      "official_url": "https://iba-world.com/iba-cocktail/vieux-carre/",
+      "icon_filename": "vieux-carre.png"
+    }
+  ]
+}
