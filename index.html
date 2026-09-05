@@ -3,136 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit</title>
+    <title>IBA 101 經典調酒吧 16-bit｜v0.3</title>
+    <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000022;
-            --panel-bg: #000000;
-            --text-color: #ffffff;
-            --border-color: #ffffff;
-            --btn-primary: #FFB800; /* 黃金色 */
-            --btn-secondary: #FF6B00; /* 橘色 */
-            --shadow-color: #000000;
+            /* 顏色系統 */
+            --bg-dark: #0A0E17;
+            --bg-panel: #151A2C;
+            --bg-input: #111526;
+            
+            --primary: #FFB800; /* 黃金橘 */
+            --primary-hover: #FFA300;
+            
+            --secondary-cyan: #00D2D3;
+            --secondary-green: #39FF14;
+            --secondary-red: #E63946;
+            --secondary-red-light: #FFA1A1;
+            
+            --text-main: #E0E6ED;
+            --text-muted: #6E7A99;
+            
+            --border-dark: #2D3753;
+            --border-light: #4A5578;
+            --shadow-hard: #05070D;
         }
 
         * {
             box-sizing: border-box;
-            font-family: 'DotGothic16', sans-serif;
+            font-family: 'DotGothic16', monospace, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             min-height: 100vh;
+            background-image: radial-gradient(var(--border-dark) 1px, transparent 1px);
+            background-size: 24px 24px;
         }
 
         /* 手機優先容器 */
         #app-container {
             width: 100%;
-            max-width: 480px; /* 模擬手機寬度 */
+            max-width: 480px;
             min-height: 100vh;
             position: relative;
-            background-color: var(--bg-color);
-            background-image: linear-gradient(#000044 1px, transparent 1px), linear-gradient(90deg, #000044 1px, transparent 1px);
-            background-size: 20px 20px; /* 像素網格背景 */
-        }
-
-        /* RPG 風格視窗框 */
-        .rpg-box {
-            background-color: var(--panel-bg);
-            border: 4px solid var(--border-color);
-            padding: 16px;
-            box-shadow: 6px 6px 0 var(--shadow-color);
-            margin-bottom: 20px;
+            background-color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow-x: hidden;
         }
 
         /* 按鈕風格 */
         .btn {
-            background-color: var(--btn-primary);
-            color: #000;
-            border: 4px solid #fff;
-            padding: 10px 16px;
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border: 3px solid var(--border-light);
+            border-radius: 8px;
+            padding: 12px 20px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 4px 4px 0 var(--shadow-color);
+            box-shadow: 4px 4px 0 var(--shadow-hard);
             text-align: center;
             display: inline-block;
-            transition: transform 0.1s;
+            transition: all 0.1s;
         }
         .btn:active {
             transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0 var(--shadow-color);
+            box-shadow: 0px 0px 0 var(--shadow-hard);
         }
-        .btn-orange {
-            background-color: var(--btn-secondary);
-            color: #fff;
+        .btn-primary {
+            background-color: var(--primary);
+            color: #111;
+            border-color: #FFE0A3;
+        }
+        .btn-dark {
+            background-color: var(--bg-input);
+            color: var(--text-muted);
+            border-color: var(--border-dark);
         }
 
-        /* 標題區 */
+        /* 頂部 Logo */
         header {
-            padding: 20px 15px 10px;
+            padding: 24px 20px 16px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
-        h1 { margin: 0; font-size: 28px; text-shadow: 4px 4px 0 #000; color: var(--btn-primary); }
+        h1 { 
+            margin: 0; 
+            font-size: 26px; 
+            color: var(--primary); 
+            text-shadow: 3px 3px 0 var(--shadow-hard);
+            letter-spacing: 2px;
+        }
 
-        /* 搜尋與篩選區 */
-        .controls { padding: 0 15px; }
-        .input-group { margin-bottom: 15px; }
+        /* 標籤頁 Tabs */
+        .tabs {
+            display: flex;
+            padding: 0 16px;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 0;
+            background-color: var(--bg-input);
+            color: var(--text-muted);
+            border: 3px solid var(--border-dark);
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 var(--shadow-hard);
+            transition: all 0.1s;
+            font-weight: bold;
+        }
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: #111;
+            border-color: #FFE0A3;
+        }
+
+        /* 控制區 (搜尋與篩選) */
+        .controls {
+            background-color: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            margin: 0 16px 20px;
+            padding: 16px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+        }
+        .input-group { margin-bottom: 12px; }
         .input-rpg {
             width: 100%;
-            padding: 10px;
-            background: #000;
-            border: 3px solid #fff;
+            padding: 12px;
+            background: var(--bg-input);
+            border: 3px solid var(--border-dark);
+            border-radius: 8px;
             color: #fff;
-            font-size: 16px;
-            box-shadow: inset 2px 2px 0 #333;
+            font-size: 15px;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.5);
+            transition: border-color 0.2s;
         }
-        .input-rpg:focus { outline: none; border-color: var(--btn-primary); }
+        .input-rpg:focus { outline: none; border-color: var(--primary); }
+        .input-rpg::placeholder { color: #4A5578; }
         
-        .filter-row { display: flex; gap: 10px; }
+        select.input-rpg {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFB800" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 32px;
+            cursor: pointer;
+        }
+        
+        .filter-row { display: flex; gap: 10px; margin-bottom: 12px; }
         .filter-row select { flex: 1; }
 
-        /* 酒譜列表 */
-        .cocktail-list { padding: 15px; display: flex; flex-direction: column; gap: 15px; padding-bottom: 80px; }
+        .status-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .status-tag {
+            background: var(--bg-dark);
+            border: 2px solid var(--border-light);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 13px;
+            color: var(--secondary-cyan);
+        }
+
+        /* 酒譜列表與卡片 */
+        .cocktail-list { 
+            padding: 0 16px 80px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+        }
         .cocktail-card {
+            background-color: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
             cursor: pointer;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 14px;
+            transition: transform 0.1s, box-shadow 0.1s;
         }
-        .cocktail-info h3 { margin: 0 0 5px 0; font-size: 18px; color: var(--btn-primary); }
-        .cocktail-info p { margin: 0; font-size: 14px; color: #aaa; }
-        .fav-icon { font-size: 24px; color: var(--btn-secondary); }
+        .cocktail-card:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0 var(--shadow-hard);
+        }
+        
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background-color: var(--bg-input);
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
 
-        /* 年齡確認蓋板 */
+        .cocktail-info { flex: 1; overflow: hidden; }
+        .cocktail-info h3 { margin: 0 0 4px 0; font-size: 18px; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cocktail-info p { margin: 0 0 8px 0; font-size: 12px; color: var(--text-muted); }
+        
+        .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+        .badge { 
+            font-size: 11px; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            border: 2px solid;
+        }
+        .badge-base { border-color: var(--secondary-cyan); color: var(--secondary-cyan); background: rgba(0, 210, 211, 0.1); }
+        .badge-tech { border-color: var(--secondary-green); color: var(--secondary-green); background: rgba(57, 255, 20, 0.1); }
+
+        .fav-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 年齡確認蓋板 (Intro Screen) */
         #age-gate {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: var(--bg-dark);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 1000; padding: 20px; text-align: center;
+            z-index: 1000; padding: 24px; text-align: center;
         }
-        #age-gate h2 { color: red; font-size: 32px; margin-bottom: 10px; text-shadow: 3px 3px 0 #500;}
+        .legal-tag {
+            background: var(--secondary-red);
+            color: #fff;
+            border: 2px solid var(--secondary-red-light);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 12px;
+            margin-bottom: 24px;
+        }
+        #age-gate h2 { color: var(--text-main); font-size: 24px; margin: 20px 0 8px; text-shadow: 2px 2px 0 var(--shadow-hard); letter-spacing: 1px; }
+        #age-gate p { color: var(--text-muted); font-size: 14px; margin-bottom: 40px; }
+        .age-btn-group { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 280px; }
 
         /* 詳細資訊 Modal */
         #modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); display: none;
+            background: rgba(10, 14, 23, 0.9); display: none;
             justify-content: center; align-items: center; z-index: 500;
         }
         .modal-content {
-            width: 90%; max-width: 420px; max-height: 90vh; overflow-y: auto;
+            width: 90%; max-width: 400px; max-height: 85vh; overflow-y: auto;
+            background: var(--bg-panel);
+            border: 4px solid var(--border-light);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 8px 8px 0 var(--shadow-hard);
+            position: relative;
         }
-        .modal-content h2 { color: var(--btn-primary); border-bottom: 2px dashed #fff; padding-bottom: 10px; }
-        .detail-row { margin-bottom: 10px; line-height: 1.5; }
-        .detail-label { color: var(--btn-secondary); font-weight: bold; }
-        .tag { display: inline-block; background: #333; border: 1px solid #fff; padding: 2px 6px; font-size: 12px; margin: 2px 2px 2px 0; }
+        /* 自訂滾動條 */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: var(--bg-input); border-radius: 4px; }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+        .modal-header { border-bottom: 2px dashed var(--border-light); padding-bottom: 12px; margin-bottom: 16px; padding-right: 30px; }
+        .modal-header h2 { color: var(--primary); margin: 0 0 4px; font-size: 22px; }
+        .modal-header p { color: var(--text-muted); margin: 0; font-size: 14px; }
+        
+        .close-btn {
+            position: absolute; top: 16px; right: 16px;
+            background: var(--secondary-red); color: #fff;
+            border: 2px solid var(--secondary-red-light); border-radius: 6px;
+            width: 32px; height: 32px; font-weight: bold; font-size: 14px;
+            cursor: pointer; box-shadow: 2px 2px 0 var(--shadow-hard);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .close-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--shadow-hard); }
+
+        .detail-row { margin-bottom: 14px; line-height: 1.6; font-size: 15px; }
+        .detail-label { color: var(--secondary-cyan); font-weight: bold; margin-right: 4px; }
+        .detail-text { color: var(--text-main); }
+        .detail-list { color: var(--text-main); margin-top: 4px; padding-left: 12px; }
+
+
+        .badge-id { border-color: var(--primary); color: var(--primary); background: rgba(255,184,0,0.08); }
+        .badge-category { border-color: var(--secondary-cyan); color: var(--secondary-cyan); background: rgba(0,210,211,0.08); }
+        .loading-box, .error-box {
+            margin: 0 16px 20px;
+            padding: 18px;
+            background: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .error-box { color: var(--secondary-red-light); border-color: var(--secondary-red); }
+        .source-link { color: var(--secondary-cyan); text-decoration: none; word-break: break-all; }
+        .source-link:hover { text-decoration: underline; }
 
         .hidden { display: none !important; }
     </style>
@@ -140,116 +323,205 @@
 <body>
 
 <div id="app-container">
-    <div id="age-gate" class="rpg-box">
-        <h2>警告 WARNING</h2>
-        <p>前方區域為成人專屬<br>您是否已年滿 18 歲？</p>
-        <p style="font-size:12px; color:#aaa;">(飲酒過量，有害健康)</p>
-        <br>
-        <button class="btn" onclick="enterTavern()">[ 是的，我已滿18歲 ]</button>
-        <br><br>
-        <button class="btn btn-orange" onclick="leaveTavern()">[ 否，我先離開 ]</button>
+    <!-- 年齡確認畫面 (Intro Screen) -->
+    <div id="age-gate">
+        <!-- 18+ Pixel Icon -->
+        <svg viewBox="0 0 16 16" width="100" height="100" shape-rendering="crispEdges">
+            <!-- Shield Bg -->
+            <rect x="2" y="0" width="12" height="16" fill="#E63946"/>
+            <rect x="0" y="2" width="16" height="12" fill="#E63946"/>
+            <rect x="1" y="1" width="14" height="14" fill="#E63946"/>
+            <!-- Inner dark -->
+            <rect x="3" y="2" width="10" height="12" fill="#0A0E17"/>
+            <rect x="2" y="3" width="12" height="10" fill="#0A0E17"/>
+            <!-- 18 text (Yellow) -->
+            <!-- 1 -->
+            <rect x="4" y="5" width="1" height="5" fill="#FFB800"/>
+            <!-- 8 -->
+            <rect x="6" y="5" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="7" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="9" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="5" width="1" height="5" fill="#FFB800"/>
+            <rect x="8" y="5" width="1" height="5" fill="#FFB800"/>
+            <!-- + -->
+            <rect x="10" y="7" width="3" height="1" fill="#FFB800"/>
+            <rect x="11" y="6" width="1" height="3" fill="#FFB800"/>
+        </svg>
+
+        <h2>未滿18歲，請勿飲酒</h2>
+        <span class="legal-tag">理性飲酒法令宣告</span>
+        <p>飲酒過量，有礙健康</p>
+        
+        <div class="age-btn-group">
+            <button class="btn btn-primary" onclick="enterTavern()">[ 是，我已滿18歲 ]</button>
+            <button class="btn btn-dark" onclick="leaveTavern()">[ 否，我先離開 ]</button>
+        </div>
     </div>
 
+    <!-- 主應用程式 -->
     <div id="main-app" class="hidden">
         <header>
-            <h1>🍸 經典調酒吧</h1>
+            <!-- 小酒杯 Logo -->
+            <svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+                <rect x="0" y="0" width="11" height="1" fill="#00D2D3"/><rect x="1" y="1" width="9" height="1" fill="#00D2D3"/>
+                <rect x="2" y="2" width="7" height="1" fill="#00D2D3"/><rect x="3" y="3" width="5" height="1" fill="#00D2D3"/>
+                <rect x="4" y="4" width="3" height="1" fill="#00D2D3"/><rect x="5" y="5" width="1" height="5" fill="#E0E6ED"/>
+                <rect x="3" y="10" width="5" height="1" fill="#E0E6ED"/>
+            </svg>
+            <h1>IBA 101 調酒吧</h1>
         </header>
 
-        <div class="controls rpg-box" style="margin: 15px;">
+        <!-- 標籤頁 -->
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-all">全部酒譜</button>
+            <button class="tab-btn" id="tab-fav">收藏夾</button>
+        </div>
+
+        <!-- 控制區 -->
+        <div class="controls">
             <div class="input-group">
-                <input type="text" id="searchInput" class="input-rpg" placeholder="搜尋酒名或材料 (如: 琴酒)">
+                <input type="text" id="searchInput" class="input-rpg" placeholder="搜尋酒名、材料、編號 (如: Gin / 001)">
             </div>
             <div class="filter-row">
-                <select id="baseFilter" class="input-rpg">
-                    <option value="">-- 六大基酒 --</option>
-                    <option value="琴酒">琴酒 Gin</option>
-                    <option value="伏特加">伏特加 Vodka</option>
-                    <option value="蘭姆酒">蘭姆酒 Rum</option>
-                    <option value="龍舌蘭">龍舌蘭 Tequila</option>
-                    <option value="威士忌">威士忌 Whiskey</option>
-                    <option value="白蘭地">白蘭地 Brandy</option>
+                <select id="categoryFilter" class="input-rpg">
+                    <option value="">-- IBA 分類 --</option>
+                    <option value="The Unforgettables">The Unforgettables</option>
+                    <option value="Contemporary Classics">Contemporary Classics</option>
+                    <option value="New Era">New Era</option>
                 </select>
-                <select id="techFilter" class="input-rpg">
-                    <option value="">-- 調製手法 --</option>
-                    <option value="搖盪">搖盪 Shake</option>
-                    <option value="攪拌">攪拌 Stir</option>
-                    <option value="直調">直調 Build</option>
-                    <option value="混合">混合 Blend</option>
+                <select id="sectionFilter" class="input-rpg">
+                    <option value="">-- 學習區段 --</option>
+                    <option value="001-010">001–010 核心</option>
+                    <option value="011-030">011–030</option>
+                    <option value="031-060">031–060</option>
+                    <option value="061-101">061–101</option>
                 </select>
             </div>
-            <div class="input-group" style="margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
-                <label style="cursor:pointer;"><input type="checkbox" id="favFilter"> 只顯示收藏 ♥</label>
-                <span id="resultCount" style="color:#aaa;">30 款</span>
+            <div class="status-row">
+                <span id="resultCount" class="status-tag">載入中...</span>
             </div>
         </div>
 
+        <div id="loadStatus" class="loading-box">正在讀取 IBA 101 Master Data...</div>
+
+        <!-- 列表區 -->
         <div id="cocktail-list" class="cocktail-list">
-            </div>
+            <!-- 列表由 JS 產生 -->
+        </div>
     </div>
 
+    <!-- 詳細資訊 Modal -->
     <div id="modal">
-        <div class="rpg-box modal-content" id="modal-content-box">
-            </div>
+        <div class="modal-content" id="modal-content-box">
+            <!-- 內容由 JS 產生 -->
+        </div>
     </div>
 </div>
 
 <script>
-    // 30 款經典調酒資料庫
-    const cocktails = [
-        // 琴酒 Gin
-        { id: 1, zh: "馬丁尼", en: "Dry Martini", base: "琴酒", ingredients: ["琴酒", "不甜香艾酒", "柑橘苦精"], proportion: "琴酒 60ml, 香艾酒 10ml, 苦精 1 dash", technique: "攪拌", glass: "馬丁尼杯", garnish: "橄欖或檸檬皮", desc: "被譽為雞尾酒之王，經典中的經典，口感辛辣凜冽。" },
-        { id: 2, zh: "尼格羅尼", en: "Negroni", base: "琴酒", ingredients: ["琴酒", "金巴利苦酒", "甜香艾酒"], proportion: "各 30ml", technique: "攪拌", glass: "古典杯", garnish: "橙皮", desc: "義大利經典，完美平衡了苦、甜與草本風味。" },
-        { id: 3, zh: "琴蕾", en: "Gimlet", base: "琴酒", ingredients: ["琴酒", "檸檬汁", "糖漿"], proportion: "琴酒 60ml, 檸檬汁 20ml, 糖漿 15ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "檸檬片", desc: "早期水手為了防壞血病而誕生的清爽調酒。" },
-        { id: 4, zh: "湯姆可林斯", en: "Tom Collins", base: "琴酒", ingredients: ["琴酒", "檸檬汁", "糖漿", "蘇打水"], proportion: "琴酒 45ml, 檸檬汁 30ml, 糖漿 15ml, 蘇打水補滿", technique: "直調", glass: "可林斯杯", garnish: "檸檬片與櫻桃", desc: "夏日必備，像是一杯充滿成人風味的檸檬汽水。" },
-        { id: 5, zh: "新加坡司令", en: "Singapore Sling", base: "琴酒", ingredients: ["琴酒", "櫻桃香甜酒", "法國廊酒", "柑橘酒", "鳳梨汁", "檸檬汁", "紅石榴糖漿"], proportion: "琴酒 30ml, 櫻桃酒 15ml, 鳳梨汁 120ml...", technique: "搖盪", glass: "司令杯", garnish: "鳳梨片與櫻桃", desc: "源自新加坡萊佛士酒店，充滿熱帶風情。" },
-        // 伏特加 Vodka
-        { id: 6, zh: "莫斯科驢子", en: "Moscow Mule", base: "伏特加", ingredients: ["伏特加", "薑汁啤酒", "萊姆汁"], proportion: "伏特加 45ml, 萊姆汁 15ml, 薑汁啤酒補滿", technique: "直調", glass: "銅杯", garnish: "萊姆角", desc: "用標誌性的銅杯盛裝，辛辣清爽的氣泡感。" },
-        { id: 7, zh: "柯夢波丹", en: "Cosmopolitan", base: "伏特加", ingredients: ["檸檬伏特加", "蔓越莓汁", "橙酒", "萊姆汁"], proportion: "伏特加 40ml, 橙酒 15ml, 蔓越莓汁 30ml, 萊姆汁 15ml", technique: "搖盪", glass: "馬丁尼杯", garnish: "橙皮", desc: "因《慾望城市》而紅遍全球的粉紅迷人調酒。" },
-        { id: 8, zh: "血腥瑪麗", en: "Bloody Mary", base: "伏特加", ingredients: ["伏特加", "番茄汁", "檸檬汁", "梅林辣醬", "塔巴斯科辣椒醬", "黑胡椒", "芹菜鹽"], proportion: "伏特加 45ml, 番茄汁 90ml...", technique: "直調 / 滾動", glass: "高球杯", garnish: "西芹段與檸檬", desc: "知名的「解酒液」，充滿蔬菜與辛香料的鹹鮮味。" },
-        { id: 9, zh: "黑俄羅斯", en: "Black Russian", base: "伏特加", ingredients: ["伏特加", "咖啡利口酒"], proportion: "伏特加 50ml, 咖啡利口酒 20ml", technique: "直調", glass: "古典杯", garnish: "無", desc: "冷戰時期誕生的硬漢調酒，濃郁咖啡香。" },
-        { id: 10, zh: "白俄羅斯", en: "White Russian", base: "伏特加", ingredients: ["伏特加", "咖啡利口酒", "鮮奶油"], proportion: "伏特加 50ml, 咖啡酒 20ml, 鮮奶油 30ml", technique: "直調", glass: "古典杯", garnish: "無", desc: "在黑俄羅斯中加入鮮奶油，口感滑順如甜點。" },
-        // 蘭姆酒 Rum
-        { id: 11, zh: "莫西多", en: "Mojito", base: "蘭姆酒", ingredients: ["白蘭姆酒", "新鮮薄荷", "白糖", "萊姆汁", "蘇打水"], proportion: "蘭姆酒 50ml, 萊姆汁 20ml, 蘇打水補滿", technique: "直調 (需搗碎)", glass: "高球杯", garnish: "薄荷葉", desc: "古巴經典，薄荷與萊姆的絕佳消暑組合。" },
-        { id: 12, zh: "黛綺麗", en: "Daiquiri", base: "蘭姆酒", ingredients: ["白蘭姆酒", "萊姆汁", "糖漿"], proportion: "蘭姆酒 60ml, 萊姆汁 20ml, 糖漿 15ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "萊姆片", desc: "海明威的最愛之一，考驗調酒師基本功的三合一調酒。" },
-        { id: 13, zh: "鳳梨可樂達", en: "Pina Colada", base: "蘭姆酒", ingredients: ["白蘭姆酒", "椰漿", "鳳梨汁"], proportion: "蘭姆酒 30ml, 椰漿 30ml, 鳳梨汁 90ml", technique: "混合", glass: "颶風杯", garnish: "鳳梨片與櫻桃", desc: "波多黎各國飲，充滿度假風情的冰沙調酒。" },
-        { id: 14, zh: "邁泰", en: "Mai Tai", base: "蘭姆酒", ingredients: ["陳年蘭姆酒", "橙酒", "杏仁糖漿", "萊姆汁"], proportion: "蘭姆酒 40ml, 橙酒 15ml, 杏仁糖漿 15ml, 萊姆汁 15ml", technique: "搖盪", glass: "古典杯", garnish: "薄荷與萊姆", desc: "Tiki 風格的代表作，Mai Tai 在大溪地語意為「極好的」。" },
-        { id: 15, zh: "自由古巴", en: "Cuba Libre", base: "蘭姆酒", ingredients: ["白蘭姆酒", "可樂", "萊姆角"], proportion: "蘭姆酒 50ml, 可樂 120ml", technique: "直調", glass: "高球杯", garnish: "萊姆角", desc: "慶祝古巴獨立的簡單混酒，萊姆是靈魂。" },
-        // 龍舌蘭 Tequila
-        { id: 16, zh: "瑪格麗特", en: "Margarita", base: "龍舌蘭", ingredients: ["龍舌蘭", "橙酒", "萊姆汁"], proportion: "龍舌蘭 50ml, 橙酒 20ml, 萊姆汁 15ml", technique: "搖盪", glass: "瑪格麗特杯", garnish: "鹽口圈與萊姆", desc: "龍舌蘭最著名的代表作，鹽口圈提升了整體層次。" },
-        { id: 17, zh: "龍舌蘭日出", en: "Tequila Sunrise", base: "龍舌蘭", ingredients: ["龍舌蘭", "柳橙汁", "紅石榴糖漿"], proportion: "龍舌蘭 45ml, 柳橙汁 90ml, 紅石榴糖漿 15ml", technique: "直調", glass: "高球杯", garnish: "柳橙片與櫻桃", desc: "漸層色彩宛如日出般美麗，果香濃郁。" },
-        { id: 18, zh: "帕洛瑪", en: "Paloma", base: "龍舌蘭", ingredients: ["龍舌蘭", "葡萄柚汽水", "萊姆汁"], proportion: "龍舌蘭 50ml, 萊姆汁 10ml, 葡萄柚汽水補滿", technique: "直調", glass: "高球杯", garnish: "葡萄柚角 (可加鹽口)", desc: "在墨西哥當地比瑪格麗特更受歡迎的國民調酒。" },
-        { id: 19, zh: "湯米的瑪格麗特", en: "Tommy's Margarita", base: "龍舌蘭", ingredients: ["龍舌蘭", "萊姆汁", "龍舌蘭糖漿"], proportion: "龍舌蘭 60ml, 萊姆汁 30ml, 龍舌蘭糖漿 15ml", technique: "搖盪", glass: "古典杯", garnish: "萊姆角", desc: "現代經典，捨棄橙酒改用龍舌蘭糖漿，凸顯基酒風味。" },
-        { id: 20, zh: "惡魔", en: "El Diablo", base: "龍舌蘭", ingredients: ["龍舌蘭", "黑醋栗酒", "萊姆汁", "薑汁啤酒"], proportion: "龍舌蘭 45ml, 黑醋栗酒 15ml, 萊姆汁 15ml, 薑汁啤酒補滿", technique: "搖盪後直調", glass: "高球杯", garnish: "萊姆角", desc: "名字驚悚但其實非常清爽順口，帶有莓果與薑的香氣。" },
-        // 威士忌 Whiskey
-        { id: 21, zh: "古典", en: "Old Fashioned", base: "威士忌", ingredients: ["波本或裸麥威士忌", "方糖", "安格斯苦精", "水"], proportion: "威士忌 45ml, 苦精 2 dashes, 方糖 1 顆", technique: "攪拌", glass: "古典杯", garnish: "橙皮", desc: "歷史最悠久的雞尾酒之一，展現威士忌純粹之美。" },
-        { id: 22, zh: "曼哈頓", en: "Manhattan", base: "威士忌", ingredients: ["裸麥威士忌", "甜香艾酒", "安格斯苦精"], proportion: "威士忌 50ml, 甜香艾酒 20ml, 苦精 1 dash", technique: "攪拌", glass: "馬丁尼杯", garnish: "酒漬櫻桃", desc: "雞尾酒之后，優雅且帶有深沈的草本與橡木氣息。" },
-        { id: 23, zh: "威士忌酸酒", en: "Whiskey Sour", base: "威士忌", ingredients: ["波本威士忌", "檸檬汁", "糖漿", "蛋白(選配)"], proportion: "威士忌 45ml, 檸檬汁 30ml, 糖漿 15ml", technique: "搖盪 (Dry Shake)", glass: "古典杯", garnish: "櫻桃與柳橙", desc: "酸甜平衡的完美典範，加入蛋白能製造綿密泡沫。" },
-        { id: 24, zh: "薄荷茱麗普", en: "Mint Julep", base: "威士忌", ingredients: ["波本威士忌", "新鮮薄荷", "糖漿", "碎冰"], proportion: "威士忌 60ml, 糖漿 15ml, 薄荷 8-10 葉", technique: "直調 (需搗碎)", glass: "銀杯或銅杯", garnish: "大量薄荷", desc: "美國南方經典，肯塔基打吡賽馬的官方飲品。" },
-        { id: 25, zh: "花花公子", en: "Boulevardier", base: "威士忌", ingredients: ["波本或裸麥威士忌", "金巴利苦酒", "甜香艾酒"], proportion: "威士忌 45ml, 金巴利 30ml, 香艾酒 30ml", technique: "攪拌", glass: "古典杯", garnish: "橙皮", desc: "可以看作是威士忌版本的 Negroni，更加厚實溫暖。" },
-        // 白蘭地 Brandy
-        { id: 26, zh: "側車", en: "Sidecar", base: "白蘭地", ingredients: ["干邑白蘭地", "橙酒", "檸檬汁"], proportion: "白蘭地 50ml, 橙酒 20ml, 檸檬汁 20ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "糖口圈(選配)", desc: "白蘭地調酒的指標，據說是為了機車側車裡的軍官發明的。" },
-        { id: 27, zh: "白蘭地亞歷山大", en: "Brandy Alexander", base: "白蘭地", ingredients: ["干邑白蘭地", "黑可可香甜酒", "鮮奶油"], proportion: "各 30ml", technique: "搖盪", glass: "淺碟香檳杯", garnish: "現磨肉豆蔻", desc: "濃郁如巧克力牛奶般的甜點系調酒。" },
-        { id: 28, zh: "B與B", en: "B&B", base: "白蘭地", ingredients: ["干邑白蘭地", "班尼迪克汀(DOM)"], proportion: "各 30ml", technique: "攪拌或直調", glass: "白蘭地杯", garnish: "無", desc: "兩種材料名字的首字母，草本與葡萄香氣交織，常作餐後酒。" },
-        { id: 29, zh: "皮斯可酸酒", en: "Pisco Sour", base: "白蘭地", ingredients: ["皮斯可(葡萄蒸餾酒)", "檸檬汁", "糖漿", "蛋白", "安格斯苦精"], proportion: "皮斯可 60ml, 檸檬汁 30ml, 糖漿 20ml, 蛋白 1顆", technique: "搖盪", glass: "高球杯或淺碟", garnish: "苦精滴在泡沫上", desc: "秘魯與智利的國寶級調酒，酸甜且帶著特殊的葡萄香。" },
-        { id: 30, zh: "白蘭地庫斯塔", en: "Brandy Crusta", base: "白蘭地", ingredients: ["干邑白蘭地", "橙酒", "黑櫻桃酒", "檸檬汁", "糖漿", "安格斯苦精"], proportion: "白蘭地 52ml, 橙酒 7ml, 檸檬汁 15ml...", technique: "搖盪", glass: "鬱金香杯", garnish: "半顆檸檬皮圈與糖口", desc: "Sidecar 的華麗前身，杯口的整圈檸檬皮是最大特色。" }
-    ];
+    // v0.3：從 GitHub data/iba-101-master.json 動態載入 IBA 101
+    let cocktails = [];
+    let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
+    let currentTab = 'all';
+    let dataLoaded = false;
 
-    // 初始化收藏清單 (讀取 localStorage)
-    let favorites = JSON.parse(localStorage.getItem('pixelBarFavs')) || [];
-
-    // DOM 元素
     const app = document.getElementById('main-app');
     const ageGate = document.getElementById('age-gate');
     const listContainer = document.getElementById('cocktail-list');
     const searchInput = document.getElementById('searchInput');
-    const baseFilter = document.getElementById('baseFilter');
-    const techFilter = document.getElementById('techFilter');
-    const favFilter = document.getElementById('favFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sectionFilter = document.getElementById('sectionFilter');
     const resultCount = document.getElementById('resultCount');
+    const loadStatus = document.getElementById('loadStatus');
     const modal = document.getElementById('modal');
     const modalContentBox = document.getElementById('modal-content-box');
+    const tabAll = document.getElementById('tab-all');
+    const tabFav = document.getElementById('tab-fav');
 
-    // 年齡確認邏輯
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function getGlassSvg(glass = '') {
+        const g = glass.toLowerCase();
+
+        if (g.includes('martini') || g.includes('cocktail') || g.includes('coupe') || g.includes('flute')) {
+            return `<svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+                <rect x="0" y="0" width="11" height="1" fill="#00D2D3"/><rect x="1" y="1" width="9" height="1" fill="#00D2D3"/>
+                <rect x="2" y="2" width="7" height="1" fill="#00D2D3"/><rect x="3" y="3" width="5" height="1" fill="#00D2D3"/>
+                <rect x="4" y="4" width="3" height="1" fill="#00D2D3"/><rect x="5" y="5" width="1" height="5" fill="#E0E6ED"/>
+                <rect x="3" y="10" width="5" height="1" fill="#E0E6ED"/>
+            </svg>`;
+        }
+
+        if (g.includes('highball') || g.includes('collins') || g.includes('tall') || g.includes('hurricane') || g.includes('mule') || g.includes('tiki')) {
+            return `<svg viewBox="0 0 9 11" width="22" height="28" shape-rendering="crispEdges">
+                <rect x="1" y="0" width="7" height="8" fill="#FFB800"/><rect x="0" y="0" width="1" height="10" fill="#E0E6ED"/>
+                <rect x="8" y="0" width="1" height="10" fill="#E0E6ED"/><rect x="0" y="10" width="9" height="1" fill="#E0E6ED"/>
+                <rect x="2" y="2" width="2" height="2" fill="#FFF" opacity="0.6"/><rect x="5" y="5" width="2" height="2" fill="#FFF" opacity="0.6"/>
+            </svg>`;
+        }
+
+        return `<svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+            <rect x="1" y="4" width="9" height="5" fill="#E63946"/><rect x="0" y="3" width="1" height="7" fill="#E0E6ED"/>
+            <rect x="10" y="3" width="1" height="7" fill="#E0E6ED"/><rect x="0" y="10" width="11" height="1" fill="#E0E6ED"/>
+            <rect x="3" y="5" width="3" height="3" fill="#FFF" opacity="0.6"/>
+        </svg>`;
+    }
+
+    function getHeartSvg(isFav) {
+        const color = isFav ? '#E63946' : '#4A5578';
+        return `<svg viewBox="0 0 9 8" width="24" height="24" shape-rendering="crispEdges" fill="${color}">
+           <rect x="1" y="0" width="2" height="1" /><rect x="6" y="0" width="2" height="1" />
+           <rect x="0" y="1" width="4" height="1" /><rect x="5" y="1" width="4" height="1" />
+           <rect x="0" y="2" width="9" height="2" /><rect x="1" y="4" width="7" height="1" />
+           <rect x="2" y="5" width="5" height="1" /><rect x="3" y="6" width="3" height="1" />
+           <rect x="4" y="7" width="1" height="1" />
+        </svg>`;
+    }
+
+    function inLearningSection(appId, section) {
+        if (!section) return true;
+        const n = parseInt(appId, 10);
+        if (section === '001-010') return n >= 1 && n <= 10;
+        if (section === '011-030') return n >= 11 && n <= 30;
+        if (section === '031-060') return n >= 31 && n <= 60;
+        if (section === '061-101') return n >= 61 && n <= 101;
+        return true;
+    }
+
+    async function loadCocktails() {
+        try {
+            const response = await fetch('data/iba-101-master.json', { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const payload = await response.json();
+
+            if (!payload || !Array.isArray(payload.cocktails)) {
+                throw new Error('JSON 結構不正確：找不到 cocktails 陣列');
+            }
+
+            cocktails = payload.cocktails;
+            dataLoaded = true;
+            loadStatus.classList.add('hidden');
+
+            if (cocktails.length !== 101) {
+                console.warn(`目前載入 ${cocktails.length} 杯，預期為 101 杯。`);
+            }
+
+            renderList();
+        } catch (error) {
+            console.error(error);
+            loadStatus.className = 'error-box';
+            loadStatus.innerHTML = `資料載入失敗：${escapeHtml(error.message)}<br><br>請確認 <b>data/iba-101-master.json</b> 已上傳到 GitHub。`;
+            resultCount.innerText = '載入失敗';
+        }
+    }
+
     function enterTavern() {
         ageGate.classList.add('hidden');
         app.classList.remove('hidden');
@@ -261,105 +533,160 @@
         window.location.href = "https://www.google.com";
     }
 
-    // 渲染酒譜列表
-    function renderList() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const base = baseFilter.value;
-        const tech = techFilter.value;
-        const showFavs = favFilter.checked;
+    tabAll.addEventListener('click', () => {
+        currentTab = 'all';
+        tabAll.classList.add('active');
+        tabFav.classList.remove('active');
+        renderList();
+    });
 
-        // 篩選資料
+    tabFav.addEventListener('click', () => {
+        currentTab = 'fav';
+        tabFav.classList.add('active');
+        tabAll.classList.remove('active');
+        renderList();
+    });
+
+    function renderList() {
+        if (!dataLoaded) {
+            resultCount.innerText = '載入中...';
+            return;
+        }
+
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const category = categoryFilter.value;
+        const section = sectionFilter.value;
+
         const filtered = cocktails.filter(c => {
-            const matchSearch = c.zh.includes(searchTerm) || c.en.toLowerCase().includes(searchTerm) || c.ingredients.join('').includes(searchTerm);
-            const matchBase = base === "" || c.base === base;
-            const matchTech = tech === "" || c.technique.includes(tech);
-            const matchFav = !showFavs || favorites.includes(c.id);
-            return matchSearch && matchBase && matchTech && matchFav;
+            const ingredientText = (c.ingredients || [])
+                .map(i => `${i.name || ''} ${i.amount || ''}`)
+                .join(' ')
+                .toLowerCase();
+
+            const searchable = [
+                c.app_id,
+                c.official_name,
+                c.chinese_name,
+                c.category,
+                ingredientText,
+                c.glassware,
+                c.garnish,
+                c.method
+            ].join(' ').toLowerCase();
+
+            const matchSearch = !searchTerm || searchable.includes(searchTerm);
+            const matchCategory = !category || c.category === category;
+            const matchSection = inLearningSection(c.app_id, section);
+            const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
+
+            return matchSearch && matchCategory && matchSection && matchFav;
         });
 
-        resultCount.innerText = `${filtered.length} 款`;
+        resultCount.innerText = `${filtered.length} / ${cocktails.length} 款`;
         listContainer.innerHTML = '';
 
-        if(filtered.length === 0) {
-            listContainer.innerHTML = '<div class="rpg-box" style="text-align:center;">找不到符合的酒譜...</div>';
+        if (filtered.length === 0) {
+            listContainer.innerHTML = `<div style="text-align:center; padding:40px 0; color:var(--border-light);">沒有找到符合的酒譜...</div>`;
             return;
         }
 
         filtered.forEach(c => {
-            const isFav = favorites.includes(c.id);
+            const isFav = favorites.includes(c.app_id);
             const card = document.createElement('div');
-            card.className = 'rpg-box cocktail-card';
+            card.className = 'cocktail-card';
             card.onclick = () => openModal(c);
-            
+
             card.innerHTML = `
+                <div class="card-icon">
+                    ${getGlassSvg(c.glassware || '')}
+                </div>
                 <div class="cocktail-info">
-                    <h3>${c.zh}</h3>
-                    <p>${c.en}</p>
-                    <div style="margin-top:5px;">
-                        <span class="tag">${c.base}</span>
-                        <span class="tag">${c.technique}</span>
+                    <h3>${escapeHtml(c.app_id)}｜${escapeHtml(c.chinese_name)}</h3>
+                    <p>${escapeHtml(c.official_name)}</p>
+                    <div class="card-badges">
+                        <span class="badge badge-id">APP ${escapeHtml(c.app_id)}</span>
+                        <span class="badge badge-category">${escapeHtml(c.category)}</span>
                     </div>
                 </div>
-                <div class="fav-icon" onclick="toggleFav(event, ${c.id})">
-                    ${isFav ? '♥' : '♡'}
-                </div>
+                <button class="fav-btn" aria-label="收藏" onclick="toggleFav(event, '${escapeHtml(c.app_id)}')">
+                    ${getHeartSvg(isFav)}
+                </button>
             `;
             listContainer.appendChild(card);
         });
     }
 
-    // 收藏功能切換
     function toggleFav(e, id) {
-        e.stopPropagation(); // 阻止點擊事件傳遞到卡片開啟 Modal
-        if(favorites.includes(id)) {
+        e.stopPropagation();
+
+        if (favorites.includes(id)) {
             favorites = favorites.filter(favId => favId !== id);
         } else {
             favorites.push(id);
         }
-        localStorage.setItem('pixelBarFavs', JSON.stringify(favorites));
-        renderList(); // 重新渲染更新愛心圖示
+
+        localStorage.setItem('pixelBarFavsV03', JSON.stringify(favorites));
+        renderList();
     }
 
-    // 開啟詳細資訊
     function openModal(c) {
-        const isFav = favorites.includes(c.id);
+        const ingredientsHtml = (c.ingredients || [])
+            .map(i => `• ${escapeHtml(i.name)}${i.amount ? ` — ${escapeHtml(i.amount)}` : ''}`)
+            .join('<br>');
+
+        const notesHtml = c.notes
+            ? `<div class="detail-row"><span class="detail-label">備註：</span><div class="detail-list" style="color:#FFA1A1;">${escapeHtml(c.notes)}</div></div>`
+            : '';
+
         modalContentBox.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <h2 style="margin:0;">${c.zh} <span style="font-size:14px; color:#aaa;">${c.en}</span></h2>
+            <button class="close-btn" onclick="closeModal()">X</button>
+            <div class="modal-header">
+                <h2>${escapeHtml(c.app_id)}｜${escapeHtml(c.chinese_name)}</h2>
+                <p>${escapeHtml(c.official_name)}</p>
             </div>
-            
-            <div style="margin-top:15px;">
-                <div class="detail-row"><span class="detail-label">▶ 基酒：</span>${c.base}</div>
-                <div class="detail-row"><span class="detail-label">▶ 手法：</span>${c.technique}</div>
-                <div class="detail-row"><span class="detail-label">▶ 杯型：</span>${c.glass}</div>
-                <div class="detail-row"><span class="detail-label">▶ 裝飾：</span>${c.garnish}</div>
-                <div class="detail-row"><span class="detail-label">▶ 材料：</span><br>${c.ingredients.map(i=>` - ${i}`).join('<br>')}</div>
-                <div class="detail-row"><span class="detail-label">▶ 比例：</span><br>${c.proportion}</div>
-                <div class="detail-row"><span class="detail-label">▶ 筆記：</span><br>${c.desc}</div>
-            </div>
-            <div style="text-align:center; margin-top:20px;">
-                <button class="btn btn-orange" onclick="closeModal()">[ 關閉視窗 ]</button>
+
+            <div>
+                <div class="detail-row"><span class="detail-label">IBA 分類：</span><span class="detail-text">${escapeHtml(c.category)}</span></div>
+                <div class="detail-row"><span class="detail-label">杯型：</span><span class="detail-text">${escapeHtml(c.glassware || 'N/A')}</span></div>
+                <div class="detail-row"><span class="detail-label">裝飾：</span><span class="detail-text">${escapeHtml(c.garnish || 'N/A')}</span></div>
+
+                <div class="detail-row">
+                    <span class="detail-label">材料與用量：</span>
+                    <div class="detail-list">${ingredientsHtml || 'N/A'}</div>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">製作方法：</span>
+                    <div class="detail-list">${escapeHtml(c.method || 'N/A')}</div>
+                </div>
+
+                ${notesHtml}
+
+                <div class="detail-row">
+                    <span class="detail-label">官方來源：</span>
+                    <div class="detail-list">
+                        <a class="source-link" href="${escapeHtml(c.official_url)}" target="_blank" rel="noopener noreferrer">IBA Official</a>
+                    </div>
+                </div>
             </div>
         `;
+
         modal.style.display = 'flex';
     }
 
-    // 關閉詳細資訊
     function closeModal() {
         modal.style.display = 'none';
     }
 
-    // 點擊 Modal 背景關閉
     modal.addEventListener('click', (e) => {
-        if(e.target === modal) closeModal();
+        if (e.target === modal) closeModal();
     });
 
-    // 綁定事件監聽
     searchInput.addEventListener('input', renderList);
-    baseFilter.addEventListener('change', renderList);
-    techFilter.addEventListener('change', renderList);
-    favFilter.addEventListener('change', renderList);
+    categoryFilter.addEventListener('change', renderList);
+    sectionFilter.addEventListener('change', renderList);
 
+    loadCocktails();
 </script>
 </body>
 </html>
