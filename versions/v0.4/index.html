@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBA 101 經典調酒吧 16-bit｜v0.4</title>
+    <!-- 引入支援中文的像素風格字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 顏色系統 */
+            --bg-dark: #0A0E17;
+            --bg-panel: #151A2C;
+            --bg-input: #111526;
+            
+            --primary: #FFB800; /* 黃金橘 */
+            --primary-hover: #FFA300;
+            
+            --secondary-cyan: #00D2D3;
+            --secondary-green: #39FF14;
+            --secondary-red: #E63946;
+            --secondary-red-light: #FFA1A1;
+            
+            --text-main: #E0E6ED;
+            --text-muted: #6E7A99;
+            
+            --border-dark: #2D3753;
+            --border-light: #4A5578;
+            --shadow-hard: #05070D;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'DotGothic16', monospace, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(var(--border-dark) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* 手機優先容器 */
+        #app-container {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            position: relative;
+            background-color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow-x: hidden;
+        }
+
+        /* 按鈕風格 */
+        .btn {
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border: 3px solid var(--border-light);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            text-align: center;
+            display: inline-block;
+            transition: all 0.1s;
+        }
+        .btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0 var(--shadow-hard);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: #111;
+            border-color: #FFE0A3;
+        }
+        .btn-dark {
+            background-color: var(--bg-input);
+            color: var(--text-muted);
+            border-color: var(--border-dark);
+        }
+
+        /* 頂部 Logo */
+        header {
+            padding: 24px 20px 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        h1 { 
+            margin: 0; 
+            font-size: 26px; 
+            color: var(--primary); 
+            text-shadow: 3px 3px 0 var(--shadow-hard);
+            letter-spacing: 2px;
+        }
+
+        /* 標籤頁 Tabs */
+        .tabs {
+            display: flex;
+            padding: 0 16px;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 0;
+            background-color: var(--bg-input);
+            color: var(--text-muted);
+            border: 3px solid var(--border-dark);
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 var(--shadow-hard);
+            transition: all 0.1s;
+            font-weight: bold;
+        }
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: #111;
+            border-color: #FFE0A3;
+        }
+
+        /* 控制區 (搜尋與篩選) */
+        .controls {
+            background-color: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            margin: 0 16px 20px;
+            padding: 16px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+        }
+        .input-group { margin-bottom: 12px; }
+        .input-rpg {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-input);
+            border: 3px solid var(--border-dark);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.5);
+            transition: border-color 0.2s;
+        }
+        .input-rpg:focus { outline: none; border-color: var(--primary); }
+        .input-rpg::placeholder { color: #4A5578; }
+        
+        select.input-rpg {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFB800" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 32px;
+            cursor: pointer;
+        }
+        
+        .filter-row { display: flex; gap: 10px; margin-bottom: 12px; }
+        .filter-row select { flex: 1; }
+
+        .status-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .status-tag {
+            background: var(--bg-dark);
+            border: 2px solid var(--border-light);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 13px;
+            color: var(--secondary-cyan);
+        }
+
+        /* 酒譜列表與卡片 */
+        .cocktail-list { 
+            padding: 0 16px 80px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+        }
+        .cocktail-card {
+            background-color: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .cocktail-card:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0 var(--shadow-hard);
+        }
+        
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background-color: var(--bg-input);
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .cocktail-info { flex: 1; overflow: hidden; }
+        .cocktail-info h3 { margin: 0 0 4px 0; font-size: 18px; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cocktail-info p { margin: 0 0 8px 0; font-size: 12px; color: var(--text-muted); }
+        
+        .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+        .badge { 
+            font-size: 11px; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            border: 2px solid;
+        }
+        .badge-base { border-color: var(--secondary-cyan); color: var(--secondary-cyan); background: rgba(0, 210, 211, 0.1); }
+        .badge-tech { border-color: var(--secondary-green); color: var(--secondary-green); background: rgba(57, 255, 20, 0.1); }
+
+        .fav-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 年齡確認蓋板 (Intro Screen) */
+        #age-gate {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-dark);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; padding: 24px; text-align: center;
+        }
+        .legal-tag {
+            background: var(--secondary-red);
+            color: #fff;
+            border: 2px solid var(--secondary-red-light);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 12px;
+            margin-bottom: 24px;
+        }
+        #age-gate h2 { color: var(--text-main); font-size: 24px; margin: 20px 0 8px; text-shadow: 2px 2px 0 var(--shadow-hard); letter-spacing: 1px; }
+        #age-gate p { color: var(--text-muted); font-size: 14px; margin-bottom: 40px; }
+        .age-btn-group { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 280px; }
+
+        /* 詳細資訊 Modal */
+        #modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 14, 23, 0.9); display: none;
+            justify-content: center; align-items: center; z-index: 500;
+        }
+        .modal-content {
+            width: 90%; max-width: 400px; max-height: 85vh; overflow-y: auto;
+            background: var(--bg-panel);
+            border: 4px solid var(--border-light);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 8px 8px 0 var(--shadow-hard);
+            position: relative;
+        }
+        /* 自訂滾動條 */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: var(--bg-input); border-radius: 4px; }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+        .modal-header { border-bottom: 2px dashed var(--border-light); padding-bottom: 12px; margin-bottom: 16px; padding-right: 30px; }
+        .modal-header h2 { color: var(--primary); margin: 0 0 4px; font-size: 22px; }
+        .modal-header p { color: var(--text-muted); margin: 0; font-size: 14px; }
+        
+        .close-btn {
+            position: absolute; top: 16px; right: 16px;
+            background: var(--secondary-red); color: #fff;
+            border: 2px solid var(--secondary-red-light); border-radius: 6px;
+            width: 32px; height: 32px; font-weight: bold; font-size: 14px;
+            cursor: pointer; box-shadow: 2px 2px 0 var(--shadow-hard);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .close-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--shadow-hard); }
+
+        .detail-row { margin-bottom: 14px; line-height: 1.6; font-size: 15px; }
+        .detail-label { color: var(--secondary-cyan); font-weight: bold; margin-right: 4px; }
+        .detail-text { color: var(--text-main); }
+        .detail-list { color: var(--text-main); margin-top: 4px; padding-left: 12px; }
+
+
+        .badge-id { border-color: var(--primary); color: var(--primary); background: rgba(255,184,0,0.08); }
+        .badge-category { border-color: var(--secondary-cyan); color: var(--secondary-cyan); background: rgba(0,210,211,0.08); }
+        .loading-box, .error-box {
+            margin: 0 16px 20px;
+            padding: 18px;
+            background: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .error-box { color: var(--secondary-red-light); border-color: var(--secondary-red); }
+        .source-link { color: var(--secondary-cyan); text-decoration: none; word-break: break-all; }
+        .source-link:hover { text-decoration: underline; }
+
+
+        /* v0.4：融合 v0.1 的 RPG 導航感 + v0.2 的卡片完成度 + v0.3 的資料架構 */
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .card-number {
+            color: var(--primary);
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+        .detail-section {
+            margin-bottom: 16px;
+        }
+        .detail-section-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .detail-section-title::before {
+            content: "▶ ";
+            color: #FF6B00;
+        }
+        .detail-section-body {
+            color: var(--text-main);
+            line-height: 1.65;
+            padding-left: 14px;
+        }
+        .card-title-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            min-width: 0;
+        }
+        .card-title-row h3 {
+            margin: 0;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <!-- 年齡確認畫面 (Intro Screen) -->
+    <div id="age-gate">
+        <!-- 18+ Pixel Icon -->
+        <svg viewBox="0 0 16 16" width="100" height="100" shape-rendering="crispEdges">
+            <!-- Shield Bg -->
+            <rect x="2" y="0" width="12" height="16" fill="#E63946"/>
+            <rect x="0" y="2" width="16" height="12" fill="#E63946"/>
+            <rect x="1" y="1" width="14" height="14" fill="#E63946"/>
+            <!-- Inner dark -->
+            <rect x="3" y="2" width="10" height="12" fill="#0A0E17"/>
+            <rect x="2" y="3" width="12" height="10" fill="#0A0E17"/>
+            <!-- 18 text (Yellow) -->
+            <!-- 1 -->
+            <rect x="4" y="5" width="1" height="5" fill="#FFB800"/>
+            <!-- 8 -->
+            <rect x="6" y="5" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="7" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="9" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="5" width="1" height="5" fill="#FFB800"/>
+            <rect x="8" y="5" width="1" height="5" fill="#FFB800"/>
+            <!-- + -->
+            <rect x="10" y="7" width="3" height="1" fill="#FFB800"/>
+            <rect x="11" y="6" width="1" height="3" fill="#FFB800"/>
+        </svg>
+
+        <h2>未滿18歲，請勿飲酒</h2>
+        <span class="legal-tag">理性飲酒法令宣告</span>
+        <p>飲酒過量，有礙健康</p>
+        
+        <div class="age-btn-group">
+            <button class="btn btn-primary" onclick="enterTavern()">[ 是，我已滿18歲 ]</button>
+            <button class="btn btn-dark" onclick="leaveTavern()">[ 否，我先離開 ]</button>
+        </div>
+    </div>
+
+    <!-- 主應用程式 -->
+    <div id="main-app" class="hidden">
+        <header>
+            <!-- 小酒杯 Logo -->
+            <svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+                <rect x="0" y="0" width="11" height="1" fill="#00D2D3"/><rect x="1" y="1" width="9" height="1" fill="#00D2D3"/>
+                <rect x="2" y="2" width="7" height="1" fill="#00D2D3"/><rect x="3" y="3" width="5" height="1" fill="#00D2D3"/>
+                <rect x="4" y="4" width="3" height="1" fill="#00D2D3"/><rect x="5" y="5" width="1" height="5" fill="#E0E6ED"/>
+                <rect x="3" y="10" width="5" height="1" fill="#E0E6ED"/>
+            </svg>
+            <h1>IBA 101 經典調酒吧</h1>
+        </header>
+
+        <!-- 標籤頁 -->
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-all">全部酒譜</button>
+            <button class="tab-btn" id="tab-fav">收藏夾</button>
+        </div>
+
+        <!-- 控制區 -->
+        <div class="controls">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="input-rpg" placeholder="搜尋酒名、材料、編號 (如: Gin / 001)">
+            </div>
+
+            <div class="filter-grid">
+                <select id="baseFilter" class="input-rpg">
+                    <option value="">-- 基酒 --</option>
+                    <option value="Gin">琴酒 Gin</option>
+                    <option value="Vodka">伏特加 Vodka</option>
+                    <option value="Rum">蘭姆酒 Rum</option>
+                    <option value="Tequila">龍舌蘭 Tequila</option>
+                    <option value="Whiskey">威士忌 Whiskey</option>
+                    <option value="Brandy">白蘭地 Brandy</option>
+                    <option value="Pisco">皮斯可 Pisco</option>
+                    <option value="Cachaca">卡莎薩 Cachaça</option>
+                </select>
+
+                <select id="techFilter" class="input-rpg">
+                    <option value="">-- 手法 --</option>
+                    <option value="Shake">搖盪 Shake</option>
+                    <option value="Stir">攪拌 Stir</option>
+                    <option value="Build">直調 Build</option>
+                    <option value="Blend">混合 Blend</option>
+                    <option value="Muddle">搗壓 Muddle</option>
+                </select>
+
+                <select id="categoryFilter" class="input-rpg">
+                    <option value="">-- IBA 分類 --</option>
+                    <option value="The Unforgettables">The Unforgettables</option>
+                    <option value="Contemporary Classics">Contemporary Classics</option>
+                    <option value="New Era">New Era</option>
+                </select>
+
+                <select id="sectionFilter" class="input-rpg">
+                    <option value="">-- 學習區段 --</option>
+                    <option value="001-010">001–010 核心</option>
+                    <option value="011-030">011–030</option>
+                    <option value="031-060">031–060</option>
+                    <option value="061-101">061–101</option>
+                </select>
+            </div>
+
+            <div class="status-row">
+                <span id="resultCount" class="status-tag">載入中...</span>
+            </div>
+        </div>
+
+        <div id="loadStatus" class="loading-box">正在讀取 IBA 101 Master Data...</div>
+
+        <!-- 列表區 -->
+        <div id="cocktail-list" class="cocktail-list">
+            <!-- 列表由 JS 產生 -->
+        </div>
+    </div>
+
+    <!-- 詳細資訊 Modal -->
+    <div id="modal">
+        <div class="modal-content" id="modal-content-box">
+            <!-- 內容由 JS 產生 -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // v0.4：融合 v0.1 + v0.2 + v0.3，並從 data/iba-101-master.json 動態載入 IBA 101
+    let cocktails = [];
+    let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
+    let currentTab = 'all';
+    let dataLoaded = false;
+
+    const app = document.getElementById('main-app');
+    const ageGate = document.getElementById('age-gate');
+    const listContainer = document.getElementById('cocktail-list');
+    const searchInput = document.getElementById('searchInput');
+    const baseFilter = document.getElementById('baseFilter');
+    const techFilter = document.getElementById('techFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sectionFilter = document.getElementById('sectionFilter');
+    const resultCount = document.getElementById('resultCount');
+    const loadStatus = document.getElementById('loadStatus');
+    const modal = document.getElementById('modal');
+    const modalContentBox = document.getElementById('modal-content-box');
+    const tabAll = document.getElementById('tab-all');
+    const tabFav = document.getElementById('tab-fav');
+
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function getGlassSvg(glass = '') {
+        const g = glass.toLowerCase();
+
+        if (g.includes('martini') || g.includes('cocktail') || g.includes('coupe') || g.includes('flute')) {
+            return `<svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+                <rect x="0" y="0" width="11" height="1" fill="#00D2D3"/><rect x="1" y="1" width="9" height="1" fill="#00D2D3"/>
+                <rect x="2" y="2" width="7" height="1" fill="#00D2D3"/><rect x="3" y="3" width="5" height="1" fill="#00D2D3"/>
+                <rect x="4" y="4" width="3" height="1" fill="#00D2D3"/><rect x="5" y="5" width="1" height="5" fill="#E0E6ED"/>
+                <rect x="3" y="10" width="5" height="1" fill="#E0E6ED"/>
+            </svg>`;
+        }
+
+        if (g.includes('highball') || g.includes('collins') || g.includes('tall') || g.includes('hurricane') || g.includes('mule') || g.includes('tiki')) {
+            return `<svg viewBox="0 0 9 11" width="22" height="28" shape-rendering="crispEdges">
+                <rect x="1" y="0" width="7" height="8" fill="#FFB800"/><rect x="0" y="0" width="1" height="10" fill="#E0E6ED"/>
+                <rect x="8" y="0" width="1" height="10" fill="#E0E6ED"/><rect x="0" y="10" width="9" height="1" fill="#E0E6ED"/>
+                <rect x="2" y="2" width="2" height="2" fill="#FFF" opacity="0.6"/><rect x="5" y="5" width="2" height="2" fill="#FFF" opacity="0.6"/>
+            </svg>`;
+        }
+
+        return `<svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+            <rect x="1" y="4" width="9" height="5" fill="#E63946"/><rect x="0" y="3" width="1" height="7" fill="#E0E6ED"/>
+            <rect x="10" y="3" width="1" height="7" fill="#E0E6ED"/><rect x="0" y="10" width="11" height="1" fill="#E0E6ED"/>
+            <rect x="3" y="5" width="3" height="3" fill="#FFF" opacity="0.6"/>
+        </svg>`;
+    }
+
+    function getHeartSvg(isFav) {
+        const color = isFav ? '#E63946' : '#4A5578';
+        return `<svg viewBox="0 0 9 8" width="24" height="24" shape-rendering="crispEdges" fill="${color}">
+           <rect x="1" y="0" width="2" height="1" /><rect x="6" y="0" width="2" height="1" />
+           <rect x="0" y="1" width="4" height="1" /><rect x="5" y="1" width="4" height="1" />
+           <rect x="0" y="2" width="9" height="2" /><rect x="1" y="4" width="7" height="1" />
+           <rect x="2" y="5" width="5" height="1" /><rect x="3" y="6" width="3" height="1" />
+           <rect x="4" y="7" width="1" height="1" />
+        </svg>`;
+    }
+
+    function inLearningSection(appId, section) {
+        if (!section) return true;
+        const n = parseInt(appId, 10);
+        if (section === '001-010') return n >= 1 && n <= 10;
+        if (section === '011-030') return n >= 11 && n <= 30;
+        if (section === '031-060') return n >= 31 && n <= 60;
+        if (section === '061-101') return n >= 61 && n <= 101;
+        return true;
+    }
+
+    function inferBase(c) {
+        const text = (c.ingredients || []).map(i => i.name || '').join(' ').toLowerCase();
+
+        if (text.includes('gin')) return 'Gin';
+        if (text.includes('vodka')) return 'Vodka';
+        if (text.includes('tequila')) return 'Tequila';
+        if (text.includes('pisco')) return 'Pisco';
+        if (text.includes('cachaça') || text.includes('cachaca')) return 'Cachaca';
+        if (text.includes('cognac') || text.includes('brandy') || text.includes('calvados')) return 'Brandy';
+        if (text.includes('whiskey') || text.includes('whisky') || text.includes('bourbon') || text.includes('rye')) return 'Whiskey';
+        if (text.includes('rum') || text.includes('rhum') || text.includes('ron')) return 'Rum';
+
+        return 'Other';
+    }
+
+    function inferTechnique(c) {
+        const method = (c.method || '').toLowerCase();
+        if (method.includes('muddle')) return 'Muddle';
+        if (method.includes('blend')) return 'Blend';
+        if (method.includes('shake')) return 'Shake';
+        if (method.includes('stir')) return 'Stir';
+        if (method.includes('build') || method.includes('pour') || method.includes('directly')) return 'Build';
+        return 'Other';
+    }
+
+    function shortCategory(category) {
+        if (category === 'The Unforgettables') return 'Unforgettables';
+        if (category === 'Contemporary Classics') return 'Contemporary Classics';
+        return category || '';
+    }
+
+    async function loadCocktails() {
+        try {
+            const response = await fetch('data/iba-101-master.json', { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const payload = await response.json();
+
+            if (!payload || !Array.isArray(payload.cocktails)) {
+                throw new Error('JSON 結構不正確：找不到 cocktails 陣列');
+            }
+
+            cocktails = payload.cocktails;
+            dataLoaded = true;
+            loadStatus.classList.add('hidden');
+
+            if (cocktails.length !== 101) {
+                console.warn(`目前載入 ${cocktails.length} 杯，預期為 101 杯。`);
+            }
+
+            renderList();
+        } catch (error) {
+            console.error(error);
+            loadStatus.className = 'error-box';
+            loadStatus.innerHTML = `資料載入失敗：${escapeHtml(error.message)}<br><br>請確認 <b>data/iba-101-master.json</b> 已上傳到 GitHub。`;
+            resultCount.innerText = '載入失敗';
+        }
+    }
+
+    function enterTavern() {
+        ageGate.classList.add('hidden');
+        app.classList.remove('hidden');
+        renderList();
+    }
+
+    function leaveTavern() {
+        alert("未滿18歲請勿飲酒，期待您成年後再來拜訪！");
+        window.location.href = "https://www.google.com";
+    }
+
+    tabAll.addEventListener('click', () => {
+        currentTab = 'all';
+        tabAll.classList.add('active');
+        tabFav.classList.remove('active');
+        renderList();
+    });
+
+    tabFav.addEventListener('click', () => {
+        currentTab = 'fav';
+        tabFav.classList.add('active');
+        tabAll.classList.remove('active');
+        renderList();
+    });
+
+    function renderList() {
+        if (!dataLoaded) {
+            resultCount.innerText = '載入中...';
+            return;
+        }
+
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const base = baseFilter.value;
+        const tech = techFilter.value;
+        const category = categoryFilter.value;
+        const section = sectionFilter.value;
+
+        const filtered = cocktails.filter(c => {
+            const ingredientText = (c.ingredients || [])
+                .map(i => `${i.name || ''} ${i.amount || ''}`)
+                .join(' ')
+                .toLowerCase();
+
+            const searchable = [
+                c.app_id,
+                c.official_name,
+                c.chinese_name,
+                c.category,
+                ingredientText,
+                c.glassware,
+                c.garnish,
+                c.method
+            ].join(' ').toLowerCase();
+
+            const matchSearch = !searchTerm || searchable.includes(searchTerm);
+            const matchBase = !base || inferBase(c) === base;
+            const matchTech = !tech || inferTechnique(c) === tech;
+            const matchCategory = !category || c.category === category;
+            const matchSection = inLearningSection(c.app_id, section);
+            const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
+
+            return matchSearch && matchBase && matchTech && matchCategory && matchSection && matchFav;
+        });
+
+        resultCount.innerText = `${filtered.length} / ${cocktails.length} 款`;
+        listContainer.innerHTML = '';
+
+        if (filtered.length === 0) {
+            listContainer.innerHTML = `<div style="text-align:center; padding:40px 0; color:var(--border-light);">沒有找到符合的酒譜...</div>`;
+            return;
+        }
+
+        filtered.forEach(c => {
+            const isFav = favorites.includes(c.app_id);
+            const card = document.createElement('div');
+            card.className = 'cocktail-card';
+            card.onclick = () => openModal(c);
+
+            card.innerHTML = `
+                <div class="card-icon">
+                    ${getGlassSvg(c.glassware || '')}
+                </div>
+                <div class="cocktail-info">
+                    <div class="card-title-row">
+                        <div class="card-number">${escapeHtml(c.app_id)}</div>
+                        <h3>${escapeHtml(c.chinese_name)}</h3>
+                    </div>
+                    <p>${escapeHtml(c.official_name)}</p>
+                    <div class="card-badges">
+                        <span class="badge badge-category">${escapeHtml(shortCategory(c.category))}</span>
+                    </div>
+                </div>
+                <button class="fav-btn" aria-label="收藏" onclick="toggleFav(event, '${escapeHtml(c.app_id)}')">
+                    ${getHeartSvg(isFav)}
+                </button>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+
+    function toggleFav(e, id) {
+        e.stopPropagation();
+
+        if (favorites.includes(id)) {
+            favorites = favorites.filter(favId => favId !== id);
+        } else {
+            favorites.push(id);
+        }
+
+        localStorage.setItem('pixelBarFavsV03', JSON.stringify(favorites));
+        renderList();
+    }
+
+    function openModal(c) {
+        const ingredientsHtml = (c.ingredients || [])
+            .map(i => `• ${escapeHtml(i.name)}${i.amount ? ` — ${escapeHtml(i.amount)}` : ''}`)
+            .join('<br>');
+
+        const notesHtml = c.notes
+            ? `<div class="detail-row"><span class="detail-label">備註：</span><div class="detail-list" style="color:#FFA1A1;">${escapeHtml(c.notes)}</div></div>`
+            : '';
+
+        modalContentBox.innerHTML = `
+            <button class="close-btn" onclick="closeModal()">X</button>
+
+            <div class="modal-header">
+                <h2>${escapeHtml(c.app_id)}｜${escapeHtml(c.chinese_name)}</h2>
+                <p>${escapeHtml(c.official_name)}</p>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">IBA 分類</div>
+                <div class="detail-section-body">${escapeHtml(c.category)}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">基酒 / 手法</div>
+                <div class="detail-section-body">${escapeHtml(inferBase(c))} ｜ ${escapeHtml(inferTechnique(c))}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">材料與用量</div>
+                <div class="detail-section-body">${ingredientsHtml || 'N/A'}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">製作方法</div>
+                <div class="detail-section-body">${escapeHtml(c.method || 'N/A')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">杯型</div>
+                <div class="detail-section-body">${escapeHtml(c.glassware || 'N/A')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">裝飾</div>
+                <div class="detail-section-body">${escapeHtml(c.garnish || 'N/A')}</div>
+            </div>
+
+            ${notesHtml ? `
+            <div class="detail-section">
+                <div class="detail-section-title">備註</div>
+                <div class="detail-section-body" style="color:#FFA1A1;">${escapeHtml(c.notes)}</div>
+            </div>` : ''}
+
+            <div class="detail-section">
+                <div class="detail-section-title">官方來源</div>
+                <div class="detail-section-body">
+                    <a class="source-link" href="${escapeHtml(c.official_url)}" target="_blank" rel="noopener noreferrer">IBA Official</a>
+                </div>
+            </div>
+        `;
+
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    searchInput.addEventListener('input', renderList);
+    baseFilter.addEventListener('change', renderList);
+    techFilter.addEventListener('change', renderList);
+    categoryFilter.addEventListener('change', renderList);
+    sectionFilter.addEventListener('change', renderList);
+
+    loadCocktails();
+</script>
+</body>
+</html>
