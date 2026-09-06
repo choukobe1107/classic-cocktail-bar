@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBA 101 經典調酒吧 16-bit｜v0.6-test</title>
+    <title>IBA 101 經典調酒吧 16-bit｜v0.6.1-test</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -425,7 +425,7 @@
 
             <div class="filter-grid">
                 <select id="baseFilter" class="input-rpg">
-                    <option value="">-- 基酒 --</option>
+                    <option value="">-- 主酒 --</option>
                     <option value="Gin">琴酒 Gin</option>
                     <option value="Vodka">伏特加 Vodka</option>
                     <option value="Rum">蘭姆酒 Rum</option>
@@ -435,9 +435,12 @@
                     <option value="Pisco">皮斯可 Pisco</option>
                     <option value="Cachaca">卡莎薩 Cachaça</option>
                 </select>
+                <select id="otherSpiritFilter" class="input-rpg hidden" aria-label="其他主要烈酒">
+                    <option value="">-- 其他主要烈酒種類 --</option>
+                </select>
 
                 <select id="techFilter" class="input-rpg">
-                    <option value="">-- 手法 --</option>
+                    <option value="">-- 主要製作法 --</option>
                     <option value="Shake">搖盪 Shake</option>
                     <option value="Stir">攪拌 Stir</option>
                     <option value="Build">直調 Build</option>
@@ -459,12 +462,12 @@
                     <option value="031-060">031–060</option>
                     <option value="061-101">061–101</option>
                 </select>
-          <select id="garnishPresenceFilter" class="control-select">
+          <select id="garnishPresenceFilter" class="input-rpg">
             <option value="">-- 有無裝飾 --</option>
             <option value="yes">有裝飾</option>
             <option value="no">無裝飾</option>
           </select>
-          <select id="garnishTypeFilter" class="control-select">
+          <select id="garnishTypeFilter" class="input-rpg">
             <option value="">-- 裝飾種類 --</option>
           </select>
             </div>
@@ -491,7 +494,7 @@
 </div>
 
 <script>
-    // v0.6-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
+    // v0.6.1-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
     let cocktails = [];
     let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
     let currentTab = 'all';
@@ -502,6 +505,7 @@
     const listContainer = document.getElementById('cocktail-list');
     const searchInput = document.getElementById('searchInput');
     const baseFilter = document.getElementById('baseFilter');
+    const otherSpiritFilter = document.getElementById('otherSpiritFilter');
     const techFilter = document.getElementById('techFilter');
     const categoryFilter = document.getElementById('categoryFilter');
     const sectionFilter = document.getElementById('sectionFilter');
@@ -697,6 +701,7 @@
         return {
             q: searchInput.value.trim().toLowerCase(),
             base: baseFilter.value,
+            otherSpirit: otherSpiritFilter?.value || '',
             tech: techFilter.value,
             category: categoryFilter.value,
             section: sectionFilter.value,
@@ -725,6 +730,7 @@
 
         if (exceptKey !== 'q' && s.q && !searchable.includes(s.q)) return false;
         if (exceptKey !== 'base' && s.base && c.primary_spirit_group !== s.base) return false;
+        if (exceptKey !== 'otherSpirit' && s.otherSpirit && c.primary_spirit !== s.otherSpirit) return false;
         if (exceptKey !== 'tech' && s.tech && c.main_method !== s.tech) return false;
         if (exceptKey !== 'category' && s.category && c.category !== s.category) return false;
         if (exceptKey !== 'section' && s.section && c.learning_section !== s.section) return false;
@@ -771,6 +777,28 @@
             "Gin":"琴酒 Gin","Vodka":"伏特加 Vodka","Rum":"蘭姆酒 Rum","Tequila":"龍舌蘭 Tequila",
             "Whiskey":"威士忌 Whiskey","Brandy":"白蘭地 Brandy","Other":"其他主要烈酒"
         });
+
+        if (otherSpiritFilter) {
+            const otherSpiritValues = [...new Set(
+                cocktails
+                    .filter(c => c.primary_spirit_group === 'Other' && matchesExcept(c, 'otherSpirit'))
+                    .map(c => c.primary_spirit)
+                    .filter(Boolean)
+            )].sort();
+
+            refillSelect(otherSpiritFilter, otherSpiritValues, state.otherSpirit, {
+                "Pisco":"皮斯可 Pisco",
+                "Cachaça":"卡莎薩 Cachaça",
+                "Mezcal":"梅斯卡爾 Mezcal",
+                "Aguardiente":"Aguardiente",
+                "Grappa":"Grappa"
+            });
+
+            const showOtherSpirit = baseFilter.value === 'Other';
+            otherSpiritFilter.classList.toggle('hidden', !showOtherSpirit);
+            if (!showOtherSpirit) otherSpiritFilter.value = '';
+        }
+
         refillSelect(techFilter, techValues, state.tech, {
             "Shake":"搖盪法 Shake","Stir":"攪拌法 Stir","Build":"直調法 Build",
             "Blend":"電動攪拌法 Blend","Swizzle":"Swizzle","Other":"其他"
@@ -780,6 +808,18 @@
             "001-010":"001–010 核心","011-030":"011–030 常見經典",
             "031-060":"031–060 延伸經典","061-101":"061–101 完整擴充"
         });
+        if (garnishPresenceFilter) {
+            const eligible = cocktails.filter(c => matchesExcept(c, 'garnishPresence'));
+            const presenceValues = [];
+            if (eligible.some(c => c.garnish_present)) presenceValues.push('yes');
+            if (eligible.some(c => !c.garnish_present)) presenceValues.push('no');
+
+            refillSelect(garnishPresenceFilter, presenceValues, state.garnishPresence, {
+                "yes":"有裝飾",
+                "no":"無裝飾"
+            });
+        }
+
         if (garnishTypeFilter) {
             refillSelect(garnishTypeFilter, garnishTypeValues, state.garnishType, {
                 "Lemon":"檸檬 Lemon","Lime":"萊姆 Lime","Orange":"柳橙 Orange","Grapefruit":"葡萄柚 Grapefruit",
@@ -851,6 +891,7 @@
 
         const searchTerm = searchInput.value.trim().toLowerCase();
         const base = baseFilter.value;
+        const otherSpirit = otherSpiritFilter ? otherSpiritFilter.value : '';
         const tech = techFilter.value;
         const category = categoryFilter.value;
         const section = sectionFilter.value;
@@ -884,15 +925,22 @@
 
             const matchSearch = !searchTerm || searchable.includes(searchTerm);
             const matchBase = !base || c.primary_spirit_group === base;
+            const matchOtherSpirit = !otherSpirit || c.primary_spirit === otherSpirit;
             const matchTech = !tech || c.main_method === tech;
             const matchCategory = !category || c.category === category;
             const matchSection = !section || c.learning_section === section;
+            const matchGarnishPresence = !garnishPresence ||
+                (garnishPresence === 'yes' ? c.garnish_present : !c.garnish_present);
+            const matchGarnishType = !garnishType ||
+                (c.garnish_categories || []).includes(garnishType);
             const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
 
-            return matchSearch && matchBase && matchTech && matchCategory && matchSection && matchFav;
+            return matchSearch && matchBase && matchOtherSpirit && matchTech &&
+                   matchCategory && matchSection && matchGarnishPresence &&
+                   matchGarnishType && matchFav;
         });
 
-        resultCount.innerText = `${filtered.length} / ${cocktails.length} 款`;
+        resultCount.innerText = `篩選結果 ${filtered.length} 款｜共 ${cocktails.length} 款`;
         listContainer.innerHTML = '';
 
         if (filtered.length === 0) {
@@ -935,6 +983,7 @@
     function clearFilters() {
         searchInput.value = '';
         baseFilter.value = '';
+        if (otherSpiritFilter) otherSpiritFilter.value = '';
         techFilter.value = '';
         categoryFilter.value = '';
         sectionFilter.value = '';
@@ -1031,6 +1080,7 @@
 
     searchInput.addEventListener('input', renderList);
     baseFilter.addEventListener('change', renderList);
+    if (otherSpiritFilter) otherSpiritFilter.addEventListener('change', renderList);
     techFilter.addEventListener('change', renderList);
     categoryFilter.addEventListener('change', renderList);
     sectionFilter.addEventListener('change', renderList);
