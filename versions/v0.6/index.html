@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBA 101 經典調酒吧 16-bit｜v0.6.1-test</title>
+    <title>IBA 101 經典調酒吧 16-bit｜v0.6.2-test</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -460,7 +460,7 @@
                     <option value="001-010">001–010 核心</option>
                     <option value="011-030">011–030</option>
                     <option value="031-060">031–060</option>
-                    <option value="061-101">061–101</option>
+                    <option value="061-101">061–101 進階延伸</option>
                 </select>
           <select id="garnishPresenceFilter" class="input-rpg">
             <option value="">-- 有無裝飾 --</option>
@@ -494,7 +494,7 @@
 </div>
 
 <script>
-    // v0.6.1-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
+    // v0.6.2-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
     let cocktails = [];
     let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
     let currentTab = 'all';
@@ -806,7 +806,7 @@
         refillSelect(categoryFilter, categoryValues, state.category);
         refillSelect(sectionFilter, sectionValues, state.section, {
             "001-010":"001–010 核心","011-030":"011–030 常見經典",
-            "031-060":"031–060 延伸經典","061-101":"061–101 完整擴充"
+            "031-060":"031–060 延伸經典","061-101":"061–101 進階延伸"
         });
         if (garnishPresenceFilter) {
             const eligible = cocktails.filter(c => matchesExcept(c, 'garnishPresence'));
