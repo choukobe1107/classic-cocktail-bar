@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBA 101 經典調酒吧 16-bit｜v0.4</title>
+    <title>IBA 101 經典調酒吧 16-bit｜v0.4.1-test</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -483,7 +483,7 @@
 </div>
 
 <script>
-    // v0.4：融合 v0.1 + v0.2 + v0.3，並從 data/iba-101-master.json 動態載入 IBA 101
+    // v0.4.1-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
     let cocktails = [];
     let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
     let currentTab = 'all';
@@ -592,9 +592,45 @@
         return category || '';
     }
 
+    function chineseSearchAliases(c) {
+        const text = [
+            c.official_name || '',
+            ...(c.ingredients || []).map(i => i.name || ''),
+            c.method || '',
+            c.glassware || '',
+            c.garnish || ''
+        ].join(' ').toLowerCase();
+
+        const aliases = [];
+        const add = (...words) => aliases.push(...words);
+
+        if (text.includes('gin')) add('琴酒');
+        if (text.includes('vodka')) add('伏特加');
+        if (text.includes('rum') || text.includes('rhum') || text.includes('ron')) add('蘭姆酒', '朗姆酒');
+        if (text.includes('tequila')) add('龍舌蘭');
+        if (text.includes('whiskey') || text.includes('whisky') || text.includes('bourbon') || text.includes('rye')) add('威士忌', '波本', '裸麥');
+        if (text.includes('brandy') || text.includes('cognac') || text.includes('calvados')) add('白蘭地', '干邑');
+        if (text.includes('pisco')) add('皮斯可');
+        if (text.includes('cachaça') || text.includes('cachaca')) add('卡莎薩');
+        if (text.includes('vermouth')) add('香艾酒', '苦艾酒');
+        if (text.includes('campari')) add('金巴利');
+        if (text.includes('lime')) add('萊姆');
+        if (text.includes('lemon')) add('檸檬');
+        if (text.includes('orange')) add('柳橙', '橙');
+        if (text.includes('pineapple')) add('鳳梨');
+        if (text.includes('cherry')) add('櫻桃');
+        if (text.includes('mint')) add('薄荷');
+        if (text.includes('sugar') || text.includes('syrup')) add('糖', '糖漿');
+        if (text.includes('cream')) add('鮮奶油');
+        if (text.includes('coffee')) add('咖啡');
+        if (text.includes('grapefruit')) add('葡萄柚');
+
+        return aliases.join(' ');
+    }
+
     async function loadCocktails() {
         try {
-            const response = await fetch('data/iba-101-master.json', { cache: 'no-store' });
+            const response = await fetch('/classic-cocktail-bar/data/iba-101-master.json', { cache: 'no-store' });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const payload = await response.json();
 
@@ -670,7 +706,8 @@
                 ingredientText,
                 c.glassware,
                 c.garnish,
-                c.method
+                c.method,
+                chineseSearchAliases(c)
             ].join(' ').toLowerCase();
 
             const matchSearch = !searchTerm || searchable.includes(searchTerm);
@@ -687,7 +724,11 @@
         listContainer.innerHTML = '';
 
         if (filtered.length === 0) {
-            listContainer.innerHTML = `<div style="text-align:center; padding:40px 0; color:var(--border-light);">沒有找到符合的酒譜...</div>`;
+            listContainer.innerHTML = `
+                <div style="text-align:center; padding:32px 16px; color:var(--text-muted);">
+                    沒有找到符合的酒譜。<br><br>
+                    <button class="btn btn-dark" onclick="clearFilters()">[ 清除搜尋與篩選 ]</button>
+                </div>`;
             return;
         }
 
@@ -717,6 +758,15 @@
             `;
             listContainer.appendChild(card);
         });
+    }
+
+    function clearFilters() {
+        searchInput.value = '';
+        baseFilter.value = '';
+        techFilter.value = '';
+        categoryFilter.value = '';
+        sectionFilter.value = '';
+        renderList();
     }
 
     function toggleFav(e, id) {
