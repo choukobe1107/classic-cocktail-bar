@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBA 101 經典調酒吧 16-bit｜v0.8.3-test</title>
+    <title>IBA 101 經典調酒吧 16-bit｜v0.8.4-test</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -567,7 +567,7 @@
 </div>
 
 <script>
-    // v0.8.3-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
+    // v0.8.4-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
     let cocktails = [];
     let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
     let currentTab = 'all';
@@ -1109,6 +1109,41 @@
     }
 
 
+
+    function categoryText(c) {
+        const map = {
+            "The Unforgettables":"經典永恆｜The Unforgettables",
+            "Contemporary Classics":"當代經典｜Contemporary Classics",
+            "New Era":"新世代｜New Era"
+        };
+        const en = c.category || '';
+        if (languageMode === 'en') return en;
+        if (languageMode === 'bilingual') return map[en] || en;
+        return (map[en] || en).split('｜')[0];
+    }
+
+    function primarySpiritText(c) {
+        const zhMap = {
+            "Gin":"琴酒",
+            "Vodka":"伏特加",
+            "Rum":"蘭姆酒",
+            "Tequila":"龍舌蘭",
+            "Whiskey":"威士忌",
+            "Brandy":"白蘭地",
+            "Pisco":"皮斯可",
+            "Cachaça":"卡莎薩",
+            "Mezcal":"梅斯卡爾",
+            "Aguardiente":"Aguardiente",
+            "Grappa":"Grappa",
+            "Other":"其他主要烈酒"
+        };
+        const en = c.primary_spirit || c.primary_spirit_group || '';
+        const zh = zhMap[en] || en || '—';
+        if (languageMode === 'en') return en || '—';
+        if (languageMode === 'bilingual') return zh === en ? zh : `${zh}｜${en}`;
+        return zh;
+    }
+
     function fieldLabel(zh, en) {
         if (languageMode === 'en') return en;
         if (languageMode === 'bilingual') return `${zh}｜${en}`;
@@ -1278,8 +1313,15 @@
             .join('<br>');
 
         const notesHtml = c.notes
-            ? `<div class="detail-row"><span class="detail-label">備註：</span><div class="detail-list" style="color:#FFA1A1;">${escapeHtml(c.notes)}</div></div>`
+            ? `<div class="detail-section">
+                 <div class="detail-section-title">${escapeHtml(fieldLabel('備註','Notes'))}</div>
+                 <div class="detail-section-body" style="color:#FFA1A1;">${escapeHtml(c.notes)}</div>
+               </div>`
             : '';
+
+        const sourceLabel = languageMode === 'en'
+            ? 'IBA Official'
+            : (languageMode === 'bilingual' ? 'IBA 官方來源｜IBA Official' : 'IBA 官方來源');
 
         modalContentBox.innerHTML = `
             <button class="close-btn" onclick="closeModal()">X</button>
@@ -1290,45 +1332,51 @@
             </div>
 
             <div class="detail-section">
-                <div class="detail-section-title">IBA 分類</div>
-                <div class="detail-section-body">${escapeHtml(c.category)}</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('IBA 分類','IBA Category'))}</div>
+                <div class="detail-section-body">${escapeHtml(categoryText(c) || '—')}</div>
             </div>
 
             <div class="detail-section">
-                <div class="detail-section-title">基酒 / 手法</div>
-                <div class="detail-section-body">${escapeHtml(inferBase(c))} ｜ ${escapeHtml(inferTechnique(c))}</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('主酒','Primary Spirit'))}</div>
+                <div class="detail-section-body">${escapeHtml(primarySpiritText(c))}</div>
             </div>
 
             <div class="detail-section">
-                <div class="detail-section-title">材料與用量</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('主要製作法','Main Method'))}</div>
+                <div class="detail-section-body">${escapeHtml(mainMethodText(c) || '—')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('輔助操作','Auxiliary Operations'))}</div>
+                <div class="detail-section-body">${escapeHtml(auxiliaryText(c) || '—')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('材料與用量','Ingredients'))}</div>
                 <div class="detail-section-body">${ingredientsHtml || 'N/A'}</div>
             </div>
 
             <div class="detail-section">
-                <div class="detail-section-title">製作方法</div>
-                <div class="detail-section-body">${escapeHtml(c.method || 'N/A')}</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('製作方法','Method'))}</div>
+                <div class="detail-section-body" style="white-space:pre-line;">${escapeHtml(methodText(c) || 'N/A')}</div>
             </div>
 
             <div class="detail-section">
-                <div class="detail-section-title">杯型</div>
-                <div class="detail-section-body">${escapeHtml(c.glassware || 'N/A')}</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('杯型','Glassware'))}</div>
+                <div class="detail-section-body">${escapeHtml(glasswareText(c) || 'N/A')}</div>
             </div>
 
             <div class="detail-section">
-                <div class="detail-section-title">裝飾</div>
-                <div class="detail-section-body">${escapeHtml(c.garnish || 'N/A')}</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('裝飾','Garnish'))}</div>
+                <div class="detail-section-body">${escapeHtml(garnishText(c) || 'N/A')}</div>
             </div>
 
-            ${notesHtml ? `
-            <div class="detail-section">
-                <div class="detail-section-title">備註</div>
-                <div class="detail-section-body" style="color:#FFA1A1;">${escapeHtml(c.notes)}</div>
-            </div>` : ''}
+            ${notesHtml}
 
             <div class="detail-section">
-                <div class="detail-section-title">官方來源</div>
+                <div class="detail-section-title">${escapeHtml(fieldLabel('官方來源','Official Source'))}</div>
                 <div class="detail-section-body">
-                    <a class="source-link" href="${escapeHtml(c.official_url)}" target="_blank" rel="noopener noreferrer">IBA Official</a>
+                    <a class="source-link" href="${escapeHtml(c.official_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceLabel)}</a>
                 </div>
             </div>
         `;
