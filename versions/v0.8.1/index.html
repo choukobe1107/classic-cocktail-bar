@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBA 101 經典調酒吧 16-bit｜v0.8.2-test</title>
+    <title>IBA 101 經典調酒吧 16-bit｜v0.8.3-test</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -567,7 +567,7 @@
 </div>
 
 <script>
-    // v0.8.2-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
+    // v0.8.3-test：修正歷史版本資料路徑、中文搜尋別名與篩選提示
     let cocktails = [];
     let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV03')) || [];
     let currentTab = 'all';
@@ -1197,6 +1197,7 @@
                 (garnishPresence === 'yes' ? c.garnish_present : !c.garnish_present);
             const matchGarnishType = !garnishType ||
                 (c.garnish_categories || []).includes(garnishType);
+            const matchGlassware = !glassware || c.glassware_group === glassware;
             const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
 
             return matchSearch && matchBase && matchOtherSpirit && matchTech &&
