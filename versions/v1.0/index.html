@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r6</title>
+    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r7</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -973,53 +973,6 @@
         };
     }
 
-    async function loadCocktails(sourceKey = currentSource) {
-        const config = DATA_SOURCES[sourceKey] || DATA_SOURCES.iba;
-        currentSource = config.key;
-        localStorage.setItem('cocktailSource', currentSource);
-        dataLoaded = false;
-        cocktails = [];
-        resultCount.innerText = '載入中...';
-        loadStatus.className = 'loading-box';
-        loadStatus.classList.remove('hidden');
-        loadStatus.innerHTML = `正在讀取 ${escapeHtml(config.label)}...`;
-
-        if (sourceSelect) sourceSelect.value = currentSource;
-        if (sourceHint) sourceHint.textContent = `目前來源：${config.label}`;
-        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '乙級飲料調製(調酒)';
-
-        clearFilters();
-
-        try {
-            const response = await fetch(config.path, { cache: 'no-store' });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const payload = await response.json();
-            const recipes = getRecipesArray(payload);
-
-            if (!recipes.length) {
-                throw new Error('JSON 結構不正確：找不到 recipes/cocktails 陣列');
-            }
-
-            cocktails = currentSource === 'iba'
-                ? recipes.map(normalizeV2Recipe)
-                : recipes.map(normalizeTwLevelBRecipe);
-
-            dataLoaded = true;
-            loadStatus.classList.add('hidden');
-
-            if (cocktails.length !== config.expectedCount) {
-                console.warn(`目前載入 ${cocktails.length} 筆，預期為 ${config.expectedCount} 筆。`);
-            }
-
-            renderList();
-        } catch (error) {
-            console.error(error);
-            loadStatus.className = 'error-box';
-            loadStatus.innerHTML = `資料載入失敗：${escapeHtml(error.message)}<br><br>請確認 <b>${escapeHtml(config.path.split('/').pop())}</b> 已上傳到 GitHub 的 data 資料夾。`;
-            resultCount.innerText = '載入失敗';
-        }
-    }
-
     function enterTavern() {
         ageGate.classList.add('hidden');
         app.classList.remove('hidden');
@@ -1046,6 +999,76 @@
     });
 
 
+
+
+    function currentFilterState() {
+        return {
+            q: searchInput.value.trim().toLowerCase(),
+            base: baseFilter.value,
+            otherSpirit: otherSpiritFilter?.value || '',
+            tech: techFilter.value,
+            category: categoryFilter.value,
+            section: sectionFilter.value,
+            garnishPresence: garnishPresenceFilter?.value || '',
+            garnishType: garnishTypeFilter?.value || '',
+            glassware: glasswareFilter?.value || ''
+        };
+    }
+
+    function matchesExcept(c, exceptKey) {
+        const s = currentFilterState();
+        const searchable = [
+            c.search_index,
+            c.app_id,
+            c.official_name,
+            c.chinese_name,
+            ...(c.aliases || []),
+            ...(c.ingredient_aliases || []),
+            ...(c.glassware_aliases || []),
+            ...(c.garnish_aliases || []),
+            ...(c.technique_aliases || []),
+            c.method,
+            c.method_zh,
+            c.glassware,
+            c.glassware_zh,
+            c.garnish,
+            c.garnish_zh
+        ].join(' ').toLowerCase();
+
+        if (exceptKey !== 'q' && s.q && !searchable.includes(s.q)) return false;
+        if (exceptKey !== 'base' && s.base && c.primary_spirit_group !== s.base) return false;
+        if (exceptKey !== 'otherSpirit' && s.otherSpirit && c.primary_spirit !== s.otherSpirit) return false;
+        if (exceptKey !== 'tech' && s.tech && c.main_method !== s.tech) return false;
+        if (exceptKey !== 'category' && s.category && c.category !== s.category) return false;
+        if (exceptKey !== 'section' && s.section && c.learning_section !== s.section) return false;
+        if (exceptKey !== 'garnishPresence' && s.garnishPresence) {
+            if (s.garnishPresence === 'yes' && !c.garnish_present) return false;
+            if (s.garnishPresence === 'no' && c.garnish_present) return false;
+        }
+        if (exceptKey !== 'garnishType' && s.garnishType && !(c.garnish_categories || []).includes(s.garnishType)) return false;
+        if (exceptKey !== 'glassware' && s.glassware && c.glassware_group !== s.glassware) return false;
+        return true;
+    }
+
+    function naturalGroupSort(a, b) {
+        const ma = String(a).match(/^C(\d+)$/i);
+        const mb = String(b).match(/^C(\d+)$/i);
+        if (ma && mb) return Number(ma[1]) - Number(mb[1]);
+        return String(a).localeCompare(String(b), 'zh-TW', { numeric: true });
+    }
+
+    function refillSelect(select, values, current, labels = {}) {
+        if (!select) return;
+        const first = select.options[0]?.textContent || '全部';
+        select.innerHTML = `<option value="">${first}</option>`;
+        values.forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v;
+            opt.textContent = labels[v] || v;
+            select.appendChild(opt);
+        });
+        select.value = values.includes(current) ? current : '';
+    }
 
     function updateLinkedFilters() {
         const state = currentFilterState();
@@ -1173,8 +1196,6 @@
         if (sourceHint) sourceHint.textContent = `目前來源：${config.label}`;
         if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '乙級飲料調製(調酒)';
 
-        clearFilters();
-
         try {
             const response = await fetch(config.path, { cache: 'no-store' });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -1190,6 +1211,7 @@
                 : recipes.map(normalizeTwLevelBRecipe);
 
             dataLoaded = true;
+            clearFilters();
             loadStatus.classList.add('hidden');
 
             if (cocktails.length !== config.expectedCount) {
