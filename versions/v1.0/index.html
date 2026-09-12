@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r4</title>
+    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r5</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -1114,15 +1114,15 @@
             return zh;
         }).join(' → ');
     }
-        return arr.map(x => {
+
+    /* duplicate auxiliary block removed */
+    /* 
             const zh = zhMap[x] || x;
             if (languageMode === 'en') return x;
             if (languageMode === 'bilingual') return zh === x ? x : `${zh}｜${x}`;
             return zh;
         }).join(' → ');
-    }
-
-
+    */
 
     function categoryText(c) {
         if (currentSource === 'twLevelB') {
