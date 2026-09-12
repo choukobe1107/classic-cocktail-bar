@@ -530,7 +530,7 @@
             <div class="input-group" style="margin-bottom:0;">
                 <select id="sourceSelect" class="input-rpg" aria-label="酒譜來源">
                     <option value="iba">IBA 101</option>
-                    <option value="twLevelB">台灣飲料調製乙級 90</option>
+                    <option value="twLevelB">乙級飲料調製(調酒)</option>
                 </select>
                 <div id="sourceHint" style="font-size:12px;color:var(--text-muted);margin-top:6px;">
                     目前來源：IBA 101
@@ -599,7 +599,8 @@
           </select>
             </div>
 
-            <div class="status-row">
+            <div class="status-row" style="justify-content:space-between;align-items:center;gap:10px;">
+                <button id="clearAllFilters" class="clear-btn" type="button">清除篩選</button>
                 <span id="resultCount" class="status-tag">載入中...</span>
             </div>
         </div>
@@ -631,7 +632,7 @@
         },
         twLevelB: {
             key: 'twLevelB',
-            label: '台灣飲料調製乙級 90',
+            label: '乙級飲料調製(調酒)',
             path: '/classic-cocktail-bar/data/taiwan-beverage-level-b-90-app-v1.0.json',
             expectedCount: 90
         }
@@ -946,7 +947,7 @@
 
     function sourceLabelFor(c) {
         if (currentSource === 'iba') return 'IBA';
-        return '台灣乙級';
+        return '飲料調製乙級';
     }
 
     function getAllValues(key) {
@@ -1008,6 +1009,13 @@
         return true;
     }
 
+    function naturalGroupSort(a, b) {
+        const ma = String(a).match(/^C(\d+)$/i);
+        const mb = String(b).match(/^C(\d+)$/i);
+        if (ma && mb) return Number(ma[1]) - Number(mb[1]);
+        return String(a).localeCompare(String(b), 'zh-TW', { numeric: true });
+    }
+
     function refillSelect(select, values, current, labels = {}) {
         const first = select.options[0]?.textContent || '全部';
         select.innerHTML = `<option value="">${first}</option>`;
@@ -1032,8 +1040,8 @@
         const techOrder = ["Shake","Stir","Build","Blend","Swizzle","Other"];
         techValues.sort((a,b) => techOrder.indexOf(a) - techOrder.indexOf(b));
 
-        const categoryValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'category')).map(c => c.category).filter(Boolean))].sort();
-        const sectionValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'section')).map(c => c.learning_section).filter(Boolean))].sort();
+        const categoryValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'category')).map(c => c.category).filter(Boolean))].sort(naturalGroupSort);
+        const sectionValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'section')).map(c => c.learning_section).filter(Boolean))].sort(naturalGroupSort);
 
         const garnishTypeValues = [...new Set(
             cocktails.filter(c => matchesExcept(c, 'garnishType')).flatMap(c => c.garnish_categories || [])
@@ -1145,7 +1153,7 @@
 
         if (sourceSelect) sourceSelect.value = currentSource;
         if (sourceHint) sourceHint.textContent = `目前來源：${config.label}`;
-        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '台灣乙級調酒吧';
+        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '乙級飲料調製(調酒)';
 
         clearFilters();
 
@@ -1543,7 +1551,7 @@
 
         const sourceName = currentSource === 'iba'
             ? 'IBA 2026'
-            : '台灣飲料調製乙級技術士術科';
+            : '飲料調製乙級';
 
         const sourceHtml = c.official_url
             ? `<a class="source-link" href="${escapeHtml(c.official_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceName)}</a>`
