@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r5</title>
+    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r6</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -890,7 +890,6 @@
         pairs.forEach(([needle,label]) => { if (t.includes(needle)) out.push(label); });
         return out;
     }
-
     function normalizeTwLevelBRecipe(r) {
         const recipe = r.recipe || {};
         const cls = r.classification || {};
@@ -910,56 +909,69 @@
         const garnishItems = recipe.garnish_items || [];
         const garnishEn = recipe.garnish_official || '';
         const garnishZh = recipe.garnish_zh || '';
+        const primary = cls.primary_spirit_search || inferPrimarySpiritFromText(
+            ingredients.map(i => i.name).join(' ')
+        )[0];
+        const primaryGroup = cls.primary_spirit_group || inferPrimarySpiritFromText(
+            ingredients.map(i => i.name).join(' ')
+        )[1];
 
         return {
-            id: r.app_id || source.source_record_id || '',
-            app_id: r.app_id || '',
-            source_system: source.source_system || 'Taiwan Beverage Preparation Level B',
-            source_version: source.source_version || '',
-            source_group: source.source_group || cls.learning_section || '',
-            source_url: source.official_url || '',
-
-            name: names.official || '',
-            name_zh: names.zh || '',
+            app_id: r.app_id || source.source_record_id || '',
+            official_name: names.official || '',
+            chinese_name: names.zh || '',
             aliases: names.aliases || [],
 
             category: cls.official_category || source.source_group || '',
             learning_section: cls.learning_section || source.source_group || '',
-            primary_spirit: cls.primary_spirit_search || '',
-            primary_spirit_group: cls.primary_spirit_group || '',
+            primary_spirit: primary || '',
+            primary_spirit_group: primaryGroup || 'Other',
             main_method: cls.main_method_search || '',
+            garnish_present: cls.garnish_present ?? !!(garnishItems.length || (garnishEn && garnishEn !== 'N/A')),
+            garnish_categories: cls.garnish_categories || garnishCategoriesFromText(garnishEn),
             auxiliary_operations: recipe.auxiliary_operations || [],
-            alcoholic: cls.alcoholic,
-            servings: cls.servings || null,
 
             ingredients,
             method: recipe.method_official || '',
             method_zh: recipe.method_zh || '',
+            operations: recipe.techniques || [],
+            technique_tags: recipe.techniques || [],
+
             glassware: recipe.glassware_official || '',
             glassware_zh: recipe.glassware_zh || '',
+            glassware_group: canonicalGlassware(recipe.glassware_official || '', recipe.glassware_zh || ''),
+
             garnish: garnishEn,
             garnish_zh: garnishZh,
-            garnish_items: garnishItems,
 
-            garnish_present: cls.garnish_present ?? !!(garnishItems.length || (garnishEn && garnishEn !== 'N/A')),
-            garnish_categories: cls.garnish_categories || [],
+            official_url: source.official_url || '',
+            source_system: source.source_system || 'Taiwan Beverage Preparation Level B',
+            source_version: source.source_version || '',
+            source_type: source.source_type || '',
+            source_group: source.source_group || '',
 
-            notes: recipe.notes || '',
-            historical_note: recipe.historical_note || '',
-            version_note: recipe.version_note || '',
-            style: cls.style || recipe.style || '',
-
-            image_filename: assets?.cocktail_image?.normal || null,
-            pixel_image_filename: assets?.cocktail_image?.pixel16 || null,
+            icon_filename: '',
+            cocktail_image_normal: assets?.cocktail_image?.normal || '',
+            cocktail_image_pixel16: assets?.cocktail_image?.pixel16 || '',
 
             verification_status: verification.recipe_status || '',
             translation_status: verification.translation_status || '',
             app_final: verification.recipe_status !== 'review',
             review_note: verification.review_note || '',
-            search_index: r.search_index || ''
+            servings: cls.servings || null,
+            alcoholic: cls.alcoholic,
+            notes: recipe.notes || '',
+            historical_note: recipe.historical_note || '',
+            version_note: recipe.version_note || '',
+            style: cls.style || recipe.style || '',
+
+            search_index: r.search_index || '',
+            ingredient_aliases: (recipe.ingredients || []).flatMap(i => i.aliases || []),
+            glassware_aliases: recipe.glassware_aliases || [],
+            garnish_aliases: (recipe.garnish_items || []).flatMap(i => i.aliases || []),
+            technique_aliases: recipe.techniques || []
         };
     }
-
 
     async function loadCocktails(sourceKey = currentSource) {
         const config = DATA_SOURCES[sourceKey] || DATA_SOURCES.iba;
@@ -1032,6 +1044,166 @@
         tabAll.classList.remove('active');
         renderList();
     });
+
+
+
+    function updateLinkedFilters() {
+        const state = currentFilterState();
+
+        const baseValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'base')).map(c => c.primary_spirit_group).filter(Boolean))];
+        const baseOrder = ["Gin","Vodka","Rum","Tequila","Whiskey","Brandy","Other"];
+        baseValues.sort((a,b) => baseOrder.indexOf(a) - baseOrder.indexOf(b));
+
+        const techValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'tech')).map(c => c.main_method).filter(Boolean))];
+        const techOrder = ["Shake","Stir","Build","Blend","Swizzle","Other"];
+        techValues.sort((a,b) => techOrder.indexOf(a) - techOrder.indexOf(b));
+
+        const categoryValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'category')).map(c => c.category).filter(Boolean))].sort(naturalGroupSort);
+        const sectionValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'section')).map(c => c.learning_section).filter(Boolean))].sort(naturalGroupSort);
+
+        const garnishTypeValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'garnishType')).flatMap(c => c.garnish_categories || [])
+        )].sort();
+
+        const glasswareValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'glassware')).map(c => c.glassware_group).filter(Boolean)
+        )];
+        const glassOrder = ['Cocktail/Martini','Old Fashioned/Rocks','Highball/Collins','Coupe','Champagne','Wine','Tiki','Julep','Mule','Hurricane','Goblet/Footed','Tumbler','Other'];
+        glasswareValues.sort((a,b) => glassOrder.indexOf(a) - glassOrder.indexOf(b));
+
+        refillSelect(baseFilter, baseValues, state.base, {
+            "Gin":"琴酒 Gin","Vodka":"伏特加 Vodka","Rum":"蘭姆酒 Rum","Tequila":"龍舌蘭 Tequila",
+            "Whiskey":"威士忌 Whiskey","Brandy":"白蘭地 Brandy","Other":"其他主要烈酒"
+        });
+
+        if (otherSpiritFilter) {
+            const otherSpiritValues = [...new Set(
+                cocktails
+                    .filter(c => c.primary_spirit_group === 'Other' && matchesExcept(c, 'otherSpirit'))
+                    .map(c => c.primary_spirit)
+                    .filter(Boolean)
+            )].sort();
+
+            refillSelect(otherSpiritFilter, otherSpiritValues, state.otherSpirit, {
+                "Pisco":"皮斯可 Pisco",
+                "Cachaça":"卡莎薩 Cachaça",
+                "Mezcal":"梅斯卡爾 Mezcal",
+                "Aguardiente":"Aguardiente",
+                "Grappa":"Grappa"
+            });
+
+            const showOtherSpirit = baseFilter.value === 'Other';
+            otherSpiritFilter.classList.toggle('hidden', !showOtherSpirit);
+            if (!showOtherSpirit) otherSpiritFilter.value = '';
+        }
+
+        refillSelect(techFilter, techValues, state.tech, {
+            "Shake":"搖盪法 Shake","Stir":"攪拌法 Stir","Build":"直調法 Build",
+            "Blend":"電動攪拌法 Blend","Swizzle":"Swizzle","Other":"其他"
+        });
+        refillSelect(categoryFilter, categoryValues, state.category);
+        refillSelect(sectionFilter, sectionValues, state.section, {
+            "001-010":"001–010 經典殿堂","011-030":"011–030 必學名作",
+            "031-060":"031–060 風格名作","061-101":"061–101 特色選集"
+        });
+        if (garnishPresenceFilter) {
+            const eligible = cocktails.filter(c => matchesExcept(c, 'garnishPresence'));
+            const presenceValues = [];
+            if (eligible.some(c => c.garnish_present)) presenceValues.push('yes');
+            if (eligible.some(c => !c.garnish_present)) presenceValues.push('no');
+
+            refillSelect(garnishPresenceFilter, presenceValues, state.garnishPresence, {
+                "yes":"有裝飾",
+                "no":"無裝飾"
+            });
+        }
+
+        if (garnishTypeFilter) {
+            refillSelect(garnishTypeFilter, garnishTypeValues, state.garnishType, {
+                "Lemon":"檸檬 Lemon","Lime":"萊姆 Lime","Orange":"柳橙 Orange","Grapefruit":"葡萄柚 Grapefruit",
+                "Olive":"橄欖 Olive","Cherry":"櫻桃 Cherry","Pineapple":"鳳梨 Pineapple","Mint":"薄荷 Mint",
+                "Coffee beans":"咖啡豆","Nutmeg":"肉豆蔻","Salt rim":"鹽口","Celery":"芹菜","Cucumber":"小黃瓜",
+                "Ginger":"薑","Basil":"羅勒","Cinnamon":"肉桂","Other":"其他"
+            });
+            const noGarnish = garnishPresenceFilter && garnishPresenceFilter.value === 'no';
+            garnishTypeFilter.disabled = noGarnish;
+            if (noGarnish) garnishTypeFilter.value = '';
+        }
+
+        if (glasswareFilter) {
+            refillSelect(glasswareFilter, glasswareValues, state.glassware, {
+                "Cocktail/Martini":"馬丁尼／雞尾酒杯",
+                "Old Fashioned/Rocks":"古典／Rocks 杯",
+                "Highball/Collins":"高球／Collins 杯",
+                "Coupe":"Coupe 杯",
+                "Champagne":"香檳杯",
+                "Wine":"葡萄酒杯",
+                "Tiki":"Tiki 杯",
+                "Julep":"Julep 杯",
+                "Mule":"Mule 杯",
+                "Hurricane":"颶風杯",
+                "Goblet/Footed":"高腳杯",
+                "Tumbler":"直筒杯",
+                "Other":"其他杯型"
+            });
+        }
+
+        if (categoryFilter?.options?.[0]) {
+            categoryFilter.options[0].textContent = currentSource === 'iba' ? '-- IBA 分類 --' : '-- C1～C18 組別 --';
+        }
+        if (sectionFilter?.options?.[0]) {
+            sectionFilter.options[0].textContent = currentSource === 'iba' ? '-- 學習區段 --' : '-- C1～C18 --';
+        }
+
+        updateActiveFilterChips();
+    }
+
+    async function loadCocktails(sourceKey = currentSource) {
+        const config = DATA_SOURCES[sourceKey] || DATA_SOURCES.iba;
+        currentSource = config.key;
+        localStorage.setItem('cocktailSource', currentSource);
+        dataLoaded = false;
+        cocktails = [];
+        resultCount.innerText = '載入中...';
+        loadStatus.className = 'loading-box';
+        loadStatus.classList.remove('hidden');
+        loadStatus.innerHTML = `正在讀取 ${escapeHtml(config.label)}...`;
+
+        if (sourceSelect) sourceSelect.value = currentSource;
+        if (sourceHint) sourceHint.textContent = `目前來源：${config.label}`;
+        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '乙級飲料調製(調酒)';
+
+        clearFilters();
+
+        try {
+            const response = await fetch(config.path, { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const payload = await response.json();
+            const recipes = getRecipesArray(payload);
+
+            if (!recipes.length) {
+                throw new Error('JSON 結構不正確：找不到 recipes/cocktails 陣列');
+            }
+
+            cocktails = currentSource === 'iba'
+                ? recipes.map(normalizeV2Recipe)
+                : recipes.map(normalizeTwLevelBRecipe);
+
+            dataLoaded = true;
+            loadStatus.classList.add('hidden');
+
+            if (cocktails.length !== config.expectedCount) {
+                console.warn(`目前載入 ${cocktails.length} 筆，預期為 ${config.expectedCount} 筆。`);
+            }
+
+            renderList();
+        } catch (error) {
+            console.error(error);
+            loadStatus.className = 'error-box';
+            loadStatus.innerHTML = `資料載入失敗：${escapeHtml(error.message)}<br><br>請確認 <b>${escapeHtml(config.path.split('/').pop())}</b> 已上傳到 GitHub 的 data 資料夾。`;
+            resultCount.innerText = '載入失敗';
+        }
+    }
 
     function displayName(c) {
         if (languageMode === 'en') return c.official_name || c.chinese_name || '';
