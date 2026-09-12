@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source</title>
+    <!-- 引入支援中文的像素風格字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 顏色系統 */
+            --bg-dark: #0A0E17;
+            --bg-panel: #151A2C;
+            --bg-input: #111526;
+            
+            --primary: #FFB800; /* 黃金橘 */
+            --primary-hover: #FFA300;
+            
+            --secondary-cyan: #00D2D3;
+            --secondary-green: #39FF14;
+            --secondary-red: #E63946;
+            --secondary-red-light: #FFA1A1;
+            
+            --text-main: #E0E6ED;
+            --text-muted: #6E7A99;
+            
+            --border-dark: #2D3753;
+            --border-light: #4A5578;
+            --shadow-hard: #05070D;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'DotGothic16', monospace, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(var(--border-dark) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* 手機優先容器 */
+        #app-container {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            position: relative;
+            background-color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow-x: hidden;
+        }
+
+        /* 按鈕風格 */
+        .btn {
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border: 3px solid var(--border-light);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            text-align: center;
+            display: inline-block;
+            transition: all 0.1s;
+        }
+        .btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0 var(--shadow-hard);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: #111;
+            border-color: #FFE0A3;
+        }
+        .btn-dark {
+            background-color: var(--bg-input);
+            color: var(--text-muted);
+            border-color: var(--border-dark);
+        }
+
+        /* 頂部 Logo */
+        header {
+            padding: 24px 20px 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        h1 { 
+            margin: 0; 
+            font-size: 26px; 
+            color: var(--primary); 
+            text-shadow: 3px 3px 0 var(--shadow-hard);
+            letter-spacing: 2px;
+        }
+
+        /* 標籤頁 Tabs */
+        .tabs {
+            display: flex;
+            padding: 0 16px;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 0;
+            background-color: var(--bg-input);
+            color: var(--text-muted);
+            border: 3px solid var(--border-dark);
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 var(--shadow-hard);
+            transition: all 0.1s;
+            font-weight: bold;
+        }
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: #111;
+            border-color: #FFE0A3;
+        }
+
+        /* 控制區 (搜尋與篩選) */
+        .controls {
+            background-color: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            margin: 0 16px 20px;
+            padding: 16px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+        }
+        .input-group { margin-bottom: 12px; }
+        .input-rpg {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-input);
+            border: 3px solid var(--border-dark);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.5);
+            transition: border-color 0.2s;
+        }
+        .input-rpg:focus { outline: none; border-color: var(--primary); }
+        .input-rpg::placeholder { color: #4A5578; }
+        
+        select.input-rpg {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFB800" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 32px;
+            cursor: pointer;
+        }
+        
+        .filter-row { display: flex; gap: 10px; margin-bottom: 12px; }
+        .filter-row select { flex: 1; }
+
+        .status-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .status-tag {
+            background: var(--bg-dark);
+            border: 2px solid var(--border-light);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 13px;
+            color: var(--secondary-cyan);
+        }
+
+        /* 酒譜列表與卡片 */
+        .cocktail-list { 
+            padding: 0 16px 80px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+        }
+        .cocktail-card {
+            background-color: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .cocktail-card:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0 var(--shadow-hard);
+        }
+        
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background-color: var(--bg-input);
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .cocktail-info { flex: 1; overflow: hidden; }
+        .cocktail-info h3 { margin: 0 0 4px 0; font-size: 18px; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cocktail-info p { margin: 0 0 8px 0; font-size: 12px; color: var(--text-muted); }
+        
+        .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+        .badge { 
+            font-size: 11px; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            border: 2px solid;
+        }
+        .badge-base { border-color: var(--secondary-cyan); color: var(--secondary-cyan); background: rgba(0, 210, 211, 0.1); }
+        .badge-tech { border-color: var(--secondary-green); color: var(--secondary-green); background: rgba(57, 255, 20, 0.1); }
+
+        .fav-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 年齡確認蓋板 (Intro Screen) */
+        #age-gate {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-dark);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; padding: 24px; text-align: center;
+        }
+        .legal-tag {
+            background: var(--secondary-red);
+            color: #fff;
+            border: 2px solid var(--secondary-red-light);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 12px;
+            margin-bottom: 24px;
+        }
+        #age-gate h2 { color: var(--text-main); font-size: 24px; margin: 20px 0 8px; text-shadow: 2px 2px 0 var(--shadow-hard); letter-spacing: 1px; }
+        #age-gate p { color: var(--text-muted); font-size: 14px; margin-bottom: 40px; }
+        .age-btn-group { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 280px; }
+
+        /* 詳細資訊 Modal */
+        #modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 14, 23, 0.9); display: none;
+            justify-content: center; align-items: center; z-index: 500;
+        }
+        .modal-content {
+            width: 90%; max-width: 400px; max-height: 85vh; overflow-y: auto;
+            background: var(--bg-panel);
+            border: 4px solid var(--border-light);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 8px 8px 0 var(--shadow-hard);
+            position: relative;
+        }
+        /* 自訂滾動條 */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: var(--bg-input); border-radius: 4px; }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+        .modal-header { border-bottom: 2px dashed var(--border-light); padding-bottom: 12px; margin-bottom: 16px; padding-right: 30px; }
+        .modal-header h2 { color: var(--primary); margin: 0 0 4px; font-size: 22px; }
+        .modal-header p { color: var(--text-muted); margin: 0; font-size: 14px; }
+        
+        .close-btn {
+            position: absolute; top: 16px; right: 16px;
+            background: var(--secondary-red); color: #fff;
+            border: 2px solid var(--secondary-red-light); border-radius: 6px;
+            width: 32px; height: 32px; font-weight: bold; font-size: 14px;
+            cursor: pointer; box-shadow: 2px 2px 0 var(--shadow-hard);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .close-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--shadow-hard); }
+
+        .detail-row { margin-bottom: 14px; line-height: 1.6; font-size: 15px; }
+        .detail-label { color: var(--secondary-cyan); font-weight: bold; margin-right: 4px; }
+        .detail-text { color: var(--text-main); }
+        .detail-list { color: var(--text-main); margin-top: 4px; padding-left: 12px; }
+
+
+        .badge-id { border-color: var(--primary); color: var(--primary); background: rgba(255,184,0,0.08); }
+        .badge-category { border-color: var(--secondary-cyan); color: var(--secondary-cyan); background: rgba(0,210,211,0.08); }
+        .loading-box, .error-box {
+            margin: 0 16px 20px;
+            padding: 18px;
+            background: var(--bg-panel);
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 var(--shadow-hard);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .error-box { color: var(--secondary-red-light); border-color: var(--secondary-red); }
+        .source-link { color: var(--secondary-cyan); text-decoration: none; word-break: break-all; }
+        .source-link:hover { text-decoration: underline; }
+
+
+        /* v0.5：融合 v0.1 的 RPG 導航感 + v0.2 的卡片完成度 + v0.3 的資料架構 */
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .card-number {
+            color: var(--primary);
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+        .detail-section {
+            margin-bottom: 16px;
+        }
+        .detail-section-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .detail-section-title::before {
+            content: "▶ ";
+            color: #FF6B00;
+        }
+        .detail-section-body {
+            color: var(--text-main);
+            line-height: 1.65;
+            padding-left: 14px;
+        }
+        .card-title-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            min-width: 0;
+        }
+        .card-title-row h3 {
+            margin: 0;
+        }
+
+        .hidden { display: none !important; }
+    
+        .lang-switch {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 10px 0 14px;
+        }
+        .lang-btn {
+            border: 2px solid var(--border-light);
+            background: var(--bg-panel);
+            color: var(--text-muted);
+            padding: 9px 6px;
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .lang-btn.active {
+            border-color: var(--primary);
+            color: var(--bg-dark);
+            background: var(--primary);
+            font-weight: 700;
+        }
+
+
+        .filter-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .clear-btn {
+            border: 2px solid var(--border-light);
+            background: var(--bg-panel);
+            color: var(--text-main);
+            padding: 8px 10px;
+            font-family: inherit;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .clear-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .active-filters {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .filter-chip {
+            border: 1px solid var(--secondary-cyan);
+            color: var(--secondary-cyan);
+            padding: 3px 6px;
+            font-size: 11px;
+            border-radius: 4px;
+            background: rgba(0,210,211,.06);
+        }
+
+
+        /* v0.9 cocktail image integration */
+        .card-icon {
+            width: 72px;
+            height: 72px;
+            overflow: hidden;
+            padding: 0;
+            background: #09111d;
+        }
+        .cocktail-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 36%;
+            display: block;
+        }
+        .modal-cocktail-image-wrap {
+            width: 100%;
+            margin: 8px 0 18px;
+            border: 2px solid var(--border-light);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #08111e;
+            box-shadow: 3px 3px 0 var(--shadow-hard);
+        }
+        .modal-cocktail-image {
+            width: 100%;
+            max-height: 430px;
+            object-fit: contain;
+            display: block;
+            background: #06101c;
+        }
+        .image-fallback {
+            width: 100%; height: 100%;
+            display:flex; align-items:center; justify-content:center;
+        }
+
+        .badge-source { border-color: var(--primary); color: var(--primary); background: rgba(255,184,0,.08); }
+        .badge-review { border-color: var(--secondary-red-light); color: var(--secondary-red-light); background: rgba(230,57,70,.10); }
+
+</style>
+</head>
+<body>
+
+<div id="app-container">
+    <!-- 年齡確認畫面 (Intro Screen) -->
+    <div id="age-gate">
+        <!-- 18+ Pixel Icon -->
+        <svg viewBox="0 0 16 16" width="100" height="100" shape-rendering="crispEdges">
+            <!-- Shield Bg -->
+            <rect x="2" y="0" width="12" height="16" fill="#E63946"/>
+            <rect x="0" y="2" width="16" height="12" fill="#E63946"/>
+            <rect x="1" y="1" width="14" height="14" fill="#E63946"/>
+            <!-- Inner dark -->
+            <rect x="3" y="2" width="10" height="12" fill="#0A0E17"/>
+            <rect x="2" y="3" width="12" height="10" fill="#0A0E17"/>
+            <!-- 18 text (Yellow) -->
+            <!-- 1 -->
+            <rect x="4" y="5" width="1" height="5" fill="#FFB800"/>
+            <!-- 8 -->
+            <rect x="6" y="5" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="7" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="9" width="3" height="1" fill="#FFB800"/>
+            <rect x="6" y="5" width="1" height="5" fill="#FFB800"/>
+            <rect x="8" y="5" width="1" height="5" fill="#FFB800"/>
+            <!-- + -->
+            <rect x="10" y="7" width="3" height="1" fill="#FFB800"/>
+            <rect x="11" y="6" width="1" height="3" fill="#FFB800"/>
+        </svg>
+
+        <h2>未滿18歲，請勿飲酒</h2>
+        <span class="legal-tag">理性飲酒法令宣告</span>
+        <p>飲酒過量，有礙健康</p>
+        
+        <div class="age-btn-group">
+            <button class="btn btn-primary" onclick="enterTavern()">[ 是，我已滿18歲 ]</button>
+            <button class="btn btn-dark" onclick="leaveTavern()">[ 否，我先離開 ]</button>
+        </div>
+    </div>
+
+    <!-- 主應用程式 -->
+    <div id="main-app" class="hidden">
+        <header>
+            <!-- 小酒杯 Logo -->
+            <svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+                <rect x="0" y="0" width="11" height="1" fill="#00D2D3"/><rect x="1" y="1" width="9" height="1" fill="#00D2D3"/>
+                <rect x="2" y="2" width="7" height="1" fill="#00D2D3"/><rect x="3" y="3" width="5" height="1" fill="#00D2D3"/>
+                <rect x="4" y="4" width="3" height="1" fill="#00D2D3"/><rect x="5" y="5" width="1" height="5" fill="#E0E6ED"/>
+                <rect x="3" y="10" width="5" height="1" fill="#E0E6ED"/>
+            </svg>
+            <h1 id="appTitle">經典調酒吧</h1>
+        </header>
+
+        <!-- 標籤頁 -->
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-all">全部酒譜</button>
+            <button class="tab-btn" id="tab-fav">收藏夾</button>
+        </div>
+        <div id="langSwitch" class="lang-switch" aria-label="顯示語言">
+            <button class="lang-btn active" data-lang="zh">中文</button>
+            <button class="lang-btn" data-lang="bilingual">中英對照</button>
+            <button class="lang-btn" data-lang="en">英文</button>
+        </div>
+
+
+        <!-- v1.0-test：酒譜來源切換 -->
+        <div class="controls" style="margin-bottom:14px;">
+            <div class="input-group" style="margin-bottom:0;">
+                <select id="sourceSelect" class="input-rpg" aria-label="酒譜來源">
+                    <option value="iba">IBA 101</option>
+                    <option value="twLevelB">台灣飲料調製乙級 90</option>
+                </select>
+                <div id="sourceHint" style="font-size:12px;color:var(--text-muted);margin-top:6px;">
+                    目前來源：IBA 101
+                </div>
+            </div>
+        </div>
+
+        <!-- 控制區 -->
+        <div class="controls">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="input-rpg" placeholder="搜尋酒名、材料、編號 (如: Gin / 001)">
+            <div class="search-examples" style="font-size:12px;color:var(--text-muted);margin-top:6px;">
+              可搜尋：琴酒 / Gin / 馬丁尼杯 / 柳橙 / 搗壓 / Muddle / 001
+            </div>
+            </div>
+
+            <div class="filter-grid">
+                <select id="baseFilter" class="input-rpg">
+                    <option value="">-- 主酒 --</option>
+                    <option value="Gin">琴酒 Gin</option>
+                    <option value="Vodka">伏特加 Vodka</option>
+                    <option value="Rum">蘭姆酒 Rum</option>
+                    <option value="Tequila">龍舌蘭 Tequila</option>
+                    <option value="Whiskey">威士忌 Whiskey</option>
+                    <option value="Brandy">白蘭地 Brandy</option>
+                    <option value="Pisco">皮斯可 Pisco</option>
+                    <option value="Cachaca">卡莎薩 Cachaça</option>
+                </select>
+                <select id="otherSpiritFilter" class="input-rpg hidden" aria-label="其他主要烈酒">
+                    <option value="">-- 其他主要烈酒種類 --</option>
+                </select>
+
+                <select id="techFilter" class="input-rpg">
+                    <option value="">-- 主要製作法 --</option>
+                    <option value="Shake">搖盪 Shake</option>
+                    <option value="Stir">攪拌 Stir</option>
+                    <option value="Build">直調 Build</option>
+                    <option value="Blend">混合 Blend</option>
+                    <option value="Muddle">搗壓 Muddle</option>
+                </select>
+
+                <select id="categoryFilter" class="input-rpg">
+                    <option value="">-- 分類／組別 --</option>
+                    <option value="The Unforgettables">The Unforgettables</option>
+                    <option value="Contemporary Classics">Contemporary Classics</option>
+                    <option value="New Era">New Era</option>
+                </select>
+
+                <select id="sectionFilter" class="input-rpg">
+                    <option value="">-- 區段 --</option>
+                    <option value="001-010">001–010 經典殿堂</option>
+                    <option value="011-030">011–030</option>
+                    <option value="031-060">031–060</option>
+                    <option value="061-101">061–101 特色選集</option>
+                </select>
+          <select id="garnishPresenceFilter" class="input-rpg">
+            <option value="">-- 有無裝飾 --</option>
+            <option value="yes">有裝飾</option>
+            <option value="no">無裝飾</option>
+          </select>
+          <select id="garnishTypeFilter" class="input-rpg">
+            <option value="">-- 裝飾種類 --</option>
+          </select>
+          <select id="glasswareFilter" class="input-rpg">
+            <option value="">-- 杯型 --</option>
+          </select>
+            </div>
+
+            <div class="status-row">
+                <span id="resultCount" class="status-tag">載入中...</span>
+            </div>
+        </div>
+
+        <div id="loadStatus" class="loading-box">正在讀取酒譜資料...</div>
+
+        <!-- 列表區 -->
+        <div id="cocktail-list" class="cocktail-list">
+            <!-- 列表由 JS 產生 -->
+        </div>
+    </div>
+
+    <!-- 詳細資訊 Modal -->
+    <div id="modal">
+        <div class="modal-content" id="modal-content-box">
+            <!-- 內容由 JS 產生 -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // v1.0-test Multi-Source：保留 v0.9 功能，新增 IBA 101 / 台灣乙級 90 切換
+    const DATA_SOURCES = {
+        iba: {
+            key: 'iba',
+            label: 'IBA 101',
+            path: '/classic-cocktail-bar/data/iba-101-master-v2.4.json',
+            expectedCount: 101
+        },
+        twLevelB: {
+            key: 'twLevelB',
+            label: '台灣飲料調製乙級 90',
+            path: '/classic-cocktail-bar/data/taiwan-beverage-level-b-90-app-v1.0.json',
+            expectedCount: 90
+        }
+    };
+
+    let cocktails = [];
+    let favorites = JSON.parse(localStorage.getItem('pixelBarFavsV10')) || [];
+    let currentTab = 'all';
+    let languageMode = localStorage.getItem('cocktailLangMode') || 'zh';
+    let currentSource = localStorage.getItem('cocktailSource') || 'iba';
+    let dataLoaded = false;
+
+    const app = document.getElementById('main-app');
+    const ageGate = document.getElementById('age-gate');
+    const listContainer = document.getElementById('cocktail-list');
+    const searchInput = document.getElementById('searchInput');
+    const baseFilter = document.getElementById('baseFilter');
+    const otherSpiritFilter = document.getElementById('otherSpiritFilter');
+    const techFilter = document.getElementById('techFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sectionFilter = document.getElementById('sectionFilter');
+    const garnishPresenceFilter = document.getElementById('garnishPresenceFilter');
+    const garnishTypeFilter = document.getElementById('garnishTypeFilter');
+    const glasswareFilter = document.getElementById('glasswareFilter');
+    const clearAllFilters = document.getElementById('clearAllFilters');
+    const activeFilters = document.getElementById('activeFilters');
+    const resultCount = document.getElementById('resultCount');
+    const loadStatus = document.getElementById('loadStatus');
+    const modal = document.getElementById('modal');
+    const modalContentBox = document.getElementById('modal-content-box');
+    const tabAll = document.getElementById('tab-all');
+    const tabFav = document.getElementById('tab-fav');
+    const sourceSelect = document.getElementById('sourceSelect');
+    const sourceHint = document.getElementById('sourceHint');
+    const appTitle = document.getElementById('appTitle');
+
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function getGlassSvg(glass = '') {
+        const g = glass.toLowerCase();
+
+        if (g.includes('martini') || g.includes('cocktail') || g.includes('coupe') || g.includes('flute')) {
+            return `<svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+                <rect x="0" y="0" width="11" height="1" fill="#00D2D3"/><rect x="1" y="1" width="9" height="1" fill="#00D2D3"/>
+                <rect x="2" y="2" width="7" height="1" fill="#00D2D3"/><rect x="3" y="3" width="5" height="1" fill="#00D2D3"/>
+                <rect x="4" y="4" width="3" height="1" fill="#00D2D3"/><rect x="5" y="5" width="1" height="5" fill="#E0E6ED"/>
+                <rect x="3" y="10" width="5" height="1" fill="#E0E6ED"/>
+            </svg>`;
+        }
+
+        if (g.includes('highball') || g.includes('collins') || g.includes('tall') || g.includes('hurricane') || g.includes('mule') || g.includes('tiki')) {
+            return `<svg viewBox="0 0 9 11" width="22" height="28" shape-rendering="crispEdges">
+                <rect x="1" y="0" width="7" height="8" fill="#FFB800"/><rect x="0" y="0" width="1" height="10" fill="#E0E6ED"/>
+                <rect x="8" y="0" width="1" height="10" fill="#E0E6ED"/><rect x="0" y="10" width="9" height="1" fill="#E0E6ED"/>
+                <rect x="2" y="2" width="2" height="2" fill="#FFF" opacity="0.6"/><rect x="5" y="5" width="2" height="2" fill="#FFF" opacity="0.6"/>
+            </svg>`;
+        }
+
+        return `<svg viewBox="0 0 11 11" width="28" height="28" shape-rendering="crispEdges">
+            <rect x="1" y="4" width="9" height="5" fill="#E63946"/><rect x="0" y="3" width="1" height="7" fill="#E0E6ED"/>
+            <rect x="10" y="3" width="1" height="7" fill="#E0E6ED"/><rect x="0" y="10" width="11" height="1" fill="#E0E6ED"/>
+            <rect x="3" y="5" width="3" height="3" fill="#FFF" opacity="0.6"/>
+        </svg>`;
+    }
+
+    function getHeartSvg(isFav) {
+        const color = isFav ? '#E63946' : '#4A5578';
+        return `<svg viewBox="0 0 9 8" width="24" height="24" shape-rendering="crispEdges" fill="${color}">
+           <rect x="1" y="0" width="2" height="1" /><rect x="6" y="0" width="2" height="1" />
+           <rect x="0" y="1" width="4" height="1" /><rect x="5" y="1" width="4" height="1" />
+           <rect x="0" y="2" width="9" height="2" /><rect x="1" y="4" width="7" height="1" />
+           <rect x="2" y="5" width="5" height="1" /><rect x="3" y="6" width="3" height="1" />
+           <rect x="4" y="7" width="1" height="1" />
+        </svg>`;
+    }
+
+    function inLearningSection(appId, section) {
+        if (!section) return true;
+        const n = parseInt(appId, 10);
+        if (section === '001-010') return n >= 1 && n <= 10;
+        if (section === '011-030') return n >= 11 && n <= 30;
+        if (section === '031-060') return n >= 31 && n <= 60;
+        if (section === '061-101') return n >= 61 && n <= 101;
+        return true;
+    }
+
+    function inferBase(c) {
+        const text = (c.ingredients || []).map(i => i.name || '').join(' ').toLowerCase();
+
+        if (text.includes('gin')) return 'Gin';
+        if (text.includes('vodka')) return 'Vodka';
+        if (text.includes('tequila')) return 'Tequila';
+        if (text.includes('pisco')) return 'Pisco';
+        if (text.includes('cachaça') || text.includes('cachaca')) return 'Cachaca';
+        if (text.includes('cognac') || text.includes('brandy') || text.includes('calvados')) return 'Brandy';
+        if (text.includes('whiskey') || text.includes('whisky') || text.includes('bourbon') || text.includes('rye')) return 'Whiskey';
+        if (text.includes('rum') || text.includes('rhum') || text.includes('ron')) return 'Rum';
+
+        return 'Other';
+    }
+
+    function inferTechnique(c) {
+        const method = (c.method || '').toLowerCase();
+        if (method.includes('muddle')) return 'Muddle';
+        if (method.includes('blend')) return 'Blend';
+        if (method.includes('shake')) return 'Shake';
+        if (method.includes('stir')) return 'Stir';
+        if (method.includes('build') || method.includes('pour') || method.includes('directly')) return 'Build';
+        return 'Other';
+    }
+
+    function shortCategory(category) {
+        if (category === 'The Unforgettables') return 'Unforgettables';
+        if (category === 'Contemporary Classics') return 'Contemporary Classics';
+        return category || '';
+    }
+
+    function chineseSearchAliases(c) {
+        const text = [
+            c.official_name || '',
+            ...(c.ingredients || []).map(i => i.name || ''),
+            c.method || '',
+            c.glassware || '',
+            c.garnish || ''
+        ].join(' ').toLowerCase();
+
+        const aliases = [];
+        const add = (...words) => aliases.push(...words);
+
+        if (text.includes('gin')) add('琴酒');
+        if (text.includes('vodka')) add('伏特加');
+        if (text.includes('rum') || text.includes('rhum') || text.includes('ron')) add('蘭姆酒', '朗姆酒');
+        if (text.includes('tequila')) add('龍舌蘭');
+        if (text.includes('whiskey') || text.includes('whisky') || text.includes('bourbon') || text.includes('rye')) add('威士忌', '波本', '裸麥');
+        if (text.includes('brandy') || text.includes('cognac') || text.includes('calvados')) add('白蘭地', '干邑');
+        if (text.includes('pisco')) add('皮斯可');
+        if (text.includes('cachaça') || text.includes('cachaca')) add('卡莎薩');
+        if (text.includes('vermouth')) add('香艾酒', '苦艾酒');
+        if (text.includes('campari')) add('金巴利');
+        if (text.includes('lime')) add('萊姆');
+        if (text.includes('lemon')) add('檸檬');
+        if (text.includes('orange')) add('柳橙', '橙');
+        if (text.includes('pineapple')) add('鳳梨');
+        if (text.includes('cherry')) add('櫻桃');
+        if (text.includes('mint')) add('薄荷');
+        if (text.includes('sugar') || text.includes('syrup')) add('糖', '糖漿');
+        if (text.includes('cream')) add('鮮奶油');
+        if (text.includes('coffee')) add('咖啡');
+        if (text.includes('grapefruit')) add('葡萄柚');
+
+        return aliases.join(' ');
+    }
+
+
+    function getRecipesArray(payload) {
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload.recipes)) return payload.recipes;
+        if (Array.isArray(payload.cocktails)) return payload.cocktails;
+        return [];
+    }
+
+
+    function canonicalGlassware(en, zh) {
+        const text = `${en || ''} ${zh || ''}`.toLowerCase();
+        if (text.includes('martini') || text.includes('cocktail glass') || text.includes('雞尾酒杯') || text.includes('馬丁尼')) return 'Cocktail/Martini';
+        if (text.includes('old fashioned') || text.includes('rocks') || text.includes('古典杯')) return 'Old Fashioned/Rocks';
+        if (text.includes('highball') || text.includes('collins') || text.includes('高球') || text.includes('collins')) return 'Highball/Collins';
+        if (text.includes('coupe') || text.includes('coupette') || text.includes('coppa')) return 'Coupe';
+        if (text.includes('champagne') || text.includes('flute') || text.includes('香檳')) return 'Champagne';
+        if (text.includes('wine glass') || text.includes('葡萄酒杯')) return 'Wine';
+        if (text.includes('tiki')) return 'Tiki';
+        if (text.includes('julep')) return 'Julep';
+        if (text.includes('mule')) return 'Mule';
+        if (text.includes('hurricane')) return 'Hurricane';
+        if (text.includes('goblet') || text.includes('footed') || text.includes('高腳')) return 'Goblet/Footed';
+        if (text.includes('tumbler') || text.includes('直筒')) return 'Tumbler';
+        return 'Other';
+    }
+
+    function normalizeV2Recipe(r) {
+        const ingredients = (r.recipe?.ingredients || []).map(i => ({
+            name: i.name_official || i.name || '',
+            name_zh: i.name_zh || '',
+            amount: i.amount_official || i.amount || ''
+        }));
+
+        return {
+            app_id: r.app_id,
+            official_name: r.names?.official || '',
+            chinese_name: r.names?.zh || '',
+            aliases: r.names?.aliases || [],
+            category: r.classification?.official_category || '',
+            learning_section: r.classification?.learning_section || '',
+            primary_spirit: r.classification?.primary_spirit_search || '',
+            primary_spirit_group: r.classification?.primary_spirit_group || 'Other',
+            main_method: r.classification?.main_method_search || '',
+            garnish_present: r.classification?.garnish_present === true,
+            garnish_categories: r.classification?.garnish_categories || [],
+            auxiliary_operations: r.recipe?.auxiliary_operations || [],
+            ingredients,
+            method: r.recipe?.method_reference_en || r.recipe?.method_official || '',
+            method_zh: r.recipe?.method_zh || '',
+            operations: r.recipe?.operations_from_official_method || [],
+            technique_tags: r.recipe?.technique_filter_tags || [],
+            glassware: r.recipe?.glassware_official || '',
+            glassware_zh: r.recipe?.glassware_zh || '',
+            glassware_group: canonicalGlassware(r.recipe?.glassware_official || '', r.recipe?.glassware_zh || ''),
+            garnish: r.recipe?.garnish_official || '',
+            garnish_zh: r.recipe?.garnish_zh || '',
+            official_url: r.source?.official_url || '',
+            source_system: r.source?.source_system || '',
+            source_version: r.source?.source_version || '',
+            source_type: r.source?.source_type || '',
+            icon_filename: r.assets?.icon_filename || '',
+            cocktail_image_normal: r.assets?.cocktail_image?.normal || '',
+            cocktail_image_pixel16: r.assets?.cocktail_image?.pixel16 || '',
+            search_index: r.search_index || '',
+            ingredient_aliases: (r.recipe?.ingredients || []).flatMap(i => i.aliases || []),
+            glassware_aliases: r.recipe?.glassware_aliases || [],
+            garnish_aliases: r.recipe?.garnish_aliases || [],
+            technique_aliases: r.recipe?.technique_aliases || []
+        };
+    }
+
+
+    function inferPrimarySpiritFromText(text = '') {
+        const t = text.toLowerCase();
+        if (t.includes('gin')) return ['Gin','Gin'];
+        if (t.includes('vodka')) return ['Vodka','Vodka'];
+        if (t.includes('tequila')) return ['Tequila','Tequila'];
+        if (t.includes('cachaça') || t.includes('cachaca')) return ['Cachaça','Other'];
+        if (t.includes('pisco')) return ['Pisco','Other'];
+        if (t.includes('brandy') || t.includes('cognac')) return ['Brandy','Brandy'];
+        if (t.includes('whiskey') || t.includes('whisky') || t.includes('bourbon') || t.includes('rye')) return ['Whiskey','Whiskey'];
+        if (t.includes('rum')) return ['Rum','Rum'];
+        return ['', 'Other'];
+    }
+
+    function garnishCategoriesFromText(text = '') {
+        const t = text.toLowerCase();
+        const out = [];
+        const pairs = [
+            ['lemon','Lemon'],['lime','Lime'],['orange','Orange'],['grapefruit','Grapefruit'],
+            ['olive','Olive'],['cherry','Cherry'],['pineapple','Pineapple'],['mint','Mint'],
+            ['coffee','Coffee beans'],['nutmeg','Nutmeg'],['salt rim','Salt rim'],['celery','Celery'],
+            ['cucumber','Cucumber'],['ginger','Ginger'],['basil','Basil'],['cinnamon','Cinnamon']
+        ];
+        pairs.forEach(([needle,label]) => { if (t.includes(needle)) out.push(label); });
+        return out;
+    }
+
+    function normalizeTwLevelBRecipe(r) {
+        const ingredientStrings = r.recipe?.ingredients_source || [];
+        const methodArr = r.recipe?.method_source || [];
+        const garnishArr = r.recipe?.garnish_source || [];
+        const ingredientText = ingredientStrings.join(' ');
+        const [primarySpirit, primaryGroup] = inferPrimarySpiritFromText(ingredientText);
+        const glass = r.recipe?.glassware_source || '';
+        const garnishText = garnishArr.join('、');
+
+        return {
+            app_id: r.recipe_id || r.source?.source_record_id || '',
+            official_name: r.names?.official || '',
+            chinese_name: r.names?.zh || '',
+            aliases: r.names?.aliases || [],
+            category: r.classification?.official_category || r.source?.source_group || '',
+            learning_section: r.classification?.learning_section || r.source?.source_group || '',
+            primary_spirit: primarySpirit,
+            primary_spirit_group: primaryGroup,
+            main_method: r.classification?.main_method_search || methodArr[0] || 'Other',
+            garnish_present: garnishArr.length > 0,
+            garnish_categories: garnishCategoriesFromText(garnishText),
+            auxiliary_operations: methodArr.slice(1),
+            ingredients: ingredientStrings.map(x => ({ name: x, name_zh: '', amount: '' })),
+            method: methodArr.join(' → '),
+            method_zh: '',
+            operations: methodArr,
+            technique_tags: methodArr,
+            glassware: glass,
+            glassware_zh: '',
+            glassware_group: canonicalGlassware(glass, ''),
+            garnish: garnishText,
+            garnish_zh: '',
+            official_url: '',
+            source_system: r.source?.source_system || 'Taiwan Beverage Preparation Level B',
+            source_version: r.source?.source_version || '',
+            source_type: r.source?.source_type || '',
+            source_group: r.source?.source_group || '',
+            icon_filename: '',
+            cocktail_image_normal: '',
+            cocktail_image_pixel16: '',
+            search_index: r.search_index || '',
+            ingredient_aliases: [],
+            glassware_aliases: [glass].filter(Boolean),
+            garnish_aliases: garnishArr,
+            technique_aliases: methodArr,
+            servings: r.classification?.servings ?? 1,
+            record_status: r.verification?.status || '',
+            source_status_original: r.verification?.source_status_original || '',
+            app_final: r.verification?.app_final !== false,
+            review_note: r.verification?.review_note || r.recipe?.notes || '',
+            notes: r.recipe?.notes || ''
+        };
+    }
+
+    function sourceLabelFor(c) {
+        if (currentSource === 'iba') return 'IBA';
+        return '台灣乙級';
+    }
+
+    function getAllValues(key) {
+        const values = new Set();
+        cocktails.forEach(c => {
+            const v = c[key];
+            if (Array.isArray(v)) v.forEach(x => x && values.add(x));
+            else if (v) values.add(v);
+        });
+        return [...values];
+    }
+
+    function currentFilterState() {
+        return {
+            q: searchInput.value.trim().toLowerCase(),
+            base: baseFilter.value,
+            otherSpirit: otherSpiritFilter?.value || '',
+            tech: techFilter.value,
+            category: categoryFilter.value,
+            section: sectionFilter.value,
+            garnishPresence: garnishPresenceFilter?.value || '',
+            garnishType: garnishTypeFilter?.value || '',
+            glassware: glasswareFilter?.value || ''
+        };
+    }
+
+    function matchesExcept(c, exceptKey) {
+        const s = currentFilterState();
+        const searchable = [
+                c.search_index,
+                c.app_id,
+                c.official_name,
+                c.chinese_name,
+                ...(c.aliases || []),
+                ...(c.ingredient_aliases || []),
+                ...(c.glassware_aliases || []),
+                ...(c.garnish_aliases || []),
+                ...(c.technique_aliases || []),
+                c.method,
+                c.method_zh,
+                c.glassware,
+                c.glassware_zh,
+                c.garnish,
+                c.garnish_zh
+            ].join(' ').toLowerCase();
+
+        if (exceptKey !== 'q' && s.q && !searchable.includes(s.q)) return false;
+        if (exceptKey !== 'base' && s.base && c.primary_spirit_group !== s.base) return false;
+        if (exceptKey !== 'otherSpirit' && s.otherSpirit && c.primary_spirit !== s.otherSpirit) return false;
+        if (exceptKey !== 'tech' && s.tech && c.main_method !== s.tech) return false;
+        if (exceptKey !== 'category' && s.category && c.category !== s.category) return false;
+        if (exceptKey !== 'section' && s.section && c.learning_section !== s.section) return false;
+        if (exceptKey !== 'garnishPresence' && s.garnishPresence) {
+            if (s.garnishPresence === 'yes' && !c.garnish_present) return false;
+            if (s.garnishPresence === 'no' && c.garnish_present) return false;
+        }
+        if (exceptKey !== 'garnishType' && s.garnishType && !(c.garnish_categories || []).includes(s.garnishType)) return false;
+        if (exceptKey !== 'glassware' && s.glassware && c.glassware_group !== s.glassware) return false;
+        return true;
+    }
+
+    function refillSelect(select, values, current, labels = {}) {
+        const first = select.options[0]?.textContent || '全部';
+        select.innerHTML = `<option value="">${first}</option>`;
+        values.forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v;
+            opt.textContent = labels[v] || v;
+            select.appendChild(opt);
+        });
+        if (values.includes(current)) select.value = current;
+        else select.value = '';
+    }
+
+    function updateLinkedFilters() {
+        const state = currentFilterState();
+
+        const baseValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'base')).map(c => c.primary_spirit_group).filter(Boolean))];
+        const baseOrder = ["Gin","Vodka","Rum","Tequila","Whiskey","Brandy","Other"];
+        baseValues.sort((a,b) => baseOrder.indexOf(a) - baseOrder.indexOf(b));
+
+        const techValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'tech')).map(c => c.main_method).filter(Boolean))];
+        const techOrder = ["Shake","Stir","Build","Blend","Swizzle","Other"];
+        techValues.sort((a,b) => techOrder.indexOf(a) - techOrder.indexOf(b));
+
+        const categoryValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'category')).map(c => c.category).filter(Boolean))].sort();
+        const sectionValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'section')).map(c => c.learning_section).filter(Boolean))].sort();
+
+        const garnishTypeValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'garnishType')).flatMap(c => c.garnish_categories || [])
+        )].sort();
+
+        const glasswareValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'glassware')).map(c => c.glassware_group).filter(Boolean)
+        )];
+        const glassOrder = ['Cocktail/Martini','Old Fashioned/Rocks','Highball/Collins','Coupe','Champagne','Wine','Tiki','Julep','Mule','Hurricane','Goblet/Footed','Tumbler','Other'];
+        glasswareValues.sort((a,b) => glassOrder.indexOf(a) - glassOrder.indexOf(b));
+
+        refillSelect(baseFilter, baseValues, state.base, {
+            "Gin":"琴酒 Gin","Vodka":"伏特加 Vodka","Rum":"蘭姆酒 Rum","Tequila":"龍舌蘭 Tequila",
+            "Whiskey":"威士忌 Whiskey","Brandy":"白蘭地 Brandy","Other":"其他主要烈酒"
+        });
+
+        if (otherSpiritFilter) {
+            const otherSpiritValues = [...new Set(
+                cocktails
+                    .filter(c => c.primary_spirit_group === 'Other' && matchesExcept(c, 'otherSpirit'))
+                    .map(c => c.primary_spirit)
+                    .filter(Boolean)
+            )].sort();
+
+            refillSelect(otherSpiritFilter, otherSpiritValues, state.otherSpirit, {
+                "Pisco":"皮斯可 Pisco",
+                "Cachaça":"卡莎薩 Cachaça",
+                "Mezcal":"梅斯卡爾 Mezcal",
+                "Aguardiente":"Aguardiente",
+                "Grappa":"Grappa"
+            });
+
+            const showOtherSpirit = baseFilter.value === 'Other';
+            otherSpiritFilter.classList.toggle('hidden', !showOtherSpirit);
+            if (!showOtherSpirit) otherSpiritFilter.value = '';
+        }
+
+        refillSelect(techFilter, techValues, state.tech, {
+            "Shake":"搖盪法 Shake","Stir":"攪拌法 Stir","Build":"直調法 Build",
+            "Blend":"電動攪拌法 Blend","Swizzle":"Swizzle","Other":"其他"
+        });
+        refillSelect(categoryFilter, categoryValues, state.category);
+        refillSelect(sectionFilter, sectionValues, state.section, {
+            "001-010":"001–010 經典殿堂","011-030":"011–030 必學名作",
+            "031-060":"031–060 風格名作","061-101":"061–101 特色選集"
+        });
+        if (garnishPresenceFilter) {
+            const eligible = cocktails.filter(c => matchesExcept(c, 'garnishPresence'));
+            const presenceValues = [];
+            if (eligible.some(c => c.garnish_present)) presenceValues.push('yes');
+            if (eligible.some(c => !c.garnish_present)) presenceValues.push('no');
+
+            refillSelect(garnishPresenceFilter, presenceValues, state.garnishPresence, {
+                "yes":"有裝飾",
+                "no":"無裝飾"
+            });
+        }
+
+        if (garnishTypeFilter) {
+            refillSelect(garnishTypeFilter, garnishTypeValues, state.garnishType, {
+                "Lemon":"檸檬 Lemon","Lime":"萊姆 Lime","Orange":"柳橙 Orange","Grapefruit":"葡萄柚 Grapefruit",
+                "Olive":"橄欖 Olive","Cherry":"櫻桃 Cherry","Pineapple":"鳳梨 Pineapple","Mint":"薄荷 Mint",
+                "Coffee beans":"咖啡豆","Nutmeg":"肉豆蔻","Salt rim":"鹽口","Celery":"芹菜","Cucumber":"小黃瓜",
+                "Ginger":"薑","Basil":"羅勒","Cinnamon":"肉桂","Other":"其他"
+            });
+            const noGarnish = garnishPresenceFilter && garnishPresenceFilter.value === 'no';
+            garnishTypeFilter.disabled = noGarnish;
+            if (noGarnish) garnishTypeFilter.value = '';
+        }
+
+        if (glasswareFilter) {
+            refillSelect(glasswareFilter, glasswareValues, state.glassware, {
+                "Cocktail/Martini":"馬丁尼／雞尾酒杯",
+                "Old Fashioned/Rocks":"古典／Rocks 杯",
+                "Highball/Collins":"高球／Collins 杯",
+                "Coupe":"Coupe 杯",
+                "Champagne":"香檳杯",
+                "Wine":"葡萄酒杯",
+                "Tiki":"Tiki 杯",
+                "Julep":"Julep 杯",
+                "Mule":"Mule 杯",
+                "Hurricane":"颶風杯",
+                "Goblet/Footed":"高腳杯",
+                "Tumbler":"直筒杯",
+                "Other":"其他杯型"
+            });
+        }
+
+        if (categoryFilter?.options?.[0]) {
+            categoryFilter.options[0].textContent = currentSource === 'iba' ? '-- IBA 分類 --' : '-- C1～C18 組別 --';
+        }
+        if (sectionFilter?.options?.[0]) {
+            sectionFilter.options[0].textContent = currentSource === 'iba' ? '-- 學習區段 --' : '-- C1～C18 --';
+        }
+
+        updateActiveFilterChips();
+    }
+
+    async function loadCocktails(sourceKey = currentSource) {
+        const config = DATA_SOURCES[sourceKey] || DATA_SOURCES.iba;
+        currentSource = config.key;
+        localStorage.setItem('cocktailSource', currentSource);
+        dataLoaded = false;
+        cocktails = [];
+        resultCount.innerText = '載入中...';
+        loadStatus.className = 'loading-box';
+        loadStatus.classList.remove('hidden');
+        loadStatus.innerHTML = `正在讀取 ${escapeHtml(config.label)}...`;
+
+        if (sourceSelect) sourceSelect.value = currentSource;
+        if (sourceHint) sourceHint.textContent = `目前來源：${config.label}`;
+        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '台灣乙級調酒吧';
+
+        clearFilters();
+
+        try {
+            const response = await fetch(config.path, { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const payload = await response.json();
+            const recipes = getRecipesArray(payload);
+
+            if (!recipes.length) {
+                throw new Error('JSON 結構不正確：找不到 recipes/cocktails 陣列');
+            }
+
+            cocktails = currentSource === 'iba'
+                ? recipes.map(normalizeV2Recipe)
+                : recipes.map(normalizeTwLevelBRecipe);
+
+            dataLoaded = true;
+            loadStatus.classList.add('hidden');
+
+            if (cocktails.length !== config.expectedCount) {
+                console.warn(`目前載入 ${cocktails.length} 筆，預期為 ${config.expectedCount} 筆。`);
+            }
+
+            renderList();
+        } catch (error) {
+            console.error(error);
+            loadStatus.className = 'error-box';
+            loadStatus.innerHTML = `資料載入失敗：${escapeHtml(error.message)}<br><br>請確認 <b>${escapeHtml(config.path.split('/').pop())}</b> 已上傳到 GitHub 的 data 資料夾。`;
+            resultCount.innerText = '載入失敗';
+        }
+    }
+
+    function enterTavern() {
+        ageGate.classList.add('hidden');
+        app.classList.remove('hidden');
+        renderList();
+    }
+
+    function leaveTavern() {
+        alert("未滿18歲請勿飲酒，期待您成年後再來拜訪！");
+        window.location.href = "https://www.google.com";
+    }
+
+    tabAll.addEventListener('click', () => {
+        currentTab = 'all';
+        tabAll.classList.add('active');
+        tabFav.classList.remove('active');
+        renderList();
+    });
+
+    tabFav.addEventListener('click', () => {
+        currentTab = 'fav';
+        tabFav.classList.add('active');
+        tabAll.classList.remove('active');
+        renderList();
+    });
+
+
+    function displayName(c) {
+        if (languageMode === 'en') return c.official_name || c.chinese_name || '';
+        if (languageMode === 'bilingual') {
+            const zh = c.chinese_name || '';
+            const en = c.official_name || '';
+            return zh && en ? `${zh}｜${en}` : (zh || en);
+        }
+        return c.chinese_name || c.official_name || '';
+    }
+
+    function secondaryName(c) {
+        if (languageMode === 'en') return '';
+        if (languageMode === 'bilingual') return '';
+        return c.official_name || '';
+    }
+
+    function ingredientLabel(i) {
+        const zh = i.name_zh || '';
+        const en = i.name || '';
+        if (languageMode === 'en') return en || zh;
+        if (languageMode === 'bilingual') return zh && en ? `${zh}｜${en}` : (zh || en);
+        return zh || en;
+    }
+
+    function methodText(c) {
+        const zh = c.method_zh || '';
+        const en = c.method || '';
+        if (languageMode === 'en') return en || zh;
+        if (languageMode === 'bilingual') return [zh, en].filter(Boolean).join('\n\n');
+        return zh || en;
+    }
+
+    function glasswareText(c) {
+        const zh = c.glassware_zh || '';
+        const en = c.glassware || '';
+        if (languageMode === 'en') return en || zh;
+        if (languageMode === 'bilingual') return zh && en ? `${zh}｜${en}` : (zh || en);
+        return zh || en;
+    }
+
+    function garnishText(c) {
+        const zh = c.garnish_zh || '';
+        const en = c.garnish || '';
+        if (languageMode === 'en') return en || zh;
+        if (languageMode === 'bilingual') return zh && en ? `${zh}｜${en}` : (zh || en);
+        return zh || en;
+    }
+
+    function mainMethodText(c) {
+        const labels = {
+            "Shake": ["搖盪法", "Shake"],
+            "Stir": ["攪拌法", "Stir"],
+            "Build": ["直調法", "Build"],
+            "Blend": ["電動攪拌法", "Blend"],
+            "Swizzle": ["Swizzle 法", "Swizzle"],
+            "Other": ["其他", "Other"]
+        };
+        const pair = labels[c.main_method] || [c.main_method || '-', c.main_method || '-'];
+        if (languageMode === 'en') return pair[1];
+        if (languageMode === 'bilingual') return `${pair[0]}｜${pair[1]}`;
+        return pair[0];
+    }
+
+    function auxiliaryText(c) {
+        const zhMap = {
+            "Muddle":"搗壓",
+            "Mash/Muddle":"搗壓",
+            "Float":"漂浮",
+            "Rinse":"潤杯",
+            "Top":"補滿",
+            "Dry Shake":"乾搖",
+            "Fine Strain":"細濾",
+            "Double Strain":"雙重過濾",
+            "Rim":"杯口處理",
+            "Stir/Dissolve":"攪拌溶解",
+            "Mix/Dissolve":"混合溶解",
+            "Add grenadine / no stir":"加入紅石榴糖漿／不攪拌",
+            "Optional add bitters":"可選加入苦精",
+            "Serve sidecar":"旁杯供應"
+        };
+        const arr = c.auxiliary_operations || [];
+        if (!arr.length) return '—';
+        return arr.map(x => {
+            const zh = zhMap[x] || x;
+            if (languageMode === 'en') return x;
+            if (languageMode === 'bilingual') return zh === x ? x : `${zh}｜${x}`;
+            return zh;
+        }).join(' → ');
+    }
+
+
+
+    function categoryText(c) {
+        if (currentSource === 'twLevelB') {
+            return c.category || c.source_group || '—';
+        }
+        const map = {
+            "The Unforgettables":"經典永恆｜The Unforgettables",
+            "Contemporary Classics":"當代經典｜Contemporary Classics",
+            "New Era":"新世代｜New Era"
+        };
+        const en = c.category || '';
+        if (languageMode === 'en') return en;
+        if (languageMode === 'bilingual') return map[en] || en;
+        return (map[en] || en).split('｜')[0];
+    }
+
+    function primarySpiritText(c) {
+        const zhMap = {
+            "Gin":"琴酒",
+            "Vodka":"伏特加",
+            "Rum":"蘭姆酒",
+            "Tequila":"龍舌蘭",
+            "Whiskey":"威士忌",
+            "Brandy":"白蘭地",
+            "Pisco":"皮斯可",
+            "Cachaça":"卡莎薩",
+            "Mezcal":"梅斯卡爾",
+            "Aguardiente":"Aguardiente",
+            "Grappa":"Grappa",
+            "Other":"其他主要烈酒"
+        };
+        const en = c.primary_spirit || c.primary_spirit_group || '';
+        const zh = zhMap[en] || en || '—';
+        if (languageMode === 'en') return en || '—';
+        if (languageMode === 'bilingual') return zh === en ? zh : `${zh}｜${en}`;
+        return zh;
+    }
+
+    function fieldLabel(zh, en) {
+        if (languageMode === 'en') return en;
+        if (languageMode === 'bilingual') return `${zh}｜${en}`;
+        return zh;
+    }
+
+    function setLanguageMode(mode) {
+        languageMode = mode;
+        localStorage.setItem('cocktailLangMode', mode);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === mode);
+        });
+        renderList();
+    }
+
+
+    function updateActiveFilterChips() {
+        if (!activeFilters) return;
+        const items = [];
+        const push = (label, el) => { if (el && el.value) items.push(`${label}：${el.options[el.selectedIndex]?.text || el.value}`); };
+
+        push('主酒', baseFilter);
+        push('其他主酒', otherSpiritFilter);
+        push('製作法', techFilter);
+        push(currentSource === 'iba' ? 'IBA' : '組別', categoryFilter);
+        push(currentSource === 'iba' ? '學習區段' : 'C組別', sectionFilter);
+        push('裝飾', garnishPresenceFilter);
+        push('裝飾種類', garnishTypeFilter);
+        push('杯型', glasswareFilter);
+
+        const q = searchInput?.value?.trim();
+        if (q) items.unshift(`搜尋：${q}`);
+
+        activeFilters.innerHTML = items.map(x => `<span class="filter-chip">${escapeHtml(x)}</span>`).join('');
+    }
+
+
+    const COCKTAIL_ASSET_BASE = '/classic-cocktail-bar/assets/cocktails/';
+    const cocktailImageMode = 'normal'; // future: pixel16
+
+    function cocktailImageUrl(c, mode = cocktailImageMode) {
+        const filename = mode === 'pixel16' ? c.cocktail_image_pixel16 : c.cocktail_image_normal;
+        if (!filename) return '';
+        if (currentSource === 'iba') return `${COCKTAIL_ASSET_BASE}${mode}/${encodeURIComponent(filename)}`;
+        return `${COCKTAIL_ASSET_BASE}tw-level-b/${mode}/${encodeURIComponent(filename)}`;
+    }
+
+    function cardImageHtml(c) {
+        const url = cocktailImageUrl(c);
+        if (!url) return `<div class="image-fallback">${getGlassSvg(c.glassware || '')}</div>`;
+        const fallback = escapeHtml(getGlassSvg(c.glassware || '').replace(/`/g, ''));
+        return `<img class="cocktail-thumb" src="${escapeHtml(url)}" alt="${escapeHtml(c.official_name)}" loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="image-fallback" style="display:none;">${getGlassSvg(c.glassware || '')}</div>`;
+    }
+
+    function modalImageHtml(c) {
+        const url = cocktailImageUrl(c);
+        if (!url) return '';
+        return `<div class="modal-cocktail-image-wrap">
+            <img class="modal-cocktail-image" src="${escapeHtml(url)}" alt="${escapeHtml(c.official_name)}"
+                 onerror="this.parentElement.style.display='none';">
+        </div>`;
+    }
+
+    function renderList() {
+        updateActiveFilterChips();
+        updateLinkedFilters();
+        if (!dataLoaded) {
+            resultCount.innerText = '載入中...';
+            return;
+        }
+
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const base = baseFilter.value;
+        const otherSpirit = otherSpiritFilter ? otherSpiritFilter.value : '';
+        const tech = techFilter.value;
+        const category = categoryFilter.value;
+        const section = sectionFilter.value;
+        const garnishPresence = garnishPresenceFilter ? garnishPresenceFilter.value : '';
+        const garnishType = garnishTypeFilter ? garnishTypeFilter.value : '';
+        const glassware = glasswareFilter ? glasswareFilter.value : '';
+
+        const filtered = cocktails.filter(c => {
+            const ingredientText = (c.ingredients || [])
+                .map(i => `${i.name || ''} ${i.amount || ''}`)
+                .join(' ')
+                .toLowerCase();
+
+            const searchable = [
+                c.search_index,
+                c.app_id,
+                c.official_name,
+                c.chinese_name,
+                ...(c.aliases || []),
+                ...(c.ingredient_aliases || []),
+                ...(c.glassware_aliases || []),
+                ...(c.garnish_aliases || []),
+                ...(c.technique_aliases || []),
+                c.method,
+                c.method_zh,
+                c.glassware,
+                c.glassware_zh,
+                c.garnish,
+                c.garnish_zh
+            ].join(' ').toLowerCase();
+
+            const matchSearch = !searchTerm || searchable.includes(searchTerm);
+            const matchBase = !base || c.primary_spirit_group === base;
+            const matchOtherSpirit = !otherSpirit || c.primary_spirit === otherSpirit;
+            const matchTech = !tech || c.main_method === tech;
+            const matchCategory = !category || c.category === category;
+            const matchSection = !section || c.learning_section === section;
+            const matchGarnishPresence = !garnishPresence ||
+                (garnishPresence === 'yes' ? c.garnish_present : !c.garnish_present);
+            const matchGarnishType = !garnishType ||
+                (c.garnish_categories || []).includes(garnishType);
+            const matchGlassware = !glassware || c.glassware_group === glassware;
+            const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
+
+            return matchSearch && matchBase && matchOtherSpirit && matchTech &&
+                   matchCategory && matchSection && matchGarnishPresence &&
+                   matchGarnishType && matchGlassware && matchFav;
+        });
+
+        resultCount.innerText = `篩選結果 ${filtered.length} 款｜共 ${cocktails.length} 款`;
+        listContainer.innerHTML = '';
+
+        if (filtered.length === 0) {
+            listContainer.innerHTML = `
+                <div style="text-align:center; padding:32px 16px; color:var(--text-muted);">
+                    沒有找到符合的酒譜。<br><br>
+                    <button class="btn btn-dark" onclick="clearFilters()">[ 清除搜尋與篩選 ]</button>
+                </div>`;
+            return;
+        }
+
+        filtered.forEach(c => {
+            const isFav = favorites.includes(c.app_id);
+            const card = document.createElement('div');
+            card.className = 'cocktail-card';
+            card.onclick = () => openModal(c);
+
+            card.innerHTML = `
+                <div class="card-icon">
+                    ${cardImageHtml(c)}
+                </div>
+                <div class="cocktail-info">
+                    <div class="card-title-row">
+                        <div class="card-number">${escapeHtml(c.app_id)}</div>
+                        <h3>${escapeHtml(displayName(c))}</h3>
+                    </div>
+                    <p>${escapeHtml(secondaryName(c))}</p>
+                    <div class="card-badges">
+                        <span class="badge badge-source">${escapeHtml(sourceLabelFor(c))}</span>
+                        <span class="badge badge-category">${escapeHtml(shortCategory(c.category))}</span>
+                        ${c.app_final === false ? '<span class="badge badge-review">待確認</span>' : ''}
+                    </div>
+                </div>
+                <button class="fav-btn" aria-label="收藏" onclick="toggleFav(event, '${escapeHtml(c.app_id)}')">
+                    ${getHeartSvg(isFav)}
+                </button>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+
+    function clearFilters() {
+        searchInput.value = '';
+        baseFilter.value = '';
+        if (otherSpiritFilter) otherSpiritFilter.value = '';
+        techFilter.value = '';
+        categoryFilter.value = '';
+        sectionFilter.value = '';
+        if (garnishPresenceFilter) garnishPresenceFilter.value = '';
+        if (garnishTypeFilter) garnishTypeFilter.value = '';
+        if (glasswareFilter) glasswareFilter.value = '';
+        updateLinkedFilters();
+        renderList();
+    }
+
+    function toggleFav(e, id) {
+        e.stopPropagation();
+
+        if (favorites.includes(id)) {
+            favorites = favorites.filter(favId => favId !== id);
+        } else {
+            favorites.push(id);
+        }
+
+        localStorage.setItem('pixelBarFavsV10', JSON.stringify(favorites));
+        renderList();
+    }
+
+    function openModal(c) {
+        const ingredientsHtml = (c.ingredients || [])
+            .map(i => `• ${escapeHtml(ingredientLabel(i))}${i.amount ? ` — ${escapeHtml(i.amount)}` : ''}`)
+            .join('<br>');
+
+        const notesText = c.review_note || c.notes || '';
+        const notesHtml = notesText
+            ? `<div class="detail-section">
+                 <div class="detail-section-title">${escapeHtml(fieldLabel('備註','Notes'))}</div>
+                 <div class="detail-section-body" style="color:#FFA1A1;">${escapeHtml(notesText)}</div>
+               </div>`
+            : '';
+
+        const sourceName = currentSource === 'iba'
+            ? 'IBA 2026'
+            : '台灣飲料調製乙級技術士術科';
+
+        const sourceHtml = c.official_url
+            ? `<a class="source-link" href="${escapeHtml(c.official_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceName)}</a>`
+            : escapeHtml(sourceName);
+
+        const groupLabel = currentSource === 'iba'
+            ? fieldLabel('IBA 分類','IBA Category')
+            : fieldLabel('試題組別','Exam Group');
+
+        const extraTw = currentSource === 'twLevelB'
+            ? `
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('製作杯數','Servings'))}</div>
+                <div class="detail-section-body">${escapeHtml(c.servings ?? 1)}</div>
+            </div>
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('資料狀態','Data Status'))}</div>
+                <div class="detail-section-body">${c.app_final === false ? '待確認 Review' : '已確認'}</div>
+            </div>`
+            : '';
+
+        modalContentBox.innerHTML = `
+            <button class="close-btn" onclick="closeModal()">X</button>
+
+            <div class="modal-header">
+                <h2>${escapeHtml(c.app_id)}｜${escapeHtml(displayName(c))}</h2>
+                <p>${escapeHtml(secondaryName(c))}</p>
+            </div>
+
+            ${modalImageHtml(c)}
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(groupLabel)}</div>
+                <div class="detail-section-body">${escapeHtml(categoryText(c) || '—')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('主酒','Primary Spirit'))}</div>
+                <div class="detail-section-body">${escapeHtml(primarySpiritText(c))}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('主要製作法','Main Method'))}</div>
+                <div class="detail-section-body">${escapeHtml(mainMethodText(c) || '—')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('輔助操作','Auxiliary Operations'))}</div>
+                <div class="detail-section-body">${escapeHtml(auxiliaryText(c) || '—')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('材料與用量','Ingredients'))}</div>
+                <div class="detail-section-body">${ingredientsHtml || 'N/A'}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('製作方法','Method'))}</div>
+                <div class="detail-section-body" style="white-space:pre-line;">${escapeHtml(methodText(c) || 'N/A')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('杯型','Glassware'))}</div>
+                <div class="detail-section-body">${escapeHtml(glasswareText(c) || 'N/A')}</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('裝飾','Garnish'))}</div>
+                <div class="detail-section-body">${escapeHtml(garnishText(c) || 'N/A')}</div>
+            </div>
+
+            ${extraTw}
+            ${notesHtml}
+
+            <div class="detail-section">
+                <div class="detail-section-title">${escapeHtml(fieldLabel('資料來源','Source'))}</div>
+                <div class="detail-section-body">${sourceHtml}</div>
+            </div>
+        `;
+
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    searchInput.addEventListener('input', renderList);
+    baseFilter.addEventListener('change', renderList);
+    if (otherSpiritFilter) otherSpiritFilter.addEventListener('change', renderList);
+    techFilter.addEventListener('change', renderList);
+    categoryFilter.addEventListener('change', renderList);
+    sectionFilter.addEventListener('change', renderList);
+    if (garnishPresenceFilter) garnishPresenceFilter.addEventListener('change', renderList);
+    if (garnishTypeFilter) garnishTypeFilter.addEventListener('change', renderList);
+    if (glasswareFilter) glasswareFilter.addEventListener('change', renderList);
+    if (clearAllFilters) clearAllFilters.addEventListener('click', clearFilters);
+
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLanguageMode(btn.dataset.lang));
+        btn.classList.toggle('active', btn.dataset.lang === languageMode);
+    });
+
+    if (sourceSelect) {
+        sourceSelect.value = currentSource;
+        sourceSelect.addEventListener('change', () => loadCocktails(sourceSelect.value));
+    }
+
+    loadCocktails(currentSource);
+</script>
+</body>
+</html>
