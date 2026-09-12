@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r7</title>
+    <title>經典調酒吧 16-bit｜v1.0-test Multi-Source r8</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -1418,6 +1418,19 @@
             <img class="modal-cocktail-image" src="${escapeHtml(url)}" alt="${escapeHtml(c.official_name)}"
                  onerror="this.parentElement.style.display='none';">
         </div>`;
+    }
+
+
+    function sourceLabelFor(c) {
+        if (currentSource === 'iba') return 'IBA';
+
+        if (languageMode === 'en') {
+            return 'Taiwan Level B';
+        }
+        if (languageMode === 'bilingual') {
+            return '飲料調製乙級｜Taiwan Level B';
+        }
+        return '飲料調製乙級';
     }
 
     function renderList() {
