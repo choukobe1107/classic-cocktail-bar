@@ -1,0 +1,4951 @@
+{
+  "meta": {
+    "title": "Cocktail Master Data - Taiwan Beverage Preparation Level B 90",
+    "schema_version": "multi-source-1.0",
+    "dataset_version": "TW-B-90-app-v1.0",
+    "cocktail_count": 90,
+    "collection_id": "tw-beverage-level-b-90",
+    "collection_name": "Taiwan Beverage Preparation Level B",
+    "collection_name_zh": "台灣飲料調製乙級",
+    "source_version": "0.9-review",
+    "purpose": "Cocktail App multi-source recipe dataset",
+    "integration_notes": [
+      "Keep this dataset separate from IBA 101; select recipes by source rather than overwriting same-name cocktails.",
+      "Source ingredient/method/garnish/glass wording is preserved without silent normalization.",
+      "Review-status records remain visible but are marked app_final=false.",
+      "Four review records: Apple Mojito, Bellini, Apple Manhattan, Banana Frozen Daiquiri."
+    ]
+  },
+  "recipes": [
+    {
+      "recipe_id": "TW-B-001",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C1",
+        "source_record_id": "TW-B-001"
+      },
+      "names": {
+        "official": "Espresso Daiquiri",
+        "zh": "義式戴吉利",
+        "aliases": [
+          "Espresso Daiquiri",
+          "義式戴吉利"
+        ]
+      },
+      "classification": {
+        "official_category": "C1",
+        "learning_section": "C1",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 30 ml",
+          "Espresso 30 ml",
+          "Sugar Syrup 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-001 | C1 | Espresso Daiquiri | 義式戴吉利 | Cocktail Glass | White Rum 30 ml | Espresso 30 ml | Sugar Syrup 15 ml | Shake | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-002",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C1",
+        "source_record_id": "TW-B-002"
+      },
+      "names": {
+        "official": "Manhattan",
+        "zh": "曼哈頓",
+        "aliases": [
+          "Manhattan",
+          "曼哈頓"
+        ]
+      },
+      "classification": {
+        "official_category": "C1",
+        "learning_section": "C1",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Rosso Vermouth 15 ml",
+          "Dash Angostura Bitters"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-002 | C1 | Manhattan | 曼哈頓 | Martini Glass | Bourbon Whiskey 45 ml | Rosso Vermouth 15 ml | Dash Angostura Bitters | Stir | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-003",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C1",
+        "source_record_id": "TW-B-003"
+      },
+      "names": {
+        "official": "Hot Toddy",
+        "zh": "熱托地",
+        "aliases": [
+          "Hot Toddy",
+          "熱托地"
+        ]
+      },
+      "classification": {
+        "official_category": "C1",
+        "learning_section": "C1",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 45 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Sugar Syrup 15 ml",
+          "Boiling Water to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Toddy Glass",
+        "garnish_source": [
+          "Lemon Slice",
+          "Cinnamon Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-003 | C1 | Hot Toddy | 熱托地 | Toddy Glass | Brandy 45 ml | Fresh Lemon Juice 15 ml | Sugar Syrup 15 ml | Boiling Water to 80% full | Build | Lemon Slice | Cinnamon Powder"
+    },
+    {
+      "recipe_id": "TW-B-004",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C1",
+        "source_record_id": "TW-B-004"
+      },
+      "names": {
+        "official": "Mint Frappe",
+        "zh": "薄荷芙萊蓓",
+        "aliases": [
+          "Mint Frappe",
+          "薄荷芙萊蓓"
+        ]
+      },
+      "classification": {
+        "official_category": "C1",
+        "learning_section": "C1",
+        "main_method_search": "Pour",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Green Crème de Menthe 45 ml",
+          "Crushed Ice 1 cup"
+        ],
+        "method_source": [
+          "Pour"
+        ],
+        "glassware_source": "Large Cocktail Glass",
+        "garnish_source": [
+          "Mint Leaves",
+          "Cherry",
+          "Short Straw ×2"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-004 | C1 | Mint Frappe | 薄荷芙萊蓓 | Large Cocktail Glass | Green Crème de Menthe 45 ml | Crushed Ice 1 cup | Pour | Mint Leaves | Cherry | Short Straw ×2"
+    },
+    {
+      "recipe_id": "TW-B-005",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C1",
+        "source_record_id": "TW-B-005"
+      },
+      "names": {
+        "official": "Planter's Punch",
+        "zh": "拓荒者賓治",
+        "aliases": [
+          "Planter's Punch",
+          "拓荒者賓治"
+        ]
+      },
+      "classification": {
+        "official_category": "C1",
+        "learning_section": "C1",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Dark Rum 45 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Grenadine Syrup 10 ml",
+          "Soda Water to 80% full",
+          "Dash Angostura Bitters after mixing"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Slice",
+          "Orange Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-005 | C1 | Planter's Punch | 拓荒者賓治 | Collins Glass | Dark Rum 45 ml | Fresh Lemon Juice 15 ml | Grenadine Syrup 10 ml | Soda Water to 80% full | Dash Angostura Bitters after mixing | Shake | Lemon Slice | Orange Slice"
+    },
+    {
+      "recipe_id": "TW-B-006",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C2",
+        "source_record_id": "TW-B-006"
+      },
+      "names": {
+        "official": "Dandy Cocktail",
+        "zh": "至尊雞尾酒",
+        "aliases": [
+          "Dandy Cocktail",
+          "至尊雞尾酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C2",
+        "learning_section": "C2",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 30 ml",
+          "Dubonnet Red 30 ml",
+          "Triple Sec 10 ml",
+          "Dash Angostura Bitters"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Lemon Peel",
+          "Orange Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-006 | C2 | Dandy Cocktail | 至尊雞尾酒 | Cocktail Glass | Gin 30 ml | Dubonnet Red 30 ml | Triple Sec 10 ml | Dash Angostura Bitters | Shake | Lemon Peel | Orange Peel"
+    },
+    {
+      "recipe_id": "TW-B-007",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C2",
+        "source_record_id": "TW-B-007"
+      },
+      "names": {
+        "official": "Banana Batida",
+        "zh": "香蕉巴迪達",
+        "aliases": [
+          "Banana Batida",
+          "香蕉巴迪達"
+        ]
+      },
+      "classification": {
+        "official_category": "C2",
+        "learning_section": "C2",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Cachaça 45 ml",
+          "Crème de Bananes 30 ml",
+          "Fresh Lemon Juice 20 ml",
+          "Fresh Peeled Banana ×1"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Hurricane Glass",
+        "garnish_source": [
+          "Banana Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-007 | C2 | Banana Batida | 香蕉巴迪達 | Hurricane Glass | Cachaça 45 ml | Crème de Bananes 30 ml | Fresh Lemon Juice 20 ml | Fresh Peeled Banana ×1 | Blend | Banana Slice"
+    },
+    {
+      "recipe_id": "TW-B-008",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C2",
+        "source_record_id": "TW-B-008"
+      },
+      "names": {
+        "official": "Cool Sweet Heart",
+        "zh": "冰涼甜心",
+        "aliases": [
+          "Cool Sweet Heart",
+          "冰涼甜心"
+        ]
+      },
+      "classification": {
+        "official_category": "C2",
+        "learning_section": "C2",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 30 ml",
+          "Mozart Dark Chocolate Liqueur 30 ml",
+          "Mojito Syrup 30 ml",
+          "Fresh Orange Juice 75 ml",
+          "Fresh Lemon Juice 15 ml"
+        ],
+        "method_source": [
+          "Shake",
+          "Float"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Peel",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-008 | C2 | Cool Sweet Heart | 冰涼甜心 | Collins Glass | White Rum 30 ml | Mozart Dark Chocolate Liqueur 30 ml | Mojito Syrup 30 ml | Fresh Orange Juice 75 ml | Fresh Lemon Juice 15 ml | Shake | Float | Lemon Peel | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-009",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C2",
+        "source_record_id": "TW-B-009"
+      },
+      "names": {
+        "official": "White Stinger",
+        "zh": "白醉漢",
+        "aliases": [
+          "White Stinger",
+          "白醉漢"
+        ]
+      },
+      "classification": {
+        "official_category": "C2",
+        "learning_section": "C2",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "White Crème de Menthe 15 ml",
+          "White Crème de Cacao 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-009 | C2 | White Stinger | 白醉漢 | Old Fashioned Glass | Vodka 45 ml | White Crème de Menthe 15 ml | White Crème de Cacao 15 ml | Shake"
+    },
+    {
+      "recipe_id": "TW-B-010",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C2",
+        "source_record_id": "TW-B-010"
+      },
+      "names": {
+        "official": "Mojito",
+        "zh": "莫西多",
+        "aliases": [
+          "Mojito",
+          "莫西多"
+        ]
+      },
+      "classification": {
+        "official_category": "C2",
+        "learning_section": "C2",
+        "main_method_search": "Muddle",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 45 ml",
+          "Fresh Lime Juice 15 ml",
+          "1/2 Fresh Lime, cut into 4 pieces",
+          "Fresh Mint Leaves 12",
+          "Sugar 8 g",
+          "Soda Water to 80% full"
+        ],
+        "method_source": [
+          "Muddle",
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Mint Sprig"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-010 | C2 | Mojito | 莫西多 | Highball Glass | White Rum 45 ml | Fresh Lime Juice 15 ml | 1/2 Fresh Lime, cut into 4 pieces | Fresh Mint Leaves 12 | Sugar 8 g | Soda Water to 80% full | Muddle | Build | Mint Sprig"
+    },
+    {
+      "recipe_id": "TW-B-011",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C3",
+        "source_record_id": "TW-B-011"
+      },
+      "names": {
+        "official": "Dry Manhattan",
+        "zh": "不甜曼哈頓",
+        "aliases": [
+          "Dry Manhattan",
+          "不甜曼哈頓"
+        ]
+      },
+      "classification": {
+        "official_category": "C3",
+        "learning_section": "C3",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Dry Vermouth 15 ml",
+          "Dash Angostura Bitters"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-011 | C3 | Dry Manhattan | 不甜曼哈頓 | Martini Glass | Bourbon Whiskey 45 ml | Dry Vermouth 15 ml | Dash Angostura Bitters | Stir | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-012",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C3",
+        "source_record_id": "TW-B-012"
+      },
+      "names": {
+        "official": "Irish Coffee",
+        "zh": "愛爾蘭咖啡",
+        "aliases": [
+          "Irish Coffee",
+          "愛爾蘭咖啡"
+        ]
+      },
+      "classification": {
+        "official_category": "C3",
+        "learning_section": "C3",
+        "main_method_search": "Espresso Machine",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Irish Whiskey 45 ml",
+          "Sugar 8 g",
+          "Espresso 30 ml",
+          "Boiling Water 120 ml",
+          "Whipped Cream to top"
+        ],
+        "method_source": [
+          "Espresso Machine",
+          "Build"
+        ],
+        "glassware_source": "Irish Coffee Glass",
+        "garnish_source": [
+          "Cocoa Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-012 | C3 | Irish Coffee | 愛爾蘭咖啡 | Irish Coffee Glass | Irish Whiskey 45 ml | Sugar 8 g | Espresso 30 ml | Boiling Water 120 ml | Whipped Cream to top | Espresso Machine | Build | Cocoa Powder"
+    },
+    {
+      "recipe_id": "TW-B-013",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C3",
+        "source_record_id": "TW-B-013"
+      },
+      "names": {
+        "official": "Stinger",
+        "zh": "醉漢",
+        "aliases": [
+          "Stinger",
+          "醉漢"
+        ]
+      },
+      "classification": {
+        "official_category": "C3",
+        "learning_section": "C3",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 45 ml",
+          "White Crème de Menthe 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Mint Sprig"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-013 | C3 | Stinger | 醉漢 | Old Fashioned Glass | Brandy 45 ml | White Crème de Menthe 15 ml | Shake | Mint Sprig"
+    },
+    {
+      "recipe_id": "TW-B-014",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C3",
+        "source_record_id": "TW-B-014"
+      },
+      "names": {
+        "official": "Gin Fizz",
+        "zh": "琴費士",
+        "aliases": [
+          "Gin Fizz",
+          "琴費士"
+        ]
+      },
+      "classification": {
+        "official_category": "C3",
+        "learning_section": "C3",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 45 ml",
+          "Fresh Lemon Juice 30 ml",
+          "Sugar Syrup 15 ml",
+          "Soda Water to 80% full"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-014 | C3 | Gin Fizz | 琴費士 | Highball Glass | Gin 45 ml | Fresh Lemon Juice 30 ml | Sugar Syrup 15 ml | Soda Water to 80% full | Shake"
+    },
+    {
+      "recipe_id": "TW-B-015",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C3",
+        "source_record_id": "TW-B-015"
+      },
+      "names": {
+        "official": "Pousse Café",
+        "zh": "普施咖啡",
+        "aliases": [
+          "Pousse Café",
+          "普施咖啡"
+        ]
+      },
+      "classification": {
+        "official_category": "C3",
+        "learning_section": "C3",
+        "main_method_search": "Layer",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Grenadine Syrup 1/5",
+          "Brown Crème de Cacao 1/5",
+          "Green Crème de Menthe 1/5",
+          "Triple Sec 1/5",
+          "Brandy 1/5",
+          "Total to 90% full"
+        ],
+        "method_source": [
+          "Layer"
+        ],
+        "glassware_source": "Liqueur Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-015 | C3 | Pousse Café | 普施咖啡 | Liqueur Glass | Grenadine Syrup 1/5 | Brown Crème de Cacao 1/5 | Green Crème de Menthe 1/5 | Triple Sec 1/5 | Brandy 1/5 | Total to 90% full | Layer"
+    },
+    {
+      "recipe_id": "TW-B-016",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C4",
+        "source_record_id": "TW-B-016"
+      },
+      "names": {
+        "official": "Salty Dog",
+        "zh": "鹹狗",
+        "aliases": [
+          "Salty Dog",
+          "鹹狗"
+        ]
+      },
+      "classification": {
+        "official_category": "C4",
+        "learning_section": "C4",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Fresh Grapefruit Juice to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Salt Rim"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-016 | C4 | Salty Dog | 鹹狗 | Highball Glass | Vodka 45 ml | Fresh Grapefruit Juice to 80% full | Build | Salt Rim"
+    },
+    {
+      "recipe_id": "TW-B-017",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C4",
+        "source_record_id": "TW-B-017"
+      },
+      "names": {
+        "official": "B-52 Shot",
+        "zh": "B-52轟炸機",
+        "aliases": [
+          "B-52 Shot",
+          "B-52轟炸機"
+        ]
+      },
+      "classification": {
+        "official_category": "C4",
+        "learning_section": "C4",
+        "main_method_search": "Layer",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Kahlúa 1/3",
+          "Bailey's Irish Cream 1/3",
+          "Grand Marnier 1/3",
+          "Total to 90% full"
+        ],
+        "method_source": [
+          "Layer"
+        ],
+        "glassware_source": "Shot Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-017 | C4 | B-52 Shot | B-52轟炸機 | Shot Glass | Kahlúa 1/3 | Bailey's Irish Cream 1/3 | Grand Marnier 1/3 | Total to 90% full | Layer"
+    },
+    {
+      "recipe_id": "TW-B-018",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C4",
+        "source_record_id": "TW-B-018"
+      },
+      "names": {
+        "official": "Ginger Mojito",
+        "zh": "薑味莫西多",
+        "aliases": [
+          "Ginger Mojito",
+          "薑味莫西多"
+        ]
+      },
+      "classification": {
+        "official_category": "C4",
+        "learning_section": "C4",
+        "main_method_search": "Muddle",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 45 ml",
+          "Fresh Root Ginger 3 slices",
+          "Fresh Mint Leaves 12",
+          "Fresh Lime Juice 15 ml",
+          "Sugar 8 g",
+          "Ginger Ale to 80% full"
+        ],
+        "method_source": [
+          "Muddle",
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Mint Sprig"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-018 | C4 | Ginger Mojito | 薑味莫西多 | Highball Glass | White Rum 45 ml | Fresh Root Ginger 3 slices | Fresh Mint Leaves 12 | Fresh Lime Juice 15 ml | Sugar 8 g | Ginger Ale to 80% full | Muddle | Shake | Mint Sprig"
+    },
+    {
+      "recipe_id": "TW-B-019",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C4",
+        "source_record_id": "TW-B-019"
+      },
+      "names": {
+        "official": "Negus",
+        "zh": "尼加斯",
+        "aliases": [
+          "Negus",
+          "尼加斯"
+        ]
+      },
+      "classification": {
+        "official_category": "C4",
+        "learning_section": "C4",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Tawny Port 60 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Sugar Syrup 15 ml",
+          "Boiling Water to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Toddy Glass",
+        "garnish_source": [
+          "Nutmeg Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-019 | C4 | Negus | 尼加斯 | Toddy Glass | Tawny Port 60 ml | Fresh Lemon Juice 15 ml | Sugar Syrup 15 ml | Boiling Water to 80% full | Build | Nutmeg Powder"
+    },
+    {
+      "recipe_id": "TW-B-020",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C4",
+        "source_record_id": "TW-B-020"
+      },
+      "names": {
+        "official": "Golden Dream",
+        "zh": "金色夢幻",
+        "aliases": [
+          "Golden Dream",
+          "金色夢幻"
+        ]
+      },
+      "classification": {
+        "official_category": "C4",
+        "learning_section": "C4",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Galliano 30 ml",
+          "Triple Sec 15 ml",
+          "Fresh Orange Juice 15 ml",
+          "Cream 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-020 | C4 | Golden Dream | 金色夢幻 | Cocktail Glass | Galliano 30 ml | Triple Sec 15 ml | Fresh Orange Juice 15 ml | Cream 10 ml | Shake"
+    },
+    {
+      "recipe_id": "TW-B-021",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C5",
+        "source_record_id": "TW-B-021"
+      },
+      "names": {
+        "official": "Tequila Sunrise",
+        "zh": "特吉拉日出",
+        "aliases": [
+          "Tequila Sunrise",
+          "特吉拉日出"
+        ]
+      },
+      "classification": {
+        "official_category": "C5",
+        "learning_section": "C5",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Tequila 45 ml",
+          "Orange Juice to 80% full",
+          "Grenadine Syrup 10 ml"
+        ],
+        "method_source": [
+          "Build",
+          "Float"
+        ],
+        "glassware_source": "Highball Glass 240 ml",
+        "garnish_source": [
+          "Orange Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-021 | C5 | Tequila Sunrise | 特吉拉日出 | Highball Glass 240 ml | Tequila 45 ml | Orange Juice to 80% full | Grenadine Syrup 10 ml | Build | Float | Orange Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-022",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C5",
+        "source_record_id": "TW-B-022"
+      },
+      "names": {
+        "official": "Coffee Batida",
+        "zh": "巴迪達咖啡",
+        "aliases": [
+          "Coffee Batida",
+          "巴迪達咖啡"
+        ]
+      },
+      "classification": {
+        "official_category": "C5",
+        "learning_section": "C5",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Cachaça 30 ml",
+          "Espresso 30 ml",
+          "Crème de Café 30 ml",
+          "Sugar Syrup 10 ml"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-022 | C5 | Coffee Batida | 巴迪達咖啡 | Old Fashioned Glass | Cachaça 30 ml | Espresso 30 ml | Crème de Café 30 ml | Sugar Syrup 10 ml | Blend | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-023",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C5",
+        "source_record_id": "TW-B-023"
+      },
+      "names": {
+        "official": "Captain Collins",
+        "zh": "領航者可林",
+        "aliases": [
+          "Captain Collins",
+          "領航者可林"
+        ]
+      },
+      "classification": {
+        "official_category": "C5",
+        "learning_section": "C5",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Canadian Whisky 30 ml",
+          "Fresh Lemon Juice 30 ml",
+          "Sugar Syrup 10 ml",
+          "Soda Water to 80% full"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-023 | C5 | Captain Collins | 領航者可林 | Collins Glass | Canadian Whisky 30 ml | Fresh Lemon Juice 30 ml | Sugar Syrup 10 ml | Soda Water to 80% full | Shake | Lemon Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-024",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C5",
+        "source_record_id": "TW-B-024"
+      },
+      "names": {
+        "official": "Americano",
+        "zh": "美國佬",
+        "aliases": [
+          "Americano",
+          "美國佬"
+        ]
+      },
+      "classification": {
+        "official_category": "C5",
+        "learning_section": "C5",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Campari 30 ml",
+          "Rosso Vermouth 30 ml",
+          "Soda Water to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Orange Slice",
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-024 | C5 | Americano | 美國佬 | Highball Glass | Campari 30 ml | Rosso Vermouth 30 ml | Soda Water to 80% full | Build | Orange Slice | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-025",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C5",
+        "source_record_id": "TW-B-025"
+      },
+      "names": {
+        "official": "Pink Lady",
+        "zh": "粉紅佳人",
+        "aliases": [
+          "Pink Lady",
+          "粉紅佳人"
+        ]
+      },
+      "classification": {
+        "official_category": "C5",
+        "learning_section": "C5",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 30 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Grenadine Syrup 10 ml",
+          "Egg White 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-025 | C5 | Pink Lady | 粉紅佳人 | Cocktail Glass | Gin 30 ml | Fresh Lemon Juice 15 ml | Grenadine Syrup 10 ml | Egg White 15 ml | Shake | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-026",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C6",
+        "source_record_id": "TW-B-026"
+      },
+      "names": {
+        "official": "Jack Frost",
+        "zh": "傑克佛洛斯特",
+        "aliases": [
+          "Jack Frost",
+          "傑克佛洛斯特"
+        ]
+      },
+      "classification": {
+        "official_category": "C6",
+        "learning_section": "C6",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Drambuie 15 ml",
+          "Fresh Orange Juice 30 ml",
+          "Fresh Lemon Juice 10 ml",
+          "Grenadine Syrup 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Orange Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-026 | C6 | Jack Frost | 傑克佛洛斯特 | Old Fashioned Glass | Bourbon Whiskey 45 ml | Drambuie 15 ml | Fresh Orange Juice 30 ml | Fresh Lemon Juice 10 ml | Grenadine Syrup 10 ml | Shake | Orange Peel"
+    },
+    {
+      "recipe_id": "TW-B-027",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C6",
+        "source_record_id": "TW-B-027"
+      },
+      "names": {
+        "official": "Viennese Espresso",
+        "zh": "義式維也納咖啡",
+        "aliases": [
+          "Viennese Espresso",
+          "義式維也納咖啡"
+        ]
+      },
+      "classification": {
+        "official_category": "C6",
+        "learning_section": "C6",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Espresso 30 ml",
+          "White Chocolate Cream 30 ml",
+          "Macadamia Nut Syrup 30 ml",
+          "Milk 120 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-027 | C6 | Viennese Espresso | 義式維也納咖啡 | Collins Glass | Espresso 30 ml | White Chocolate Cream 30 ml | Macadamia Nut Syrup 30 ml | Milk 120 ml | Shake | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-028",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C6",
+        "source_record_id": "TW-B-028"
+      },
+      "names": {
+        "official": "Kamikaze",
+        "zh": "神風特攻隊",
+        "aliases": [
+          "Kamikaze",
+          "神風特攻隊"
+        ]
+      },
+      "classification": {
+        "official_category": "C6",
+        "learning_section": "C6",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Triple Sec 15 ml",
+          "Fresh Lime Juice 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Lemon Wedge"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-028 | C6 | Kamikaze | 神風特攻隊 | Old Fashioned Glass | Vodka 45 ml | Triple Sec 15 ml | Fresh Lime Juice 15 ml | Shake | Lemon Wedge"
+    },
+    {
+      "recipe_id": "TW-B-029",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C6",
+        "source_record_id": "TW-B-029"
+      },
+      "names": {
+        "official": "Silver Fizz",
+        "zh": "銀費士",
+        "aliases": [
+          "Silver Fizz",
+          "銀費士"
+        ]
+      },
+      "classification": {
+        "official_category": "C6",
+        "learning_section": "C6",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 45 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Sugar Syrup 15 ml",
+          "Egg White 15 ml",
+          "Soda Water to 80% full"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Lemon Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-029 | C6 | Silver Fizz | 銀費士 | Highball Glass | Gin 45 ml | Fresh Lemon Juice 15 ml | Sugar Syrup 15 ml | Egg White 15 ml | Soda Water to 80% full | Shake | Lemon Slice"
+    },
+    {
+      "recipe_id": "TW-B-030",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C6",
+        "source_record_id": "TW-B-030"
+      },
+      "names": {
+        "official": "Mimosa",
+        "zh": "含羞草",
+        "aliases": [
+          "Mimosa",
+          "含羞草"
+        ]
+      },
+      "classification": {
+        "official_category": "C6",
+        "learning_section": "C6",
+        "main_method_search": "Pour",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Fresh Orange Juice 1/2",
+          "Brut Champagne or Sparkling Wine 1/2",
+          "Total to 80% full"
+        ],
+        "method_source": [
+          "Pour"
+        ],
+        "glassware_source": "Flute Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-030 | C6 | Mimosa | 含羞草 | Flute Glass | Fresh Orange Juice 1/2 | Brut Champagne or Sparkling Wine 1/2 | Total to 80% full | Pour"
+    },
+    {
+      "recipe_id": "TW-B-031",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C7",
+        "source_record_id": "TW-B-031"
+      },
+      "names": {
+        "official": "Dry Martini",
+        "zh": "不甜馬丁尼",
+        "aliases": [
+          "Dry Martini",
+          "不甜馬丁尼"
+        ]
+      },
+      "classification": {
+        "official_category": "C7",
+        "learning_section": "C7",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 45 ml",
+          "Dry Vermouth 15 ml"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Stuffed Olive"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-031 | C7 | Dry Martini | 不甜馬丁尼 | Martini Glass | Gin 45 ml | Dry Vermouth 15 ml | Stir | Stuffed Olive"
+    },
+    {
+      "recipe_id": "TW-B-032",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C7",
+        "source_record_id": "TW-B-032"
+      },
+      "names": {
+        "official": "Grasshopper",
+        "zh": "綠色蚱蜢",
+        "aliases": [
+          "Grasshopper",
+          "綠色蚱蜢"
+        ]
+      },
+      "classification": {
+        "official_category": "C7",
+        "learning_section": "C7",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Green Crème de Menthe 20 ml",
+          "White Crème de Cacao 20 ml",
+          "Cream 20 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-032 | C7 | Grasshopper | 綠色蚱蜢 | Cocktail Glass | Green Crème de Menthe 20 ml | White Crème de Cacao 20 ml | Cream 20 ml | Shake"
+    },
+    {
+      "recipe_id": "TW-B-033",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C7",
+        "source_record_id": "TW-B-033"
+      },
+      "names": {
+        "official": "Long Island Iced Tea",
+        "zh": "長島冰茶",
+        "aliases": [
+          "Long Island Iced Tea",
+          "長島冰茶"
+        ]
+      },
+      "classification": {
+        "official_category": "C7",
+        "learning_section": "C7",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 15 ml",
+          "White Rum 15 ml",
+          "Vodka 15 ml",
+          "Tequila 15 ml",
+          "Triple Sec 15 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Cola to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-033 | C7 | Long Island Iced Tea | 長島冰茶 | Collins Glass | Gin 15 ml | White Rum 15 ml | Vodka 15 ml | Tequila 15 ml | Triple Sec 15 ml | Fresh Lemon Juice 15 ml | Cola to 80% full | Build | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-034",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C7",
+        "source_record_id": "TW-B-034"
+      },
+      "names": {
+        "official": "Sangria",
+        "zh": "聖基亞",
+        "aliases": [
+          "Sangria",
+          "聖基亞"
+        ]
+      },
+      "classification": {
+        "official_category": "C7",
+        "learning_section": "C7",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 30 ml",
+          "Red Wine 30 ml",
+          "Grand Marnier 15 ml",
+          "Fresh Orange Juice 60 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Orange Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-034 | C7 | Sangria | 聖基亞 | Highball Glass | Brandy 30 ml | Red Wine 30 ml | Grand Marnier 15 ml | Fresh Orange Juice 60 ml | Shake | Orange Slice"
+    },
+    {
+      "recipe_id": "TW-B-035",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C7",
+        "source_record_id": "TW-B-035"
+      },
+      "names": {
+        "official": "White Russian",
+        "zh": "白色俄羅斯",
+        "aliases": [
+          "White Russian",
+          "白色俄羅斯"
+        ]
+      },
+      "classification": {
+        "official_category": "C7",
+        "learning_section": "C7",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Crème de Café 15 ml",
+          "Cream 30 ml"
+        ],
+        "method_source": [
+          "Build",
+          "Float"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-035 | C7 | White Russian | 白色俄羅斯 | Old Fashioned Glass | Vodka 45 ml | Crème de Café 15 ml | Cream 30 ml | Build | Float"
+    },
+    {
+      "recipe_id": "TW-B-036",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C8",
+        "source_record_id": "TW-B-036"
+      },
+      "names": {
+        "official": "Egg Nog",
+        "zh": "蛋酒",
+        "aliases": [
+          "Egg Nog",
+          "蛋酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C8",
+        "learning_section": "C8",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 30 ml",
+          "White Rum 15 ml",
+          "Milk 120 ml",
+          "Sugar Syrup 15 ml",
+          "Egg Yolk ×1"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Nutmeg Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-036 | C8 | Egg Nog | 蛋酒 | Highball Glass | Brandy 30 ml | White Rum 15 ml | Milk 120 ml | Sugar Syrup 15 ml | Egg Yolk ×1 | Shake | Nutmeg Powder"
+    },
+    {
+      "recipe_id": "TW-B-037",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C8",
+        "source_record_id": "TW-B-037"
+      },
+      "names": {
+        "official": "Frenchman",
+        "zh": "法國佬",
+        "aliases": [
+          "Frenchman",
+          "法國佬"
+        ]
+      },
+      "classification": {
+        "official_category": "C8",
+        "learning_section": "C8",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Grand Marnier 30 ml",
+          "Red Wine 60 ml",
+          "Fresh Orange Juice 15 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Sugar Syrup 10 ml",
+          "Boiling Water to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Toddy Glass",
+        "garnish_source": [
+          "Orange Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-037 | C8 | Frenchman | 法國佬 | Toddy Glass | Grand Marnier 30 ml | Red Wine 60 ml | Fresh Orange Juice 15 ml | Fresh Lemon Juice 15 ml | Sugar Syrup 10 ml | Boiling Water to 80% full | Build | Orange Peel"
+    },
+    {
+      "recipe_id": "TW-B-038",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C8",
+        "source_record_id": "TW-B-038"
+      },
+      "names": {
+        "official": "Brazilian Coffee",
+        "zh": "巴西佬咖啡",
+        "aliases": [
+          "Brazilian Coffee",
+          "巴西佬咖啡"
+        ]
+      },
+      "classification": {
+        "official_category": "C8",
+        "learning_section": "C8",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Cachaça 30 ml",
+          "Espresso 30 ml",
+          "Cream 30 ml",
+          "Sugar Syrup 15 ml"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-038 | C8 | Brazilian Coffee | 巴西佬咖啡 | Old Fashioned Glass | Cachaça 30 ml | Espresso 30 ml | Cream 30 ml | Sugar Syrup 15 ml | Blend | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-039",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C8",
+        "source_record_id": "TW-B-039"
+      },
+      "names": {
+        "official": "Orange Blossom",
+        "zh": "橘花",
+        "aliases": [
+          "Orange Blossom",
+          "橘花"
+        ]
+      },
+      "classification": {
+        "official_category": "C8",
+        "learning_section": "C8",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 30 ml",
+          "Rosso Vermouth 15 ml",
+          "Fresh Orange Juice 30 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Sugar Rim"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-039 | C8 | Orange Blossom | 橘花 | Cocktail Glass | Gin 30 ml | Rosso Vermouth 15 ml | Fresh Orange Juice 30 ml | Shake | Sugar Rim"
+    },
+    {
+      "recipe_id": "TW-B-040",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C8",
+        "source_record_id": "TW-B-040"
+      },
+      "names": {
+        "official": "John Collins",
+        "zh": "約翰可林",
+        "aliases": [
+          "John Collins",
+          "約翰可林"
+        ]
+      },
+      "classification": {
+        "official_category": "C8",
+        "learning_section": "C8",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Fresh Lemon Juice 30 ml",
+          "Sugar Syrup 15 ml",
+          "Soda Water to 80% full",
+          "Dash Angostura Bitters after mixing"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-040 | C8 | John Collins | 約翰可林 | Collins Glass | Bourbon Whiskey 45 ml | Fresh Lemon Juice 30 ml | Sugar Syrup 15 ml | Soda Water to 80% full | Dash Angostura Bitters after mixing | Build | Lemon Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-041",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C9",
+        "source_record_id": "TW-B-041"
+      },
+      "names": {
+        "official": "Kir Royale",
+        "zh": "皇家基爾",
+        "aliases": [
+          "Kir Royale",
+          "皇家基爾"
+        ]
+      },
+      "classification": {
+        "official_category": "C9",
+        "learning_section": "C9",
+        "main_method_search": "Pour",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Crème de Cassis 15 ml",
+          "Brut Champagne or Sparkling Wine to 80% full"
+        ],
+        "method_source": [
+          "Pour"
+        ],
+        "glassware_source": "Flute Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-041 | C9 | Kir Royale | 皇家基爾 | Flute Glass | Crème de Cassis 15 ml | Brut Champagne or Sparkling Wine to 80% full | Pour"
+    },
+    {
+      "recipe_id": "TW-B-042",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C9",
+        "source_record_id": "TW-B-042"
+      },
+      "names": {
+        "official": "Black Russian",
+        "zh": "黑色俄羅斯",
+        "aliases": [
+          "Black Russian",
+          "黑色俄羅斯"
+        ]
+      },
+      "classification": {
+        "official_category": "C9",
+        "learning_section": "C9",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Crème de Café 15 ml"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-042 | C9 | Black Russian | 黑色俄羅斯 | Old Fashioned Glass | Vodka 45 ml | Crème de Café 15 ml | Build"
+    },
+    {
+      "recipe_id": "TW-B-043",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C9",
+        "source_record_id": "TW-B-043"
+      },
+      "names": {
+        "official": "Sherry Flip",
+        "zh": "雪莉惠而浦",
+        "aliases": [
+          "Sherry Flip",
+          "雪莉惠而浦"
+        ]
+      },
+      "classification": {
+        "official_category": "C9",
+        "learning_section": "C9",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 15 ml",
+          "Sherry 45 ml",
+          "Egg White 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-043 | C9 | Sherry Flip | 雪莉惠而浦 | Cocktail Glass | Brandy 15 ml | Sherry 45 ml | Egg White 15 ml | Shake"
+    },
+    {
+      "recipe_id": "TW-B-044",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C9",
+        "source_record_id": "TW-B-044"
+      },
+      "names": {
+        "official": "Blue Bird",
+        "zh": "藍鳥",
+        "aliases": [
+          "Blue Bird",
+          "藍鳥"
+        ]
+      },
+      "classification": {
+        "official_category": "C9",
+        "learning_section": "C9",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 30 ml",
+          "Blue Curaçao Liqueur 15 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Almond Syrup 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-044 | C9 | Blue Bird | 藍鳥 | Cocktail Glass | Gin 30 ml | Blue Curaçao Liqueur 15 ml | Fresh Lemon Juice 15 ml | Almond Syrup 10 ml | Shake | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-045",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C9",
+        "source_record_id": "TW-B-045"
+      },
+      "names": {
+        "official": "Piña Colada",
+        "zh": "鳳梨可樂達",
+        "aliases": [
+          "Piña Colada",
+          "鳳梨可樂達"
+        ]
+      },
+      "classification": {
+        "official_category": "C9",
+        "learning_section": "C9",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 30 ml",
+          "Coconut Cream 30 ml",
+          "Pineapple Juice 90 ml"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Peeled Fresh Pineapple Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-045 | C9 | Piña Colada | 鳳梨可樂達 | Collins Glass | White Rum 30 ml | Coconut Cream 30 ml | Pineapple Juice 90 ml | Blend | Peeled Fresh Pineapple Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-046",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C10",
+        "source_record_id": "TW-B-046"
+      },
+      "names": {
+        "official": "Screwdriver",
+        "zh": "螺絲起子",
+        "aliases": [
+          "Screwdriver",
+          "螺絲起子"
+        ]
+      },
+      "classification": {
+        "official_category": "C10",
+        "learning_section": "C10",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Fresh Orange Juice to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Orange Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-046 | C10 | Screwdriver | 螺絲起子 | Highball Glass | Vodka 45 ml | Fresh Orange Juice to 80% full | Build | Orange Slice"
+    },
+    {
+      "recipe_id": "TW-B-047",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C10",
+        "source_record_id": "TW-B-047"
+      },
+      "names": {
+        "official": "Gin & It",
+        "zh": "義式琴酒",
+        "aliases": [
+          "Gin & It",
+          "義式琴酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C10",
+        "learning_section": "C10",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 45 ml",
+          "Rosso Vermouth 15 ml"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-047 | C10 | Gin & It | 義式琴酒 | Martini Glass | Gin 45 ml | Rosso Vermouth 15 ml | Stir | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-048",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C10",
+        "source_record_id": "TW-B-048"
+      },
+      "names": {
+        "official": "Classic Mojito",
+        "zh": "經典莫西多",
+        "aliases": [
+          "Classic Mojito",
+          "經典莫西多"
+        ]
+      },
+      "classification": {
+        "official_category": "C10",
+        "learning_section": "C10",
+        "main_method_search": "Muddle",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Cachaça 45 ml",
+          "Fresh Lime Juice 30 ml",
+          "1/2 Fresh Lime, cut into 4 pieces",
+          "Fresh Mint Leaves 12",
+          "Sugar 8 g",
+          "Soda Water to 80% full"
+        ],
+        "method_source": [
+          "Muddle",
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Mint Sprig"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-048 | C10 | Classic Mojito | 經典莫西多 | Highball Glass | Cachaça 45 ml | Fresh Lime Juice 30 ml | 1/2 Fresh Lime, cut into 4 pieces | Fresh Mint Leaves 12 | Sugar 8 g | Soda Water to 80% full | Muddle | Shake | Mint Sprig"
+    },
+    {
+      "recipe_id": "TW-B-049",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C10",
+        "source_record_id": "TW-B-049"
+      },
+      "names": {
+        "official": "Vanilla Espresso Martini",
+        "zh": "義式香草馬丁尼",
+        "aliases": [
+          "Vanilla Espresso Martini",
+          "義式香草馬丁尼"
+        ]
+      },
+      "classification": {
+        "official_category": "C10",
+        "learning_section": "C10",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vanilla Vodka 30 ml",
+          "Espresso 30 ml",
+          "Kahlúa 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-049 | C10 | Vanilla Espresso Martini | 義式香草馬丁尼 | Cocktail Glass | Vanilla Vodka 30 ml | Espresso 30 ml | Kahlúa 15 ml | Shake | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-050",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C10",
+        "source_record_id": "TW-B-050"
+      },
+      "names": {
+        "official": "Golden Rico",
+        "zh": "金色黎各",
+        "aliases": [
+          "Golden Rico",
+          "金色黎各"
+        ]
+      },
+      "classification": {
+        "official_category": "C10",
+        "learning_section": "C10",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 30 ml",
+          "Mozart Dark Chocolate Liqueur 15 ml",
+          "Orange Juice 45 ml",
+          "Cream 15 ml"
+        ],
+        "method_source": [
+          "Shake",
+          "Float"
+        ],
+        "glassware_source": "Large Cocktail Glass",
+        "garnish_source": [
+          "Cinnamon Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-050 | C10 | Golden Rico | 金色黎各 | Large Cocktail Glass | Vodka 30 ml | Mozart Dark Chocolate Liqueur 15 ml | Orange Juice 45 ml | Cream 15 ml | Shake | Float | Cinnamon Powder"
+    },
+    {
+      "recipe_id": "TW-B-051",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C11",
+        "source_record_id": "TW-B-051"
+      },
+      "names": {
+        "official": "Rainbow",
+        "zh": "彩虹酒",
+        "aliases": [
+          "Rainbow",
+          "彩虹酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C11",
+        "learning_section": "C11",
+        "main_method_search": "Layer",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Grenadine Syrup 1/7",
+          "Crème de Cassis 1/7",
+          "White Crème de Cacao 1/7",
+          "Blue Curaçao 1/7",
+          "Campari 1/7",
+          "Galliano 1/7",
+          "Brandy 1/7"
+        ],
+        "method_source": [
+          "Layer"
+        ],
+        "glassware_source": "Liqueur Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-051 | C11 | Rainbow | 彩虹酒 | Liqueur Glass | Grenadine Syrup 1/7 | Crème de Cassis 1/7 | White Crème de Cacao 1/7 | Blue Curaçao 1/7 | Campari 1/7 | Galliano 1/7 | Brandy 1/7 | Layer"
+    },
+    {
+      "recipe_id": "TW-B-052",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C11",
+        "source_record_id": "TW-B-052"
+      },
+      "names": {
+        "official": "Perfect Martini",
+        "zh": "完美馬丁尼",
+        "aliases": [
+          "Perfect Martini",
+          "完美馬丁尼"
+        ]
+      },
+      "classification": {
+        "official_category": "C11",
+        "learning_section": "C11",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 45 ml",
+          "Rosso Vermouth 10 ml",
+          "Dry Vermouth 10 ml"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Lemon Peel",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-052 | C11 | Perfect Martini | 完美馬丁尼 | Martini Glass | Gin 45 ml | Rosso Vermouth 10 ml | Dry Vermouth 10 ml | Stir | Lemon Peel | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-053",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C11",
+        "source_record_id": "TW-B-053"
+      },
+      "names": {
+        "official": "Side Car",
+        "zh": "側車",
+        "aliases": [
+          "Side Car",
+          "側車"
+        ]
+      },
+      "classification": {
+        "official_category": "C11",
+        "learning_section": "C11",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 30 ml",
+          "Triple Sec 15 ml",
+          "Fresh Lime Juice 30 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Lemon Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified_source_locked",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-053 | C11 | Side Car | 側車 | Cocktail Glass | Brandy 30 ml | Triple Sec 15 ml | Fresh Lime Juice 30 ml | Shake | Lemon Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-054",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C11",
+        "source_record_id": "TW-B-054"
+      },
+      "names": {
+        "official": "God Father",
+        "zh": "教父",
+        "aliases": [
+          "God Father",
+          "教父"
+        ]
+      },
+      "classification": {
+        "official_category": "C11",
+        "learning_section": "C11",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Blended Scotch Whisky 45 ml",
+          "Amaretto 15 ml"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-054 | C11 | God Father | 教父 | Old Fashioned Glass | Blended Scotch Whisky 45 ml | Amaretto 15 ml | Build"
+    },
+    {
+      "recipe_id": "TW-B-055",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C11",
+        "source_record_id": "TW-B-055"
+      },
+      "names": {
+        "official": "Blue Hawaiian",
+        "zh": "藍色夏威夷佬",
+        "aliases": [
+          "Blue Hawaiian",
+          "藍色夏威夷佬"
+        ]
+      },
+      "classification": {
+        "official_category": "C11",
+        "learning_section": "C11",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 45 ml",
+          "Blue Curaçao 30 ml",
+          "Coconut Cream 45 ml",
+          "Pineapple Juice 120 ml",
+          "Fresh Lemon Juice 15 ml"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Hurricane Glass",
+        "garnish_source": [
+          "Peeled Fresh Pineapple Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-055 | C11 | Blue Hawaiian | 藍色夏威夷佬 | Hurricane Glass | White Rum 45 ml | Blue Curaçao 30 ml | Coconut Cream 45 ml | Pineapple Juice 120 ml | Fresh Lemon Juice 15 ml | Blend | Peeled Fresh Pineapple Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-056",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C12",
+        "source_record_id": "TW-B-056"
+      },
+      "names": {
+        "official": "Mai Tai",
+        "zh": "邁泰",
+        "aliases": [
+          "Mai Tai",
+          "邁泰"
+        ]
+      },
+      "classification": {
+        "official_category": "C12",
+        "learning_section": "C12",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 30 ml",
+          "Orange Curaçao 15 ml",
+          "Sugar Syrup 10 ml",
+          "Fresh Lemon Juice 10 ml",
+          "Dark Rum 30 ml"
+        ],
+        "method_source": [
+          "Shake",
+          "Float Dark Rum"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Peeled Fresh Pineapple Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified_source_locked",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-056 | C12 | Mai Tai | 邁泰 | Old Fashioned Glass | White Rum 30 ml | Orange Curaçao 15 ml | Sugar Syrup 10 ml | Fresh Lemon Juice 10 ml | Dark Rum 30 ml | Shake | Float Dark Rum | Peeled Fresh Pineapple Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-057",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C12",
+        "source_record_id": "TW-B-057"
+      },
+      "names": {
+        "official": "Bloody Mary",
+        "zh": "血腥瑪莉",
+        "aliases": [
+          "Bloody Mary",
+          "血腥瑪莉"
+        ]
+      },
+      "classification": {
+        "official_category": "C12",
+        "learning_section": "C12",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Tomato Juice to 80% full",
+          "Dash Tabasco",
+          "Dash Worcestershire Sauce",
+          "Salt & Pepper to taste"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Lemon Wedge",
+          "Celery Stick"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-057 | C12 | Bloody Mary | 血腥瑪莉 | Highball Glass | Vodka 45 ml | Fresh Lemon Juice 15 ml | Tomato Juice to 80% full | Dash Tabasco | Dash Worcestershire Sauce | Salt & Pepper to taste | Build | Lemon Wedge | Celery Stick"
+    },
+    {
+      "recipe_id": "TW-B-058",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C12",
+        "source_record_id": "TW-B-058"
+      },
+      "names": {
+        "official": "White Sangria",
+        "zh": "白色聖基亞",
+        "aliases": [
+          "White Sangria",
+          "白色聖基亞"
+        ]
+      },
+      "classification": {
+        "official_category": "C12",
+        "learning_section": "C12",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Grand Marnier 30 ml",
+          "White Wine 60 ml",
+          "7-Up to 80% full"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Slice",
+          "Orange Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-058 | C12 | White Sangria | 白色聖基亞 | Collins Glass | Grand Marnier 30 ml | White Wine 60 ml | 7-Up to 80% full | Shake | Lemon Slice | Orange Slice"
+    },
+    {
+      "recipe_id": "TW-B-059",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C12",
+        "source_record_id": "TW-B-059"
+      },
+      "names": {
+        "official": "Vodka Espresso",
+        "zh": "義式伏特加",
+        "aliases": [
+          "Vodka Espresso",
+          "義式伏特加"
+        ]
+      },
+      "classification": {
+        "official_category": "C12",
+        "learning_section": "C12",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 30 ml",
+          "Espresso 30 ml",
+          "Crème de Café 15 ml",
+          "Sugar Syrup 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-059 | C12 | Vodka Espresso | 義式伏特加 | Old Fashioned Glass | Vodka 30 ml | Espresso 30 ml | Crème de Café 15 ml | Sugar Syrup 10 ml | Shake | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-060",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C12",
+        "source_record_id": "TW-B-060"
+      },
+      "names": {
+        "official": "Frozen Margarita",
+        "zh": "霜凍瑪格麗特",
+        "aliases": [
+          "Frozen Margarita",
+          "霜凍瑪格麗特"
+        ]
+      },
+      "classification": {
+        "official_category": "C12",
+        "learning_section": "C12",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Tequila 30 ml",
+          "Triple Sec 15 ml",
+          "Fresh Lime Juice 15 ml"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Margarita Glass",
+        "garnish_source": [
+          "Salt Rim"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-060 | C12 | Frozen Margarita | 霜凍瑪格麗特 | Margarita Glass | Tequila 30 ml | Triple Sec 15 ml | Fresh Lime Juice 15 ml | Blend | Salt Rim"
+    },
+    {
+      "recipe_id": "TW-B-061",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C13",
+        "source_record_id": "TW-B-061"
+      },
+      "names": {
+        "official": "New York",
+        "zh": "紐約",
+        "aliases": [
+          "New York",
+          "紐約"
+        ]
+      },
+      "classification": {
+        "official_category": "C13",
+        "learning_section": "C13",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Fresh Lime Juice 15 ml",
+          "Sugar Syrup 10 ml",
+          "Grenadine Syrup 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Orange Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-061 | C13 | New York | 紐約 | Cocktail Glass | Bourbon Whiskey 45 ml | Fresh Lime Juice 15 ml | Sugar Syrup 10 ml | Grenadine Syrup 10 ml | Shake | Orange Slice"
+    },
+    {
+      "recipe_id": "TW-B-062",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C13",
+        "source_record_id": "TW-B-062"
+      },
+      "names": {
+        "official": "Cuba Libre",
+        "zh": "自由古巴",
+        "aliases": [
+          "Cuba Libre",
+          "自由古巴"
+        ]
+      },
+      "classification": {
+        "official_category": "C13",
+        "learning_section": "C13",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Dark Rum 45 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Cola to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Lemon Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified_source_locked",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-062 | C13 | Cuba Libre | 自由古巴 | Highball Glass | Dark Rum 45 ml | Fresh Lemon Juice 15 ml | Cola to 80% full | Build | Lemon Slice"
+    },
+    {
+      "recipe_id": "TW-B-063",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C13",
+        "source_record_id": "TW-B-063"
+      },
+      "names": {
+        "official": "Amaretto Sour",
+        "zh": "杏仁酸酒",
+        "aliases": [
+          "Amaretto Sour",
+          "杏仁酸酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C13",
+        "learning_section": "C13",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Amaretto 45 ml",
+          "Fresh Lemon Juice 30 ml",
+          "Sugar Syrup 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Orange Slice",
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-063 | C13 | Amaretto Sour | 杏仁酸酒 | Old Fashioned Glass | Amaretto 45 ml | Fresh Lemon Juice 30 ml | Sugar Syrup 10 ml | Shake | Orange Slice | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-064",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C13",
+        "source_record_id": "TW-B-064"
+      },
+      "names": {
+        "official": "Brandy Alexander",
+        "zh": "白蘭地亞歷山大",
+        "aliases": [
+          "Brandy Alexander",
+          "白蘭地亞歷山大"
+        ]
+      },
+      "classification": {
+        "official_category": "C13",
+        "learning_section": "C13",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 20 ml",
+          "Brown Crème de Cacao 20 ml",
+          "Cream 20 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Nutmeg Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-064 | C13 | Brandy Alexander | 白蘭地亞歷山大 | Cocktail Glass | Brandy 20 ml | Brown Crème de Cacao 20 ml | Cream 20 ml | Shake | Nutmeg Powder"
+    },
+    {
+      "recipe_id": "TW-B-065",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C13",
+        "source_record_id": "TW-B-065"
+      },
+      "names": {
+        "official": "Jalisco Espresso",
+        "zh": "墨西哥義式咖啡",
+        "aliases": [
+          "Jalisco Espresso",
+          "墨西哥義式咖啡"
+        ]
+      },
+      "classification": {
+        "official_category": "C13",
+        "learning_section": "C13",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Tequila 30 ml",
+          "Espresso 30 ml",
+          "Kahlúa 30 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-065 | C13 | Jalisco Espresso | 墨西哥義式咖啡 | Old Fashioned Glass | Tequila 30 ml | Espresso 30 ml | Kahlúa 30 ml | Shake | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-066",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C14",
+        "source_record_id": "TW-B-066"
+      },
+      "names": {
+        "official": "Apple Mojito",
+        "zh": "蘋果莫西多",
+        "aliases": [
+          "Apple Mojito",
+          "蘋果莫西多"
+        ]
+      },
+      "classification": {
+        "official_category": "C14",
+        "learning_section": "C14",
+        "main_method_search": "Muddle",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 45 ml",
+          "Fresh Lime Juice 30 ml",
+          "Sour Apple Liqueur 15 ml",
+          "Fresh Mint Leaves 12",
+          "Apple Juice to 80% full"
+        ],
+        "method_source": [
+          "Muddle",
+          "Build"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Mint Sprig"
+        ],
+        "notes": "Crushed Ice inclusion differs by version; do not mark App Final yet."
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "review",
+        "source_status_original": "review",
+        "app_final": false,
+        "review_note": "Crushed Ice inclusion differs by version; do not mark App Final yet."
+      },
+      "search_index": "TW-B-066 | C14 | Apple Mojito | 蘋果莫西多 | Collins Glass | White Rum 45 ml | Fresh Lime Juice 30 ml | Sour Apple Liqueur 15 ml | Fresh Mint Leaves 12 | Apple Juice to 80% full | Muddle | Build | Mint Sprig"
+    },
+    {
+      "recipe_id": "TW-B-067",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C14",
+        "source_record_id": "TW-B-067"
+      },
+      "names": {
+        "official": "New Yorker",
+        "zh": "紐約客",
+        "aliases": [
+          "New Yorker",
+          "紐約客"
+        ]
+      },
+      "classification": {
+        "official_category": "C14",
+        "learning_section": "C14",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Red Wine 45 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Sugar Syrup 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Large Cocktail Glass",
+        "garnish_source": [
+          "Orange Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-067 | C14 | New Yorker | 紐約客 | Large Cocktail Glass | Bourbon Whiskey 45 ml | Red Wine 45 ml | Fresh Lemon Juice 15 ml | Sugar Syrup 15 ml | Shake | Orange Peel"
+    },
+    {
+      "recipe_id": "TW-B-068",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C14",
+        "source_record_id": "TW-B-068"
+      },
+      "names": {
+        "official": "Kiwi Batida",
+        "zh": "奇異果巴迪達",
+        "aliases": [
+          "Kiwi Batida",
+          "奇異果巴迪達"
+        ]
+      },
+      "classification": {
+        "official_category": "C14",
+        "learning_section": "C14",
+        "main_method_search": "Blend",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Cachaça 60 ml",
+          "Sugar Syrup 30 ml",
+          "Fresh Kiwi ×1"
+        ],
+        "method_source": [
+          "Blend"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Kiwi Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-068 | C14 | Kiwi Batida | 奇異果巴迪達 | Collins Glass | Cachaça 60 ml | Sugar Syrup 30 ml | Fresh Kiwi ×1 | Blend | Kiwi Slice"
+    },
+    {
+      "recipe_id": "TW-B-069",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C14",
+        "source_record_id": "TW-B-069"
+      },
+      "names": {
+        "official": "Bellini",
+        "zh": "貝利尼",
+        "aliases": [
+          "Bellini",
+          "貝利尼"
+        ]
+      },
+      "classification": {
+        "official_category": "C14",
+        "learning_section": "C14",
+        "main_method_search": "Pour",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Peach Liqueur 15 ml",
+          "Brut Champagne or Sparkling Wine to 80% full"
+        ],
+        "method_source": [
+          "Pour"
+        ],
+        "glassware_source": "Flute Glass",
+        "garnish_source": [],
+        "notes": "Version conflict: 5/6 sparkling wine + 1/6 peach liqueur vs 15 ml peach liqueur + fill to 80%."
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "review",
+        "source_status_original": "review",
+        "app_final": false,
+        "review_note": "Version conflict: 5/6 sparkling wine + 1/6 peach liqueur vs 15 ml peach liqueur + fill to 80%."
+      },
+      "search_index": "TW-B-069 | C14 | Bellini | 貝利尼 | Flute Glass | Peach Liqueur 15 ml | Brut Champagne or Sparkling Wine to 80% full | Pour"
+    },
+    {
+      "recipe_id": "TW-B-070",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C14",
+        "source_record_id": "TW-B-070"
+      },
+      "names": {
+        "official": "Angel's Kiss",
+        "zh": "天使之吻",
+        "aliases": [
+          "Angel's Kiss",
+          "天使之吻"
+        ]
+      },
+      "classification": {
+        "official_category": "C14",
+        "learning_section": "C14",
+        "main_method_search": "Layer",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brown Crème de Cacao 3/4",
+          "Cream 1/4",
+          "Total to 90% full"
+        ],
+        "method_source": [
+          "Layer"
+        ],
+        "glassware_source": "Liqueur Glass",
+        "garnish_source": [
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-070 | C14 | Angel's Kiss | 天使之吻 | Liqueur Glass | Brown Crème de Cacao 3/4 | Cream 1/4 | Total to 90% full | Layer | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-071",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C15",
+        "source_record_id": "TW-B-071"
+      },
+      "names": {
+        "official": "Porto Flip",
+        "zh": "波特惠而浦",
+        "aliases": [
+          "Porto Flip",
+          "波特惠而浦"
+        ]
+      },
+      "classification": {
+        "official_category": "C15",
+        "learning_section": "C15",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 10 ml",
+          "Tawny Port 45 ml",
+          "Egg Yolk ×1"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Nutmeg Powder"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-071 | C15 | Porto Flip | 波特惠而浦 | Cocktail Glass | Brandy 10 ml | Tawny Port 45 ml | Egg Yolk ×1 | Shake | Nutmeg Powder"
+    },
+    {
+      "recipe_id": "TW-B-072",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C15",
+        "source_record_id": "TW-B-072"
+      },
+      "names": {
+        "official": "Harvey Wallbanger",
+        "zh": "哈維撞牆",
+        "aliases": [
+          "Harvey Wallbanger",
+          "哈維撞牆"
+        ]
+      },
+      "classification": {
+        "official_category": "C15",
+        "learning_section": "C15",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Orange Juice 90 ml",
+          "Galliano 15 ml"
+        ],
+        "method_source": [
+          "Build",
+          "Float"
+        ],
+        "glassware_source": "Highball Glass 240 ml",
+        "garnish_source": [
+          "Orange Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-072 | C15 | Harvey Wallbanger | 哈維撞牆 | Highball Glass 240 ml | Vodka 45 ml | Orange Juice 90 ml | Galliano 15 ml | Build | Float | Orange Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-073",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C15",
+        "source_record_id": "TW-B-073"
+      },
+      "names": {
+        "official": "Cosmopolitan",
+        "zh": "四海一家",
+        "aliases": [
+          "Cosmopolitan",
+          "四海一家"
+        ]
+      },
+      "classification": {
+        "official_category": "C15",
+        "learning_section": "C15",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Triple Sec 15 ml",
+          "Fresh Lime Juice 15 ml",
+          "Cranberry Juice 30 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Large Cocktail Glass",
+        "garnish_source": [
+          "Lime Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified_source_locked",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-073 | C15 | Cosmopolitan | 四海一家 | Large Cocktail Glass | Vodka 45 ml | Triple Sec 15 ml | Fresh Lime Juice 15 ml | Cranberry Juice 30 ml | Shake | Lime Slice"
+    },
+    {
+      "recipe_id": "TW-B-074",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C15",
+        "source_record_id": "TW-B-074"
+      },
+      "names": {
+        "official": "Apple Manhattan",
+        "zh": "蘋果曼哈頓",
+        "aliases": [
+          "Apple Manhattan",
+          "蘋果曼哈頓"
+        ]
+      },
+      "classification": {
+        "official_category": "C15",
+        "learning_section": "C15",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 30 ml",
+          "Sour Apple Liqueur 15 ml",
+          "Triple Sec 15 ml",
+          "Rosso/Sweet Vermouth 15 ml"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Apple Tower"
+        ],
+        "notes": "Official wording differs by version: Sweet Vermouth vs Rosso Vermouth."
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "review",
+        "source_status_original": "review",
+        "app_final": false,
+        "review_note": "Official wording differs by version: Sweet Vermouth vs Rosso Vermouth."
+      },
+      "search_index": "TW-B-074 | C15 | Apple Manhattan | 蘋果曼哈頓 | Cocktail Glass | Bourbon Whiskey 30 ml | Sour Apple Liqueur 15 ml | Triple Sec 15 ml | Rosso/Sweet Vermouth 15 ml | Stir | Apple Tower"
+    },
+    {
+      "recipe_id": "TW-B-075",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C15",
+        "source_record_id": "TW-B-075"
+      },
+      "names": {
+        "official": "Jolt'ini",
+        "zh": "震撼",
+        "aliases": [
+          "Jolt'ini",
+          "震撼"
+        ]
+      },
+      "classification": {
+        "official_category": "C15",
+        "learning_section": "C15",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 30 ml",
+          "Espresso 30 ml",
+          "Crème de Café 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Coffee Beans ×3"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-075 | C15 | Jolt'ini | 震撼 | Old Fashioned Glass | Vodka 30 ml | Espresso 30 ml | Crème de Café 15 ml | Shake | Coffee Beans ×3"
+    },
+    {
+      "recipe_id": "TW-B-076",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C16",
+        "source_record_id": "TW-B-076"
+      },
+      "names": {
+        "official": "Singapore Sling",
+        "zh": "新加坡司令",
+        "aliases": [
+          "Singapore Sling",
+          "新加坡司令"
+        ]
+      },
+      "classification": {
+        "official_category": "C16",
+        "learning_section": "C16",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 30 ml",
+          "Cherry Brandy (Liqueur) 15 ml",
+          "Cointreau 10 ml",
+          "Bénédictine 10 ml",
+          "Grenadine Syrup 10 ml",
+          "Pineapple Juice 90 ml",
+          "Fresh Lemon Juice 15 ml",
+          "Dash Angostura Bitters"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Peeled Fresh Pineapple Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-076 | C16 | Singapore Sling | 新加坡司令 | Collins Glass | Gin 30 ml | Cherry Brandy (Liqueur) 15 ml | Cointreau 10 ml | Bénédictine 10 ml | Grenadine Syrup 10 ml | Pineapple Juice 90 ml | Fresh Lemon Juice 15 ml | Dash Angostura Bitters | Shake | Peeled Fresh Pineapple Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-077",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C16",
+        "source_record_id": "TW-B-077"
+      },
+      "names": {
+        "official": "Caipirinha",
+        "zh": "卡碧尼亞",
+        "aliases": [
+          "Caipirinha",
+          "卡碧尼亞"
+        ]
+      },
+      "classification": {
+        "official_category": "C16",
+        "learning_section": "C16",
+        "main_method_search": "Muddle",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Cachaça 45 ml",
+          "Fresh Lime Juice 15 ml",
+          "1/2 Fresh Lime, cut into 4 pieces",
+          "Sugar 8 g"
+        ],
+        "method_source": [
+          "Muddle",
+          "Build"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-077 | C16 | Caipirinha | 卡碧尼亞 | Old Fashioned Glass | Cachaça 45 ml | Fresh Lime Juice 15 ml | 1/2 Fresh Lime, cut into 4 pieces | Sugar 8 g | Muddle | Build"
+    },
+    {
+      "recipe_id": "TW-B-078",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C16",
+        "source_record_id": "TW-B-078"
+      },
+      "names": {
+        "official": "Caravan",
+        "zh": "車隊",
+        "aliases": [
+          "Caravan",
+          "車隊"
+        ]
+      },
+      "classification": {
+        "official_category": "C16",
+        "learning_section": "C16",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Red Wine 90 ml",
+          "Grand Marnier 15 ml",
+          "Cola to 80% full"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-078 | C16 | Caravan | 車隊 | Collins Glass | Red Wine 90 ml | Grand Marnier 15 ml | Cola to 80% full | Build | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-079",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C16",
+        "source_record_id": "TW-B-079"
+      },
+      "names": {
+        "official": "Gibson",
+        "zh": "吉普森",
+        "aliases": [
+          "Gibson",
+          "吉普森"
+        ]
+      },
+      "classification": {
+        "official_category": "C16",
+        "learning_section": "C16",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Gin 45 ml",
+          "Dry Vermouth 15 ml"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Cocktail Onion"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-079 | C16 | Gibson | 吉普森 | Martini Glass | Gin 45 ml | Dry Vermouth 15 ml | Stir | Cocktail Onion"
+    },
+    {
+      "recipe_id": "TW-B-080",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C16",
+        "source_record_id": "TW-B-080"
+      },
+      "names": {
+        "official": "Flying Grasshopper",
+        "zh": "飛天蚱蜢",
+        "aliases": [
+          "Flying Grasshopper",
+          "飛天蚱蜢"
+        ]
+      },
+      "classification": {
+        "official_category": "C16",
+        "learning_section": "C16",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 30 ml",
+          "Green Crème de Menthe 15 ml",
+          "White Crème de Cacao 15 ml",
+          "Cream 15 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Cocoa Powder",
+          "Mint Leaves"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-080 | C16 | Flying Grasshopper | 飛天蚱蜢 | Cocktail Glass | Vodka 30 ml | Green Crème de Menthe 15 ml | White Crème de Cacao 15 ml | Cream 15 ml | Shake | Cocoa Powder | Mint Leaves"
+    },
+    {
+      "recipe_id": "TW-B-081",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C17",
+        "source_record_id": "TW-B-081"
+      },
+      "names": {
+        "official": "Banana Frozen Daiquiri",
+        "zh": "霜凍香蕉戴吉利",
+        "aliases": [
+          "Banana Frozen Daiquiri",
+          "霜凍香蕉戴吉利"
+        ]
+      },
+      "classification": {
+        "official_category": "C17",
+        "learning_section": "C17",
+        "main_method_search": "Blend / Frozen",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "White Rum 30 ml",
+          "Fresh Lime Juice 10 ml",
+          "Sugar Syrup 15 ml",
+          "1/2 Fresh Peeled Banana"
+        ],
+        "method_source": [
+          "Blend / Frozen"
+        ],
+        "glassware_source": "Large Cocktail Glass",
+        "garnish_source": [
+          "Banana Slice",
+          "Cherry"
+        ],
+        "notes": "Method label differs by version: Frozen vs Blend."
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "review",
+        "source_status_original": "review",
+        "app_final": false,
+        "review_note": "Method label differs by version: Frozen vs Blend."
+      },
+      "search_index": "TW-B-081 | C17 | Banana Frozen Daiquiri | 霜凍香蕉戴吉利 | Large Cocktail Glass | White Rum 30 ml | Fresh Lime Juice 10 ml | Sugar Syrup 15 ml | 1/2 Fresh Peeled Banana | Blend / Frozen | Banana Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-082",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C17",
+        "source_record_id": "TW-B-082"
+      },
+      "names": {
+        "official": "Whiskey Sour",
+        "zh": "威士忌酸酒",
+        "aliases": [
+          "Whiskey Sour",
+          "威士忌酸酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C17",
+        "learning_section": "C17",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "Fresh Lemon Juice 30 ml",
+          "Sugar Syrup 30 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Sour Glass",
+        "garnish_source": [
+          "1/2 Orange Slice",
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-082 | C17 | Whiskey Sour | 威士忌酸酒 | Sour Glass | Bourbon Whiskey 45 ml | Fresh Lemon Juice 30 ml | Sugar Syrup 30 ml | Shake | 1/2 Orange Slice | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-083",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C17",
+        "source_record_id": "TW-B-083"
+      },
+      "names": {
+        "official": "Rob Roy",
+        "zh": "羅伯羅依",
+        "aliases": [
+          "Rob Roy",
+          "羅伯羅依"
+        ]
+      },
+      "classification": {
+        "official_category": "C17",
+        "learning_section": "C17",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Blended Scotch Whisky 45 ml",
+          "Rosso Vermouth 15 ml",
+          "Dash Angostura Bitters"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Martini Glass",
+        "garnish_source": [
+          "Cherry"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-083 | C17 | Rob Roy | 羅伯羅依 | Martini Glass | Blended Scotch Whisky 45 ml | Rosso Vermouth 15 ml | Dash Angostura Bitters | Stir | Cherry"
+    },
+    {
+      "recipe_id": "TW-B-084",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C17",
+        "source_record_id": "TW-B-084"
+      },
+      "names": {
+        "official": "Kir",
+        "zh": "基爾",
+        "aliases": [
+          "Kir",
+          "基爾"
+        ]
+      },
+      "classification": {
+        "official_category": "C17",
+        "learning_section": "C17",
+        "main_method_search": "Pour",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Crème de Cassis 10 ml",
+          "Dry White Wine to 80% full"
+        ],
+        "method_source": [
+          "Pour"
+        ],
+        "glassware_source": "White Wine Glass",
+        "garnish_source": [],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-084 | C17 | Kir | 基爾 | White Wine Glass | Crème de Cassis 10 ml | Dry White Wine to 80% full | Pour"
+    },
+    {
+      "recipe_id": "TW-B-085",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C17",
+        "source_record_id": "TW-B-085"
+      },
+      "names": {
+        "official": "Horse's Neck",
+        "zh": "馬頸",
+        "aliases": [
+          "Horse's Neck",
+          "馬頸"
+        ]
+      },
+      "classification": {
+        "official_category": "C17",
+        "learning_section": "C17",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Brandy 45 ml",
+          "Ginger Ale to 80% full",
+          "Dash Angostura Bitters after mixing"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Lemon Spiral"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "corrected_verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-085 | C17 | Horse's Neck | 馬頸 | Highball Glass | Brandy 45 ml | Ginger Ale to 80% full | Dash Angostura Bitters after mixing | Build | Lemon Spiral"
+    },
+    {
+      "recipe_id": "TW-B-086",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C18",
+        "source_record_id": "TW-B-086"
+      },
+      "names": {
+        "official": "Rusty Nail",
+        "zh": "銹釘子",
+        "aliases": [
+          "Rusty Nail",
+          "銹釘子"
+        ]
+      },
+      "classification": {
+        "official_category": "C18",
+        "learning_section": "C18",
+        "main_method_search": "Stir",
+        "alcoholic": true,
+        "servings": 3
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Blended Scotch Whisky 45 ml",
+          "Drambuie 30 ml"
+        ],
+        "method_source": [
+          "Stir"
+        ],
+        "glassware_source": "Cocktail Glass",
+        "garnish_source": [
+          "Lemon Peel"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-086 | C18 | Rusty Nail | 銹釘子 | Cocktail Glass | Blended Scotch Whisky 45 ml | Drambuie 30 ml | Stir | Lemon Peel"
+    },
+    {
+      "recipe_id": "TW-B-087",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C18",
+        "source_record_id": "TW-B-087"
+      },
+      "names": {
+        "official": "Sex on the Beach",
+        "zh": "性感沙灘",
+        "aliases": [
+          "Sex on the Beach",
+          "性感沙灘"
+        ]
+      },
+      "classification": {
+        "official_category": "C18",
+        "learning_section": "C18",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 45 ml",
+          "Peach Liqueur 15 ml",
+          "Orange Juice 30 ml",
+          "Cranberry Juice 30 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Highball Glass",
+        "garnish_source": [
+          "Orange Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-087 | C18 | Sex on the Beach | 性感沙灘 | Highball Glass | Vodka 45 ml | Peach Liqueur 15 ml | Orange Juice 30 ml | Cranberry Juice 30 ml | Shake | Orange Slice"
+    },
+    {
+      "recipe_id": "TW-B-088",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C18",
+        "source_record_id": "TW-B-088"
+      },
+      "names": {
+        "official": "Strawberry Night",
+        "zh": "草莓夜",
+        "aliases": [
+          "Strawberry Night",
+          "草莓夜"
+        ]
+      },
+      "classification": {
+        "official_category": "C18",
+        "learning_section": "C18",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Vodka 20 ml",
+          "Passion Fruit Liqueur 20 ml",
+          "Sour Apple Liqueur 20 ml",
+          "Strawberry Juice 40 ml",
+          "Sugar Syrup 10 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Large Cocktail Glass",
+        "garnish_source": [
+          "Apple Tower"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-088 | C18 | Strawberry Night | 草莓夜 | Large Cocktail Glass | Vodka 20 ml | Passion Fruit Liqueur 20 ml | Sour Apple Liqueur 20 ml | Strawberry Juice 40 ml | Sugar Syrup 10 ml | Shake | Apple Tower"
+    },
+    {
+      "recipe_id": "TW-B-089",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C18",
+        "source_record_id": "TW-B-089"
+      },
+      "names": {
+        "official": "Old Fashioned",
+        "zh": "古典酒",
+        "aliases": [
+          "Old Fashioned",
+          "古典酒"
+        ]
+      },
+      "classification": {
+        "official_category": "C18",
+        "learning_section": "C18",
+        "main_method_search": "Build",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bourbon Whiskey 45 ml",
+          "2 Dashes Angostura Bitters",
+          "Sugar 8 g",
+          "Splash Soda Water"
+        ],
+        "method_source": [
+          "Build"
+        ],
+        "glassware_source": "Old Fashioned Glass",
+        "garnish_source": [
+          "Orange Slice",
+          "Lemon Peel",
+          "Cherry ×2"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified_source_locked",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-089 | C18 | Old Fashioned | 古典酒 | Old Fashioned Glass | Bourbon Whiskey 45 ml | 2 Dashes Angostura Bitters | Sugar 8 g | Splash Soda Water | Build | Orange Slice | Lemon Peel | Cherry ×2"
+    },
+    {
+      "recipe_id": "TW-B-090",
+      "source": {
+        "source_system": "Taiwan Beverage Preparation Level B",
+        "source_version": "0.9-review",
+        "source_type": "official_exam_recipe_collection",
+        "source_group": "C18",
+        "source_record_id": "TW-B-090"
+      },
+      "names": {
+        "official": "Tropic",
+        "zh": "熱帶",
+        "aliases": [
+          "Tropic",
+          "熱帶"
+        ]
+      },
+      "classification": {
+        "official_category": "C18",
+        "learning_section": "C18",
+        "main_method_search": "Shake",
+        "alcoholic": true,
+        "servings": 1
+      },
+      "recipe": {
+        "ingredients_source": [
+          "Bénédictine 30 ml",
+          "White Wine 60 ml",
+          "Fresh Grapefruit Juice 60 ml"
+        ],
+        "method_source": [
+          "Shake"
+        ],
+        "glassware_source": "Collins Glass",
+        "garnish_source": [
+          "Lemon Slice"
+        ],
+        "notes": null
+      },
+      "assets": {
+        "icon_filename": null,
+        "cocktail_image": {
+          "normal": null,
+          "pixel16": null
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "source_status_original": "verified",
+        "app_final": true,
+        "review_note": null
+      },
+      "search_index": "TW-B-090 | C18 | Tropic | 熱帶 | Collins Glass | Bénédictine 30 ml | White Wine 60 ml | Fresh Grapefruit Juice 60 ml | Shake | Lemon Slice"
+    }
+  ]
+}
