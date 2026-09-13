@@ -525,12 +525,12 @@
         </div>
 
 
-        <!-- v1.1-test：酒譜來源切換 -->
+        <!-- v1.0-test：酒譜來源切換 -->
         <div class="controls" style="margin-bottom:14px;">
             <div class="input-group" style="margin-bottom:0;">
                 <select id="sourceSelect" class="input-rpg" aria-label="酒譜來源">
                     <option value="iba">IBA 101</option>
-                    <option value="twLevelB">台灣飲料調製乙級 90</option>
+                    <option value="twLevelB">乙級飲料調製(調酒)</option>
                 </select>
                 <div id="sourceHint" style="font-size:12px;color:var(--text-muted);margin-top:6px;">
                     目前來源：IBA 101
@@ -622,16 +622,6 @@
 </div>
 
 <script>
-
-    // v1.1: 將 JSON 內的 repository-relative 圖片路徑轉成 GitHub Pages 可用網址
-    function resolveAssetPath(path) {
-        if (!path) return "";
-        if (/^https?:\/\//i.test(path)) return path;
-        if (path.startsWith("/classic-cocktail-bar/")) return path;
-        if (path.startsWith("assets/")) return "/classic-cocktail-bar/" + path;
-        return path;
-    }
-
     // v1.0-test Multi-Source：保留 v0.9 功能，新增 IBA 101 / 台灣乙級 90 切換
     const DATA_SOURCES = {
         iba: {
@@ -642,8 +632,8 @@
         },
         twLevelB: {
             key: 'twLevelB',
-            label: '台灣飲料調製乙級 90',
-            path: '/classic-cocktail-bar/data/taiwan-level-b-master-v1.1.json',
+            label: '乙級飲料調製(調酒)',
+            path: '/classic-cocktail-bar/data/taiwan-level-b-master-v1.2-images.json',
             expectedCount: 90
         }
     };
@@ -1204,7 +1194,7 @@
 
         if (sourceSelect) sourceSelect.value = currentSource;
         if (sourceHint) sourceHint.textContent = `目前來源：${config.label}`;
-        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '台灣飲料調製乙級 90';
+        if (appTitle) appTitle.textContent = currentSource === 'iba' ? 'IBA 101 經典調酒吧' : '乙級飲料調製(調酒)';
 
         try {
             const response = await fetch(config.path, { cache: 'no-store' });
@@ -1405,11 +1395,32 @@
     const COCKTAIL_ASSET_BASE = '/classic-cocktail-bar/assets/cocktails/';
     const cocktailImageMode = 'normal'; // future: pixel16
 
+    // v1.1：新版 JSON 的 cocktail_image.normal 已存完整 repository-relative path。
+    // 例如：
+    // assets/cocktails/iba/normal/001-dry-martini.webp
+    // assets/cocktails/taiwan-level-b/normal/001-espresso-daiquiri.webp
+    function resolveAssetPath(path) {
+        if (!path) return '';
+        if (/^https?:\/\//i.test(path)) return path;
+        if (path.startsWith('/classic-cocktail-bar/')) return path;
+        if (path.startsWith('assets/')) return '/classic-cocktail-bar/' + path;
+        return path;
+    }
+
     function cocktailImageUrl(c, mode = cocktailImageMode) {
-        const filename = mode === 'pixel16' ? c.cocktail_image_pixel16 : c.cocktail_image_normal;
-        if (!filename) return '';
-        if (currentSource === 'iba') return `${COCKTAIL_ASSET_BASE}${mode}/${encodeURIComponent(filename)}`;
-        return `${COCKTAIL_ASSET_BASE}tw-level-b/${mode}/${encodeURIComponent(filename)}`;
+        const imagePath = mode === 'pixel16' ? c.cocktail_image_pixel16 : c.cocktail_image_normal;
+        if (!imagePath) return '';
+
+        // 新版 JSON：直接使用資料中的完整相對路徑。
+        if (imagePath.startsWith('assets/') || imagePath.startsWith('/classic-cocktail-bar/') || /^https?:\/\//i.test(imagePath)) {
+            return resolveAssetPath(imagePath);
+        }
+
+        // 舊資料相容 fallback（若未來暫時載入舊 JSON 仍可顯示）
+        if (currentSource === 'iba') {
+            return `${COCKTAIL_ASSET_BASE}iba/${mode}/${encodeURIComponent(imagePath)}`;
+        }
+        return `${COCKTAIL_ASSET_BASE}taiwan-level-b/${mode}/${encodeURIComponent(imagePath)}`;
     }
 
     function cardImageHtml(c) {
