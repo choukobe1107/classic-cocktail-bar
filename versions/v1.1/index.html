@@ -843,23 +843,24 @@
         const n = String(name || '').trim().toLowerCase();
         const p = String(primarySpirit || '').trim().toLowerCase();
 
-        const groupPatterns = {
-            Gin: [/^gin/, /^london dry gin/, /^old tom gin/],
-            Vodka: [/^vodka/, /^vodka citron/],
-            Rum: [/^rum/, /^white rum/, /^dark rum/, /^rhum/, /^ron/, /^white cuban ron/],
-            Tequila: [/^tequila/],
-            Whiskey: [/^whiskey/, /^whisky/, /^bourbon/, /^rye whiskey/, /^blended scotch whisky/],
-            Brandy: [/^brandy/, /^cognac/, /^calvados/],
+        const startsWithTerm = (value, term) =>
+            value === term || value.startsWith(term + ' ');
+
+        // 先比對資料中已判定的 primarySpirit。
+        if (p && startsWithTerm(n, p)) return true;
+
+        // 再依主酒群組比對。避免 Ginger Ale 因含有 "gin" 而誤判成 Gin。
+        const groupTerms = {
+            Gin: ['gin', 'london dry gin', 'old tom gin'],
+            Vodka: ['vodka', 'vodka citron'],
+            Rum: ['rum', 'white rum', 'dark rum', 'rhum', 'ron', 'white cuban ron'],
+            Tequila: ['tequila'],
+            Whiskey: ['whiskey', 'whisky', 'bourbon', 'rye whiskey', 'blended scotch whisky'],
+            Brandy: ['brandy', 'cognac', 'calvados'],
             Other: []
         };
 
-        if (p) {
-            const escaped = p.replace(/[.*+?^${}()|[\]\]/g, '\$&');
-            if (new RegExp(`^${escaped}\b`, 'i').test(n)) return true;
-        }
-
-        const patterns = groupPatterns[primaryGroup] || [];
-        return patterns.some(re => re.test(n));
+        return (groupTerms[primaryGroup] || []).some(term => startsWithTerm(n, term));
     }
 
     function extractSecondaryAlcoholItems(ingredients = [], primaryGroup = '', primarySpirit = '') {
