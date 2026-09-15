@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit｜v1.1-test Secondary Alcohol Filter</title>
+    <title>經典調酒吧｜v1.1 Canonical Filter Test</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -1108,49 +1108,91 @@
 
     function normalizeAlcoholName(name = '') {
         const raw = String(name || '').trim();
-        const t = raw.toLowerCase();
 
         const rules = [
-            [/(^| )angostura bitters( after mixing)?$/i, 'Angostura Bitters'],
-            [/^\\d+\\s*dashes?\\s+angostura bitters$/i, 'Angostura Bitters'],
-            [/^dash\\s+angostura bitters$/i, 'Angostura Bitters'],
-            [/^bitter campari$/i, 'Campari'],
-            [/^campari$/i, 'Campari'],
+            // Amaretto
+            [/^amaretto$/i, 'Amaretto'],
+            [/^amaretto liqueur$/i, 'Amaretto'],
+
+            // Vermouth
+            [/^sweet vermouth$/i, 'Sweet Red Vermouth'],
             [/^sweet red vermouth$/i, 'Sweet Red Vermouth'],
-            [/^rosso vermouth$/i, 'Rosso Vermouth'],
+            [/^sweet vermouth cinzano rosso$/i, 'Sweet Red Vermouth'],
+            [/^cinzano rosso$/i, 'Sweet Red Vermouth'],
+            [/^rosso vermouth$/i, 'Sweet Red Vermouth'],
             [/^dry vermouth$/i, 'Dry Vermouth'],
-            [/^triple sec$/i, 'Triple Sec'],
-            [/^cointreau$/i, 'Cointreau'],
-            [/^bailey'?s irish cream$/i, "Bailey's Irish Cream"],
+
+            // Blue Curaçao
+            [/^blue curaçao$/i, 'Blue Curaçao Liqueur'],
+            [/^blue curacao$/i, 'Blue Curaçao Liqueur'],
+            [/^blue curaçao liqueur$/i, 'Blue Curaçao Liqueur'],
+            [/^blue curacao liqueur$/i, 'Blue Curaçao Liqueur'],
+
+            // Angostura
+            [/^angostura bitters$/i, 'Angostura Bitters'],
+            [/^\d+\s*dashes?\s+angostura bitters$/i, 'Angostura Bitters'],
+            [/^dash\s+angostura bitters$/i, 'Angostura Bitters'],
+            [/^angostura bitters after mixing$/i, 'Angostura Bitters'],
+
+            // Bénédictine
             [/^bénédictine$/i, 'Bénédictine'],
             [/^benedictine$/i, 'Bénédictine'],
-            [/^kahl[uú]a$/i, 'Kahlúa'],
-            [/^drambuie$/i, 'Drambuie'],
-            [/^blue curaçao$/i, 'Blue Curaçao Liqueur'],
-            [/^blue curaçao liqueur$/i, 'Blue Curaçao Liqueur'],
-            [/^blue curacao$/i, 'Blue Curaçao Liqueur'],
-            [/^blue curacao liqueur$/i, 'Blue Curaçao Liqueur'],
-            [/^crème de bananes$/i, 'Crème de Bananes'],
-            [/^crème de café$/i, 'Crème de Café'],
-            [/^crème de cassis$/i, 'Crème de Cassis'],
+            [/^dom bénédictine$/i, 'Bénédictine'],
+            [/^dom benedictine$/i, 'Bénédictine'],
+
+            // Champagne wording
+            [/^champagne$/i, 'Champagne'],
+            [/^chilled champagne$/i, 'Champagne'],
+
+            // Campari
+            [/^bitter campari$/i, 'Campari'],
+            [/^campari$/i, 'Campari'],
+
+            // Crème de Cacao
             [/^brown crème de cacao$/i, 'Brown Crème de Cacao'],
+            [/^crème de cacao \(brown\)$/i, 'Brown Crème de Cacao'],
+            [/^brown creme de cacao$/i, 'Brown Crème de Cacao'],
+            [/^creme de cacao \(brown\)$/i, 'Brown Crème de Cacao'],
+
             [/^white crème de cacao$/i, 'White Crème de Cacao'],
-            [/^white crème de menthe$/i, 'White Crème de Menthe'],
+            [/^crème de cacao \(white\)$/i, 'White Crème de Cacao'],
+            [/^white creme de cacao$/i, 'White Crème de Cacao'],
+            [/^creme de cacao \(white\)$/i, 'White Crème de Cacao'],
+
+            // Common independent canonical names
+            [/^triple sec$/i, 'Triple Sec'],
+            [/^cointreau$/i, 'Cointreau'],
             [/^green crème de menthe$/i, 'Green Crème de Menthe'],
-            [/^cherry brandy( \\(liqueur\\))?$/i, 'Cherry Brandy (Liqueur)'],
+            [/^green creme de menthe$/i, 'Green Crème de Menthe'],
+            [/^white crème de menthe$/i, 'White Crème de Menthe'],
+            [/^white creme de menthe$/i, 'White Crème de Menthe'],
+            [/^crème de cassis$/i, 'Crème de Cassis'],
+            [/^creme de cassis$/i, 'Crème de Cassis'],
+            [/^drambuie$/i, 'Drambuie'],
+            [/^kahl[uú]a$/i, 'Kahlúa'],
+            [/^passion fruit liqueur$/i, 'Passion Fruit Liqueur'],
+            [/^raspberry liqueur$/i, 'Raspberry Liqueur'],
+            [/^peychaud'?s bitters$/i, "Peychaud's Bitters"],
+            [/^red tawny port wine$/i, 'Red Tawny Port Wine'],
+            [/^prosecco$/i, 'Prosecco'],
+
+            // Existing useful mappings kept
+            [/^cherry brandy( \(liqueur\))?$/i, 'Cherry Brandy (Liqueur)'],
             [/^apricot brandy$/i, 'Apricot Brandy'],
-            [/^amaretto liqueur$/i, 'Amaretto Liqueur'],
             [/^amaro nonino$/i, 'Amaro Nonino'],
             [/^aperol$/i, 'Aperol'],
             [/^absinthe$/i, 'Absinthe'],
             [/^aromatic bitters$/i, 'Aromatic Bitters'],
-            [/^champagne$/i, 'Champagne'],
             [/^brut champagne or prosecco$/i, 'Brut Champagne or Prosecco'],
             [/^brut champagne or sparkling wine$/i, 'Brut Champagne or Sparkling Wine'],
             [/^amontillado sherry$/i, 'Amontillado Sherry'],
             [/^ruby port$/i, 'Ruby Port'],
-            [/^allspice st\\. elizabeth$/i, 'Allspice St. Elizabeth'],
-            [/^mozart dark chocolate liqueur$/i, 'Mozart Dark Chocolate Liqueur']
+            [/^allspice st\. elizabeth$/i, 'Allspice St. Elizabeth'],
+            [/^mozart dark chocolate liqueur$/i, 'Mozart Dark Chocolate Liqueur'],
+            [/^crème de bananes$/i, 'Crème de Bananes'],
+            [/^creme de bananes$/i, 'Crème de Bananes'],
+            [/^crème de café$/i, 'Crème de Café'],
+            [/^creme de café$/i, 'Crème de Café']
         ];
 
         for (const [re, label] of rules) {
@@ -1415,9 +1457,25 @@
                 const canonical = normalizeAlcoholName(i.name || '');
                 if (!(c.secondary_alcohols || []).includes(canonical)) return;
                 const zh = i.name_zh || '';
-                labels[canonical] = zh && zh !== canonical ? `${zh} ${canonical}` : canonical;
+                if (!labels[canonical]) {
+                    labels[canonical] = zh && zh !== canonical ? `${zh} ${canonical}` : canonical;
+                }
             });
         });
+
+        // Merged canonical display names
+        Object.assign(labels, {
+            'Amaretto': '杏仁香甜酒 Amaretto',
+            'Sweet Red Vermouth': '甜紅香艾酒 Sweet Red Vermouth',
+            'Blue Curaçao Liqueur': '藍柑橘香甜酒 Blue Curaçao Liqueur',
+            'Angostura Bitters': '安格式芳香苦精 Angostura Bitters',
+            'Bénédictine': '班尼狄克丁香甜酒 Bénédictine',
+            'Champagne': '香檳 Champagne',
+            'Campari': '金巴利 Campari',
+            'Brown Crème de Cacao': '棕色可可香甜酒 Brown Crème de Cacao',
+            'White Crème de Cacao': '白可可香甜酒 White Crème de Cacao'
+        });
+
         return labels;
     }
 
