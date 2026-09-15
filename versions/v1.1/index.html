@@ -885,10 +885,12 @@
             ['lemon','Lemon'],['lime','Lime'],['orange','Orange'],['grapefruit','Grapefruit'],
             ['olive','Olive'],['cherry','Cherry'],['pineapple','Pineapple'],['mint','Mint'],
             ['coffee','Coffee beans'],['nutmeg','Nutmeg'],['salt rim','Salt rim'],['celery','Celery'],
-            ['cucumber','Cucumber'],['ginger','Ginger'],['basil','Basil'],['cinnamon','Cinnamon']
+            ['cucumber','Cucumber'],['ginger','Ginger'],['basil','Basil'],['cinnamon','Cinnamon'],
+            ['banana','Banana'],['cocoa','Cocoa'],['sugar rim','Sugar rim'],['kiwi','Kiwi'],
+            ['apple','Apple'],['onion','Onion']
         ];
         pairs.forEach(([needle,label]) => { if (t.includes(needle)) out.push(label); });
-        return out;
+        return [...new Set(out)];
     }
     function normalizeTwLevelBRecipe(r) {
         const recipe = r.recipe || {};
@@ -928,7 +930,10 @@
             primary_spirit_group: primaryGroup || 'Other',
             main_method: cls.main_method_search || '',
             garnish_present: cls.garnish_present ?? !!(garnishItems.length || (garnishEn && garnishEn !== 'N/A')),
-            garnish_categories: cls.garnish_categories || garnishCategoriesFromText(garnishEn),
+            garnish_categories:
+                Array.isArray(cls.garnish_categories) && cls.garnish_categories.length > 0
+                    ? cls.garnish_categories
+                    : garnishCategoriesFromText(garnishEn),
             auxiliary_operations: recipe.auxiliary_operations || [],
 
             ingredients,
@@ -1146,7 +1151,8 @@
                 "Lemon":"檸檬 Lemon","Lime":"萊姆 Lime","Orange":"柳橙 Orange","Grapefruit":"葡萄柚 Grapefruit",
                 "Olive":"橄欖 Olive","Cherry":"櫻桃 Cherry","Pineapple":"鳳梨 Pineapple","Mint":"薄荷 Mint",
                 "Coffee beans":"咖啡豆","Nutmeg":"肉豆蔻","Salt rim":"鹽口","Celery":"芹菜","Cucumber":"小黃瓜",
-                "Ginger":"薑","Basil":"羅勒","Cinnamon":"肉桂","Other":"其他"
+                "Ginger":"薑","Basil":"羅勒","Cinnamon":"肉桂","Banana":"香蕉","Cocoa":"可可粉",
+                "Sugar rim":"糖口","Kiwi":"奇異果","Apple":"蘋果","Onion":"雞尾酒洋蔥","Other":"其他"
             });
             const noGarnish = garnishPresenceFilter && garnishPresenceFilter.value === 'no';
             garnishTypeFilter.disabled = noGarnish;
