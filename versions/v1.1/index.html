@@ -1001,18 +1001,21 @@
     }
 
     function isPrimarySpiritIngredient(name = '', primarySpirit = '') {
-        const n = String(name || '').toLowerCase().trim();
-        const p = String(primarySpirit || '').toLowerCase().trim();
+        const n = String(name || '').trim().toLowerCase();
+        const p = String(primarySpirit || '').trim().toLowerCase();
+
+        const startsWithTerm = (value, term) =>
+            value === term || value.startsWith(term + ' ');
 
         const groups = {
-            gin: [/^gin\\b/, /^london dry gin\\b/, /^old tom gin\\b/],
-            vodka: [/^vodka\\b/, /^vodka citron\\b/],
-            tequila: [/^tequila\\b/],
-            whiskey: [/^whiskey\\b/, /^whisky\\b/, /^bourbon\\b/, /^rye whiskey\\b/, /^blended scotch whisky\\b/],
-            brandy: [/^brandy\\b/, /^cognac\\b/, /^calvados\\b/],
-            rum: [/^rum\\b/, /^white rum\\b/, /^dark rum\\b/, /^ron\\b/, /^rhum\\b/, /^white cuban ron\\b/],
-            pisco: [/^pisco\\b/],
-            'cachaça': [/^cachaça\\b/, /^cachaca\\b/]
+            gin: ['gin', 'london dry gin', 'old tom gin'],
+            vodka: ['vodka', 'vodka citron'],
+            tequila: ['tequila'],
+            whiskey: ['whiskey', 'whisky', 'bourbon', 'rye whiskey', 'blended scotch whisky'],
+            brandy: ['brandy', 'cognac', 'calvados'],
+            rum: ['rum', 'white rum', 'dark rum', 'ron', 'rhum', 'white cuban ron'],
+            pisco: ['pisco'],
+            'cachaça': ['cachaça', 'cachaca']
         };
 
         const key = p.includes('gin') ? 'gin'
@@ -1026,7 +1029,7 @@
             : '';
 
         if (!key) return false;
-        return groups[key].some(re => re.test(n));
+        return groups[key].some(term => startsWithTerm(n, term));
     }
 
     function isSecondaryAlcoholCandidate(name = '') {
