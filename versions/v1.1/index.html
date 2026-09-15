@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧｜v1.1 IBA+TW Canonical Cleanup r10</title>
+    <title>經典調酒吧｜v1.1 Canonical Cleanup r10b</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -1140,11 +1140,9 @@
             [/^dom bénédictine$/i, 'Bénédictine'],
             [/^dom benedictine$/i, 'Bénédictine'],
 
-            // Champagne wording
+            // Champagne / Campari
             [/^champagne$/i, 'Champagne'],
             [/^chilled champagne$/i, 'Champagne'],
-
-            // Campari
             [/^bitter campari$/i, 'Campari'],
             [/^campari$/i, 'Campari'],
 
@@ -1153,14 +1151,26 @@
             [/^crème de cacao \(brown\)$/i, 'Brown Crème de Cacao'],
             [/^brown creme de cacao$/i, 'Brown Crème de Cacao'],
             [/^creme de cacao \(brown\)$/i, 'Brown Crème de Cacao'],
-
             [/^white crème de cacao$/i, 'White Crème de Cacao'],
             [/^crème de cacao \(white\)$/i, 'White Crème de Cacao'],
             [/^white creme de cacao$/i, 'White Crème de Cacao'],
             [/^creme de cacao \(white\)$/i, 'White Crème de Cacao'],
 
-            // Common independent canonical names
+            // IBA brand / style cleanup
+            [/^amaro nonino$/i, 'Amaro Nonino'],
+            [/^amontillado sherry$/i, 'Amontillado Sherry'],
+            [/^cherry brandy luxardo$/i, 'Cherry Brandy Luxardo'],
+            [/^luxardo cherry brandy$/i, 'Cherry Brandy Luxardo'],
+
+            // Taiwan Level B common liqueurs
+            [/^mozart dark chocolate liqueur$/i, 'Mozart Dark Chocolate Liqueur'],
             [/^triple sec$/i, 'Triple Sec'],
+            [/^sour apple liqueur$/i, 'Sour Apple Liqueur'],
+            [/^peach liqueur$/i, 'Peach Liqueur'],
+            [/^passion fruit liqueur$/i, 'Passion Fruit Liqueur'],
+            [/^green apple liqueur$/i, 'Green Apple Liqueur'],
+
+            // Other common independent canonical names
             [/^cointreau$/i, 'Cointreau'],
             [/^green crème de menthe$/i, 'Green Crème de Menthe'],
             [/^green creme de menthe$/i, 'Green Crème de Menthe'],
@@ -1170,41 +1180,25 @@
             [/^creme de cassis$/i, 'Crème de Cassis'],
             [/^drambuie$/i, 'Drambuie'],
             [/^kahl[uú]a$/i, 'Kahlúa'],
-            [/^passion fruit liqueur$/i, 'Passion Fruit Liqueur'],
             [/^raspberry liqueur$/i, 'Raspberry Liqueur'],
             [/^peychaud'?s bitters$/i, "Peychaud's Bitters"],
             [/^red tawny port wine$/i, 'Red Tawny Port Wine'],
             [/^prosecco$/i, 'Prosecco'],
-
-            // Existing useful mappings kept
             [/^cherry brandy( \(liqueur\))?$/i, 'Cherry Brandy (Liqueur)'],
             [/^apricot brandy$/i, 'Apricot Brandy'],
-            [/^amaro nonino$/i, 'Amaro Nonino'],
             [/^aperol$/i, 'Aperol'],
             [/^absinthe$/i, 'Absinthe'],
             [/^aromatic bitters$/i, 'Aromatic Bitters'],
             [/^brut champagne or prosecco$/i, 'Brut Champagne or Prosecco'],
             [/^brut champagne or sparkling wine$/i, 'Brut Champagne or Sparkling Wine'],
-            [/^amontillado sherry$/i, 'Amontillado Sherry'],
             [/^ruby port$/i, 'Ruby Port'],
             [/^allspice st\. elizabeth$/i, 'Allspice St. Elizabeth'],
-            [/^mozart dark chocolate liqueur$/i, 'Mozart Dark Chocolate Liqueur'],
             [/^crème de bananes$/i, 'Crème de Bananes'],
             [/^creme de bananes$/i, 'Crème de Bananes'],
             [/^crème de café$/i, 'Crème de Café'],
             [/^creme de café$/i, 'Crème de Café']
         ];
 
-            [/^amaro nonino$/i, 'Amaro Nonino'],
-            [/^amontillado sherry$/i, 'Amontillado Sherry'],
-            [/^cherry brandy luxardo$/i, 'Cherry Brandy Luxardo'],
-            [/^luxardo cherry brandy$/i, 'Cherry Brandy Luxardo'],
-            [/^mozart dark chocolate liqueur$/i, 'Mozart Dark Chocolate Liqueur'],
-            [/^triple sec$/i, 'Triple Sec'],
-            [/^sour apple liqueur$/i, 'Sour Apple Liqueur'],
-            [/^peach liqueur$/i, 'Peach Liqueur'],
-            [/^passion fruit liqueur$/i, 'Passion Fruit Liqueur'],
-            [/^green apple liqueur$/i, 'Green Apple Liqueur'],
         for (const [re, label] of rules) {
             if (re.test(raw)) return label;
         }
@@ -1460,29 +1454,21 @@
         return String(a).localeCompare(String(b), 'zh-TW', { numeric: true });
     }
 
+
     function cleanSecondaryZhLabel(zh = '', canonical = '') {
         let s = String(zh || '').trim();
         const en = String(canonical || '').toLowerCase();
 
-        // 只處理「英文字/品牌詞 + 中文」這種情況。
-        // 例如：
-        // Mozart 黑巧克力香甜酒 -> 黑巧克力香甜酒
-        // Triple Sec 橙味香甜酒 -> 橙味香甜酒
-        // DOM 班尼狄克丁香甜酒 -> 班尼狄克丁香甜酒
-        // Cinzano Rosso 甜香艾酒 -> 甜香艾酒
         const prefixMatch = s.match(/^([A-Za-zÀ-ÖØ-öø-ÿ0-9.'’\- ]+)\s+([\u3400-\u9fff].*)$/);
         if (prefixMatch) {
             const prefix = prefixMatch[1].trim().toLowerCase();
             const zhPart = prefixMatch[2].trim();
-
-            // 只有當這個英文前綴確實也存在於 canonical 英文裡才移除，
-            // 避免誤刪真正屬於中文正式名的一部分。
             const prefixWords = prefix.split(/\s+/).filter(Boolean);
+
             if (prefixWords.length && prefixWords.every(w => en.includes(w))) {
                 s = zhPart;
             }
         }
-
         return s;
     }
 
@@ -1494,9 +1480,7 @@
                 const canonical = normalizeAlcoholName(i.name || '');
                 if (!(c.secondary_alcohols || []).includes(canonical)) return;
 
-                const rawZh = i.name_zh || '';
-                const zh = cleanSecondaryZhLabel(rawZh, canonical);
-
+                const zh = cleanSecondaryZhLabel(i.name_zh || '', canonical);
                 if (!labels[canonical]) {
                     labels[canonical] = zh && zh !== canonical
                         ? `${zh} ${canonical}`
@@ -1505,7 +1489,6 @@
             });
         });
 
-        // 明確 canonical 顯示名稱（IBA + 台灣乙級）
         Object.assign(labels, {
             'Amaro Nonino': '阿瑪羅 Amaro Nonino',
             'Amontillado Sherry': '雪莉酒 Amontillado Sherry',
