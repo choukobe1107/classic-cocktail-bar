@@ -894,6 +894,7 @@
             main_method: r.classification?.main_method_search || '',
             garnish_present: r.classification?.garnish_present === true,
             garnish_categories: r.classification?.garnish_categories || [],
+            secondary_alcohols: inferSecondaryAlcohols(ingredients, r.classification?.primary_spirit_search || ''),
             auxiliary_operations: r.recipe?.auxiliary_operations || [],
             ingredients,
             method: r.recipe?.method_reference_en || r.recipe?.method_official || '',
@@ -921,17 +922,140 @@
     }
 
 
-    function inferPrimarySpiritFromText(text = '') {
-        const t = text.toLowerCase();
-        if (t.includes('gin')) return ['Gin','Gin'];
-        if (t.includes('vodka')) return ['Vodka','Vodka'];
-        if (t.includes('tequila')) return ['Tequila','Tequila'];
-        if (t.includes('cachaça') || t.includes('cachaca')) return ['Cachaça','Other'];
-        if (t.includes('pisco')) return ['Pisco','Other'];
-        if (t.includes('brandy') || t.includes('cognac')) return ['Brandy','Brandy'];
-        if (t.includes('whiskey') || t.includes('whisky') || t.includes('bourbon') || t.includes('rye')) return ['Whiskey','Whiskey'];
-        if (t.includes('rum')) return ['Rum','Rum'];
+    function inferPrimarySpiritFromIngredients(ingredients = []) {
+        const names = (ingredients || []).map(i => String(i?.name || '').trim());
+
+        const exactOrPrefix = (name, patterns) => {
+            const n = name.toLowerCase();
+            return patterns.some(p => p.test(n));
+        };
+
+        for (const name of names) {
+            if (exactOrPrefix(name, [/^gin\b/, /^london dry gin\b/, /^old tom gin\b/])) return ['Gin','Gin'];
+            if (exactOrPrefix(name, [/^vodka\b/, /^vodka citron\b/])) return ['Vodka','Vodka'];
+            if (exactOrPrefix(name, [/^tequila\b/])) return ['Tequila','Tequila'];
+            if (exactOrPrefix(name, [/^cachaça\b/, /^cachaca\b/])) return ['Cachaça','Other'];
+            if (exactOrPrefix(name, [/^pisco\b/])) return ['Pisco','Other'];
+            if (exactOrPrefix(name, [/^brandy\b/, /^cognac\b/, /^calvados\b/])) return ['Brandy','Brandy'];
+            if (exactOrPrefix(name, [/^whiskey\b/, /^whisky\b/, /^bourbon\b/, /^rye whiskey\b/, /^blended scotch whisky\b/])) return ['Whiskey','Whiskey'];
+            if (exactOrPrefix(name, [/^rum\b/, /^white rum\b/, /^dark rum\b/, /^ron\b/, /^rhum\b/, /^white cuban ron\b/])) return ['Rum','Rum'];
+        }
         return ['', 'Other'];
+    }
+
+
+    function normalizeAlcoholName(name = '') {
+        const raw = String(name || '').trim();
+        const t = raw.toLowerCase();
+
+        const rules = [
+            [/(^| )angostura bitters( after mixing)?$/i, 'Angostura Bitters'],
+            [/^\\d+\\s*dashes?\\s+angostura bitters$/i, 'Angostura Bitters'],
+            [/^dash\\s+angostura bitters$/i, 'Angostura Bitters'],
+            [/^bitter campari$/i, 'Campari'],
+            [/^campari$/i, 'Campari'],
+            [/^sweet red vermouth$/i, 'Sweet Red Vermouth'],
+            [/^rosso vermouth$/i, 'Rosso Vermouth'],
+            [/^dry vermouth$/i, 'Dry Vermouth'],
+            [/^triple sec$/i, 'Triple Sec'],
+            [/^cointreau$/i, 'Cointreau'],
+            [/^bailey'?s irish cream$/i, "Bailey's Irish Cream"],
+            [/^bénédictine$/i, 'Bénédictine'],
+            [/^benedictine$/i, 'Bénédictine'],
+            [/^kahl[uú]a$/i, 'Kahlúa'],
+            [/^drambuie$/i, 'Drambuie'],
+            [/^blue curaçao$/i, 'Blue Curaçao'],
+            [/^blue curacao$/i, 'Blue Curaçao'],
+            [/^crème de bananes$/i, 'Crème de Bananes'],
+            [/^crème de café$/i, 'Crème de Café'],
+            [/^crème de cassis$/i, 'Crème de Cassis'],
+            [/^brown crème de cacao$/i, 'Brown Crème de Cacao'],
+            [/^white crème de cacao$/i, 'White Crème de Cacao'],
+            [/^white crème de menthe$/i, 'White Crème de Menthe'],
+            [/^green crème de menthe$/i, 'Green Crème de Menthe'],
+            [/^cherry brandy( \\(liqueur\\))?$/i, 'Cherry Brandy (Liqueur)'],
+            [/^apricot brandy$/i, 'Apricot Brandy'],
+            [/^amaretto liqueur$/i, 'Amaretto Liqueur'],
+            [/^amaro nonino$/i, 'Amaro Nonino'],
+            [/^aperol$/i, 'Aperol'],
+            [/^absinthe$/i, 'Absinthe'],
+            [/^aromatic bitters$/i, 'Aromatic Bitters'],
+            [/^champagne$/i, 'Champagne'],
+            [/^brut champagne or prosecco$/i, 'Brut Champagne or Prosecco'],
+            [/^brut champagne or sparkling wine$/i, 'Brut Champagne or Sparkling Wine'],
+            [/^amontillado sherry$/i, 'Amontillado Sherry'],
+            [/^ruby port$/i, 'Ruby Port'],
+            [/^allspice st\\. elizabeth$/i, 'Allspice St. Elizabeth'],
+            [/^mozart dark chocolate liqueur$/i, 'Mozart Dark Chocolate Liqueur']
+        ];
+
+        for (const [re, label] of rules) {
+            if (re.test(raw)) return label;
+        }
+        return raw;
+    }
+
+    function isPrimarySpiritIngredient(name = '', primarySpirit = '') {
+        const n = String(name || '').toLowerCase().trim();
+        const p = String(primarySpirit || '').toLowerCase().trim();
+
+        const groups = {
+            gin: [/^gin\\b/, /^london dry gin\\b/, /^old tom gin\\b/],
+            vodka: [/^vodka\\b/, /^vodka citron\\b/],
+            tequila: [/^tequila\\b/],
+            whiskey: [/^whiskey\\b/, /^whisky\\b/, /^bourbon\\b/, /^rye whiskey\\b/, /^blended scotch whisky\\b/],
+            brandy: [/^brandy\\b/, /^cognac\\b/, /^calvados\\b/],
+            rum: [/^rum\\b/, /^white rum\\b/, /^dark rum\\b/, /^ron\\b/, /^rhum\\b/, /^white cuban ron\\b/],
+            pisco: [/^pisco\\b/],
+            'cachaça': [/^cachaça\\b/, /^cachaca\\b/]
+        };
+
+        const key = p.includes('gin') ? 'gin'
+            : p.includes('vodka') ? 'vodka'
+            : p.includes('tequila') ? 'tequila'
+            : p.includes('whiskey') || p.includes('whisky') ? 'whiskey'
+            : p.includes('brandy') ? 'brandy'
+            : p.includes('rum') ? 'rum'
+            : p.includes('pisco') ? 'pisco'
+            : (p.includes('cachaça') || p.includes('cachaca')) ? 'cachaça'
+            : '';
+
+        if (!key) return false;
+        return groups[key].some(re => re.test(n));
+    }
+
+    function isSecondaryAlcoholCandidate(name = '') {
+        const raw = String(name || '').trim();
+        const t = raw.toLowerCase();
+
+        if (!raw) return false;
+
+        const reject = [
+            'juice','syrup','soda','water','coffee','espresso','tea','milk','cream',
+            'sugar','salt','banana','lime','lemon','orange','grapefruit','pineapple',
+            'mint','cucumber','celery','ginger ale','ginger beer','egg','ice'
+        ];
+        if (reject.some(x => t.includes(x))) return false;
+
+        const accept = [
+            'liqueur','liqueur','vermouth','campari','aperol','absinthe','bitters',
+            'crème de','creme de','cointreau','triple sec','bailey','bénédictine','benedictine',
+            'kahlúa','kahlua','drambuie','curaçao','curacao','amaretto','amaro','port',
+            'sherry','champagne','prosecco','brandy','allspice st. elizabeth'
+        ];
+        return accept.some(x => t.includes(x));
+    }
+
+    function inferSecondaryAlcohols(ingredients = [], primarySpirit = '') {
+        const out = [];
+        for (const i of (ingredients || [])) {
+            const name = i?.name || '';
+            if (!name) continue;
+            if (isPrimarySpiritIngredient(name, primarySpirit)) continue;
+            if (!isSecondaryAlcoholCandidate(name)) continue;
+            out.push(normalizeAlcoholName(name));
+        }
+        return [...new Set(out.filter(Boolean))];
     }
 
     function garnishCategoriesFromText(text = '') {
@@ -965,12 +1089,9 @@
         const garnishItems = recipe.garnish_items || [];
         const garnishEn = recipe.garnish_official || '';
         const garnishZh = recipe.garnish_zh || '';
-        const primary = cls.primary_spirit_search || inferPrimarySpiritFromText(
-            ingredients.map(i => i.name).join(' ')
-        )[0];
-        const primaryGroup = cls.primary_spirit_group || inferPrimarySpiritFromText(
-            ingredients.map(i => i.name).join(' ')
-        )[1];
+        const inferredPrimary = inferPrimarySpiritFromIngredients(ingredients);
+        const primary = cls.primary_spirit_search || inferredPrimary[0];
+        const primaryGroup = cls.primary_spirit_group || inferredPrimary[1];
         const secondaryAlcoholItems = extractSecondaryAlcoholItems(ingredients, primaryGroup, primary);
 
         return {
@@ -1139,27 +1260,11 @@
         baseValues.sort((a,b) => baseOrder.indexOf(a) - baseOrder.indexOf(b));
 
         const secondaryAlcoholValues = [...new Set(
-            cocktails.filter(c => matchesExcept(c, 'secondaryAlcohol')).flatMap(c => c.secondary_alcohols || [])
-        )].sort((a,b) => String(a).localeCompare(String(b), 'en', { sensitivity: 'base' }));
-
-        const secondaryAlcoholLabels = {};
-        cocktails.forEach(c => (c.secondary_alcohol_items || []).forEach(item => {
-            if (!item?.name) return;
-            if (languageMode === 'en') secondaryAlcoholLabels[item.name] = item.name;
-            else if (languageMode === 'bilingual') secondaryAlcoholLabels[item.name] = item.name_zh ? `${item.name_zh}｜${item.name}` : item.name;
-            else secondaryAlcoholLabels[item.name] = item.name_zh ? `${item.name_zh} ${item.name}` : item.name;
-        }));
-
-        const techValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'tech')).map(c => c.main_method).filter(Boolean))];
-        const techOrder = ["Shake","Stir","Build","Blend","Swizzle","Other"];
-        techValues.sort((a,b) => techOrder.indexOf(a) - techOrder.indexOf(b));
-
-        const categoryValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'category')).map(c => c.category).filter(Boolean))].sort(naturalGroupSort);
-        const sectionValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'section')).map(c => c.learning_section).filter(Boolean))].sort(naturalGroupSort);
-
-        const garnishTypeValues = [...new Set(
-            cocktails.filter(c => matchesExcept(c, 'garnishType')).flatMap(c => c.garnish_categories || [])
-        )].sort();
+                cocktails
+                    .filter(c => matchesExcept(c, 'secondaryAlcohol'))
+                    .flatMap(c => c.secondary_alcohols || [])
+                    .filter(Boolean)
+            )].sort((a,b) => String(a).localeCompare(String(b), 'zh-TW', { numeric: true }));
 
         const glasswareValues = [...new Set(
             cocktails.filter(c => matchesExcept(c, 'glassware')).map(c => c.glassware_group).filter(Boolean)
