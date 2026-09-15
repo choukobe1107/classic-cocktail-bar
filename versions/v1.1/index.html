@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧｜v1.1 Canonical Cleanup r10b</title>
+    <title>經典調酒吧｜v1.1 Color Filter Prototype r11</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -721,6 +721,14 @@
                     <option value="">-- 副酒／利口酒 --</option>
                 </select>
 
+                <select id="colorFilter" class="input-rpg" aria-label="顏色">
+                    <option value="">-- 顏色（試驗） --</option>
+                </select>
+
+                <select id="colorSourceFilter" class="input-rpg" aria-label="主要著色來源">
+                    <option value="">-- 主要著色來源（試驗） --</option>
+                </select>
+
                 <select id="otherSpiritFilter" class="input-rpg hidden" aria-label="其他主要烈酒">
                     <option value="">-- 其他主要烈酒種類 --</option>
                 </select>
@@ -813,6 +821,8 @@
     const searchInput = document.getElementById('searchInput');
     const baseFilter = document.getElementById('baseFilter');
     const secondaryAlcoholFilter = document.getElementById('secondaryAlcoholFilter');
+    const colorFilter = document.getElementById('colorFilter');
+    const colorSourceFilter = document.getElementById('colorSourceFilter');
     const otherSpiritFilter = document.getElementById('otherSpiritFilter');
     const techFilter = document.getElementById('techFilter');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -1034,6 +1044,185 @@
         return out;
     }
 
+
+    // ===== Experimental appearance inference v0.1 =====
+    // 先不改 JSON；由現有 ingredients 在前端推導，方便實測 UI / UX。
+    // 這不是色彩科學判定，而是「一致的搜尋分類」試驗。
+
+    const COLOR_LABELS = {
+        clear: '透明／近透明',
+        white: '白／乳白',
+        yellow: '黃',
+        orange: '橙',
+        red: '紅',
+        pink: '粉紅',
+        green: '綠',
+        blue: '藍',
+        purple: '紫',
+        brown: '棕／咖啡／深色',
+        layered: '分層／漸層'
+    };
+
+    function canonicalColorSourceName(name = '') {
+        const raw = String(name || '').trim();
+        const rules = [
+            [/^grenadine( syrup)?$/i, 'Grenadine'],
+            [/^cranberry juice$/i, 'Cranberry Juice'],
+            [/^tomato juice$/i, 'Tomato Juice'],
+            [/^orange juice$/i, 'Orange Juice'],
+            [/^pineapple juice$/i, 'Pineapple Juice'],
+            [/^passion fruit (juice|purée|puree|syrup)$/i, m => m[0].replace(/purée|puree/i, 'Purée').replace(/juice/i,'Juice').replace(/syrup/i,'Syrup')],
+            [/^strawberry (syrup|purée|puree)$/i, m => m[0].replace(/purée|puree/i, 'Purée').replace(/syrup/i,'Syrup')],
+            [/^raspberry (syrup|liqueur)$/i, m => m[0].replace(/syrup/i,'Syrup').replace(/liqueur/i,'Liqueur')],
+            [/^blue cura[cç]ao( liqueur)?$/i, 'Blue Curaçao Liqueur'],
+            [/^green cr[eè]me de menthe$/i, 'Green Crème de Menthe'],
+            [/^midori$/i, 'Midori'],
+            [/^campari$/i, 'Campari'],
+            [/^bitter campari$/i, 'Campari'],
+            [/^aperol$/i, 'Aperol'],
+            [/^cr[eè]me de cassis$/i, 'Crème de Cassis'],
+            [/^espresso$/i, 'Espresso'],
+            [/^coffee$/i, 'Coffee'],
+            [/^kahl[uú]a$/i, 'Kahlúa'],
+            [/^(red wine|wine red)$/i, 'Red Wine'],
+            [/^(rosso vermouth|sweet red vermouth|sweet vermouth|cinzano rosso)$/i, 'Sweet Red Vermouth'],
+            [/^(ruby port|red tawny port wine|port wine)$/i, 'Port Wine'],
+            [/^dark rum$/i, 'Dark Rum'],
+            [/^(whiskey|whisky|bourbon|rye whiskey|blended scotch whisky)$/i, 'Whiskey'],
+            [/^(brandy|cognac|calvados)$/i, 'Brandy'],
+            [/^(cream|fresh cream|milk|coconut cream|coconut milk)$/i, raw],
+            [/^(brown cr[eè]me de cacao|cr[eè]me de cacao \(brown\))$/i, 'Brown Crème de Cacao'],
+            [/^(white cr[eè]me de cacao|cr[eè]me de cacao \(white\))$/i, 'White Crème de Cacao'],
+            [/^(cr[eè]me de bananes|banana liqueur)$/i, 'Banana Liqueur'],
+            [/^(galliano|yellow chartreuse)$/i, raw],
+            [/^(green chartreuse)$/i, 'Green Chartreuse']
+        ];
+        for (const [re, value] of rules) {
+            const m = raw.match(re);
+            if (m) return typeof value === 'function' ? value(m) : value;
+        }
+        return raw;
+    }
+
+    function colorSourceProfile(name = '') {
+        const n = String(name || '').trim().toLowerCase();
+
+        const profiles = [
+            { re: /^grenadine( syrup)?$/, color: 'red', strength: 100 },
+            { re: /^tomato juice$/, color: 'red', strength: 100 },
+            { re: /^blue cura[cç]ao( liqueur)?$/, color: 'blue', strength: 100 },
+            { re: /^green cr[eè]me de menthe$/, color: 'green', strength: 100 },
+            { re: /^midori$/, color: 'green', strength: 100 },
+            { re: /^cr[eè]me de cassis$/, color: 'purple', strength: 95 },
+            { re: /^campari$/, color: 'red', strength: 95 },
+            { re: /^bitter campari$/, color: 'red', strength: 95 },
+            { re: /^aperol$/, color: 'orange', strength: 92 },
+            { re: /^cranberry juice$/, color: 'pink', strength: 90 },
+            { re: /^red wine$/, color: 'red', strength: 90 },
+            { re: /^rosso vermouth$/, color: 'red', strength: 80 },
+            { re: /^sweet red vermouth$/, color: 'red', strength: 80 },
+            { re: /^sweet vermouth$/, color: 'red', strength: 78 },
+            { re: /^ruby port$/, color: 'red', strength: 88 },
+            { re: /^red tawny port wine$/, color: 'brown', strength: 86 },
+            { re: /^port wine$/, color: 'red', strength: 82 },
+            { re: /^espresso$/, color: 'brown', strength: 100 },
+            { re: /^coffee$/, color: 'brown', strength: 100 },
+            { re: /^kahl[uú]a$/, color: 'brown', strength: 92 },
+            { re: /^brown cr[eè]me de cacao$/, color: 'brown', strength: 90 },
+            { re: /^cr[eè]me de cacao \(brown\)$/, color: 'brown', strength: 90 },
+            { re: /^orange juice$/, color: 'orange', strength: 88 },
+            { re: /^pineapple juice$/, color: 'yellow', strength: 82 },
+            { re: /^passion fruit (juice|purée|puree|syrup)$/, color: 'orange', strength: 88 },
+            { re: /^strawberry (syrup|purée|puree)$/, color: 'red', strength: 90 },
+            { re: /^raspberry (syrup|liqueur)$/, color: 'red', strength: 88 },
+            { re: /^green chartreuse$/, color: 'green', strength: 85 },
+            { re: /^yellow chartreuse$/, color: 'yellow', strength: 82 },
+            { re: /^galliano$/, color: 'yellow', strength: 78 },
+            { re: /^(cr[eè]me de bananes|banana liqueur)$/, color: 'yellow', strength: 82 },
+            { re: /^(cream|fresh cream|milk|coconut cream|coconut milk)$/, color: 'white', strength: 72 },
+            { re: /^white cr[eè]me de cacao$/, color: 'clear', strength: 60 },
+            { re: /^cr[eè]me de cacao \(white\)$/, color: 'clear', strength: 60 },
+            { re: /^dark rum$/, color: 'brown', strength: 62 },
+            { re: /^(whiskey|whisky|bourbon|rye whiskey|blended scotch whisky)$/, color: 'brown', strength: 58 },
+            { re: /^(brandy|cognac|calvados)$/, color: 'brown', strength: 56 }
+        ];
+
+        for (const p of profiles) {
+            if (p.re.test(n)) return p;
+        }
+        return null;
+    }
+
+    function inferAppearance(ingredients = [], officialName = '', mainMethod = '') {
+        const name = String(officialName || '').toLowerCase();
+
+        // 明顯的分層／漸層類先處理。
+        if (String(mainMethod || '').toLowerCase() === 'layer' ||
+            /pousse|tequila sunrise|b-?52|traffic light/i.test(name)) {
+            const sources = [];
+            (ingredients || []).forEach(i => {
+                const p = colorSourceProfile(i.name || '');
+                if (p) sources.push({
+                    ingredient: canonicalColorSourceName(i.name || ''),
+                    ingredient_zh: i.name_zh || '',
+                    color: p.color,
+                    strength: p.strength
+                });
+            });
+            return { colors: ['layered'], color_sources: dedupeColorSources(sources) };
+        }
+
+        const sources = [];
+        (ingredients || []).forEach(i => {
+            const p = colorSourceProfile(i.name || '');
+            if (p) {
+                sources.push({
+                    ingredient: canonicalColorSourceName(i.name || ''),
+                    ingredient_zh: i.name_zh || '',
+                    color: p.color,
+                    strength: p.strength
+                });
+            }
+        });
+
+        const uniqueSources = dedupeColorSources(sources);
+
+        if (uniqueSources.length) {
+            const strongest = [...uniqueSources].sort((a,b) => b.strength - a.strength)[0];
+            return {
+                colors: [strongest.color],
+                color_sources: uniqueSources.filter(x => x.strength >= strongest.strength - 22)
+            };
+        }
+
+        // 沒有明顯著色材料時，用「近透明」作為 v0.1 fallback。
+        return { colors: ['clear'], color_sources: [] };
+    }
+
+    function dedupeColorSources(items = []) {
+        const map = new Map();
+        items.forEach(x => {
+            if (!x?.ingredient) return;
+            const old = map.get(x.ingredient);
+            if (!old || (x.strength || 0) > (old.strength || 0)) map.set(x.ingredient, x);
+        });
+        return [...map.values()];
+    }
+
+    function buildColorSourceLabels() {
+        const labels = {};
+        cocktails.forEach(c => {
+            (c.color_sources || []).forEach(s => {
+                if (!labels[s.ingredient]) {
+                    labels[s.ingredient] = s.ingredient_zh
+                        ? `${s.ingredient_zh} ${s.ingredient}`
+                        : s.ingredient;
+                }
+            });
+        });
+        return labels;
+    }
+
     function normalizeV2Recipe(r) {
         const ingredients = (r.recipe?.ingredients || []).map(i => ({
             name: i.name_official || i.name || '',
@@ -1043,6 +1232,11 @@
         const primarySpirit = r.classification?.primary_spirit_search || '';
         const primaryGroup = r.classification?.primary_spirit_group || 'Other';
         const secondaryAlcohols = inferSecondaryAlcohols(ingredients, primarySpirit);
+        const appearance = inferAppearance(
+            ingredients,
+            r.names?.official || '',
+            r.classification?.main_method_search || ''
+        );
 
         return {
             app_id: r.app_id,
@@ -1054,6 +1248,8 @@
             primary_spirit: primarySpirit,
             primary_spirit_group: primaryGroup,
             secondary_alcohols: secondaryAlcohols,
+            colors: appearance.colors || [],
+            color_sources: appearance.color_sources || [],
             main_method: r.classification?.main_method_search || '',
             garnish_present: r.classification?.garnish_present === true,
             garnish_categories: r.classification?.garnish_categories || [],
@@ -1306,6 +1502,11 @@
         const primary = cls.primary_spirit_search || inferredPrimary[0];
         const primaryGroup = cls.primary_spirit_group || inferredPrimary[1];
         const secondaryAlcohols = inferSecondaryAlcohols(ingredients, primary);
+        const appearance = inferAppearance(
+            ingredients,
+            names.official || '',
+            cls.main_method_search || ''
+        );
 
         return {
             app_id: r.app_id || source.source_record_id || '',
@@ -1318,6 +1519,8 @@
             primary_spirit: primary || '',
             primary_spirit_group: primaryGroup || 'Other',
             secondary_alcohols: secondaryAlcohols,
+            colors: appearance.colors || [],
+            color_sources: appearance.color_sources || [],
             main_method: cls.main_method_search || '',
             garnish_present: cls.garnish_present ?? !!(garnishItems.length || (garnishEn && garnishEn !== 'N/A')),
             garnish_categories:
@@ -1401,6 +1604,8 @@
             q: searchInput.value.trim().toLowerCase(),
             base: baseFilter.value,
             secondaryAlcohol: secondaryAlcoholFilter?.value || '',
+            color: colorFilter?.value || '',
+            colorSource: colorSourceFilter?.value || '',
             otherSpirit: otherSpiritFilter?.value || '',
             tech: techFilter.value,
             category: categoryFilter.value,
@@ -1434,6 +1639,8 @@
         if (exceptKey !== 'q' && s.q && !searchable.includes(s.q)) return false;
         if (exceptKey !== 'base' && s.base && c.primary_spirit_group !== s.base) return false;
         if (exceptKey !== 'secondaryAlcohol' && s.secondaryAlcohol && !(c.secondary_alcohols || []).includes(s.secondaryAlcohol)) return false;
+        if (exceptKey !== 'color' && s.color && !(c.colors || []).includes(s.color)) return false;
+        if (exceptKey !== 'colorSource' && s.colorSource && !(c.color_sources || []).some(x => x.ingredient === s.colorSource)) return false;
         if (exceptKey !== 'otherSpirit' && s.otherSpirit && c.primary_spirit !== s.otherSpirit) return false;
         if (exceptKey !== 'tech' && s.tech && c.main_method !== s.tech) return false;
         if (exceptKey !== 'category' && s.category && c.category !== s.category) return false;
@@ -1573,6 +1780,20 @@
                 .filter(Boolean)
         )].sort((a,b) => String(a).localeCompare(String(b), 'zh-TW'));
 
+        const colorValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'color'))
+                .flatMap(c => c.colors || [])
+                .filter(Boolean)
+        )];
+        const colorOrder = ['clear','white','yellow','orange','red','pink','green','blue','purple','brown','layered'];
+        colorValues.sort((a,b) => colorOrder.indexOf(a) - colorOrder.indexOf(b));
+
+        const colorSourceValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'colorSource'))
+                .flatMap(c => (c.color_sources || []).map(x => x.ingredient))
+                .filter(Boolean)
+        )].sort((a,b) => String(a).localeCompare(String(b), 'zh-TW'));
+
         const glasswareValues = [...new Set(
             cocktails.filter(c => matchesExcept(c, 'glassware'))
                 .map(c => c.glassware_group)
@@ -1592,6 +1813,19 @@
                 secondaryAlcoholValues,
                 state.secondaryAlcohol,
                 buildSecondaryAlcoholLabels()
+            );
+        }
+
+        if (colorFilter) {
+            refillSelect(colorFilter, colorValues, state.color, COLOR_LABELS);
+        }
+
+        if (colorSourceFilter) {
+            refillSelect(
+                colorSourceFilter,
+                colorSourceValues,
+                state.colorSource,
+                buildColorSourceLabels()
             );
         }
 
@@ -1879,6 +2113,8 @@
 
         push('主酒', baseFilter);
         push('副酒／利口酒', secondaryAlcoholFilter);
+        push('顏色', colorFilter);
+        push('主要著色來源', colorSourceFilter);
         push('其他主酒', otherSpiritFilter);
         push('製作法', techFilter);
         push(currentSource === 'iba' ? 'IBA' : '組別', categoryFilter);
@@ -1967,6 +2203,8 @@
         const searchTerm = searchInput.value.trim().toLowerCase();
         const base = baseFilter.value;
         const secondaryAlcohol = secondaryAlcoholFilter ? secondaryAlcoholFilter.value : '';
+        const color = colorFilter ? colorFilter.value : '';
+        const colorSource = colorSourceFilter ? colorSourceFilter.value : '';
         const otherSpirit = otherSpiritFilter ? otherSpiritFilter.value : '';
         const tech = techFilter.value;
         const category = categoryFilter.value;
@@ -2002,6 +2240,8 @@
             const matchSearch = !searchTerm || searchable.includes(searchTerm);
             const matchBase = !base || c.primary_spirit_group === base;
             const matchSecondaryAlcohol = !secondaryAlcohol || (c.secondary_alcohols || []).includes(secondaryAlcohol);
+            const matchColor = !color || (c.colors || []).includes(color);
+            const matchColorSource = !colorSource || (c.color_sources || []).some(x => x.ingredient === colorSource);
             const matchOtherSpirit = !otherSpirit || c.primary_spirit === otherSpirit;
             const matchTech = !tech || c.main_method === tech;
             const matchCategory = !category || c.category === category;
@@ -2013,8 +2253,8 @@
             const matchGlassware = !glassware || c.glassware_group === glassware;
             const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
 
-            return matchSearch && matchBase && matchSecondaryAlcohol && matchOtherSpirit && matchTech &&
-                   matchCategory && matchSection && matchGarnishPresence &&
+            return matchSearch && matchBase && matchSecondaryAlcohol && matchColor && matchColorSource &&
+                   matchOtherSpirit && matchTech && matchCategory && matchSection && matchGarnishPresence &&
                    matchGarnishType && matchGlassware && matchFav;
         });
 
@@ -2064,6 +2304,8 @@
         searchInput.value = '';
         baseFilter.value = '';
         if (secondaryAlcoholFilter) secondaryAlcoholFilter.value = '';
+        if (colorFilter) colorFilter.value = '';
+        if (colorSourceFilter) colorSourceFilter.value = '';
         if (otherSpiritFilter) otherSpiritFilter.value = '';
         techFilter.value = '';
         categoryFilter.value = '';
@@ -2211,6 +2453,8 @@
     searchInput.addEventListener('input', renderList);
     baseFilter.addEventListener('change', renderList);
     if (secondaryAlcoholFilter) secondaryAlcoholFilter.addEventListener('change', renderList);
+    if (colorFilter) colorFilter.addEventListener('change', renderList);
+    if (colorSourceFilter) colorSourceFilter.addEventListener('change', renderList);
     if (otherSpiritFilter) otherSpiritFilter.addEventListener('change', renderList);
     techFilter.addEventListener('change', renderList);
     categoryFilter.addEventListener('change', renderList);
