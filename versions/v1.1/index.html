@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧｜v1.1 Color Filter Prototype r11</title>
+    <title>經典調酒吧｜v1.1 Color Filter Prototype r11b</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -1189,9 +1189,18 @@
 
         if (uniqueSources.length) {
             const strongest = [...uniqueSources].sort((a,b) => b.strength - a.strength)[0];
+
+            // 「主要著色來源」只保留與最後判定顏色相同的來源。
+            // 例如 Blue Hawaiian 雖然含 Pineapple Juice，
+            // 但若成品判定為 blue，主要著色來源應只列藍色來源，
+            // 不把黃色鳳梨汁列進來。
+            const primaryColorSources = uniqueSources.filter(
+                x => x.color === strongest.color
+            );
+
             return {
                 colors: [strongest.color],
-                color_sources: uniqueSources.filter(x => x.strength >= strongest.strength - 22)
+                color_sources: primaryColorSources
             };
         }
 
