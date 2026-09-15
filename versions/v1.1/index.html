@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧｜v1.1 Color Filter Prototype r11b</title>
+    <title>經典調酒吧｜v1.1 Color Filter Prototype r11c</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -1220,15 +1220,41 @@
 
     function buildColorSourceLabels() {
         const labels = {};
+
         cocktails.forEach(c => {
             (c.color_sources || []).forEach(s => {
                 if (!labels[s.ingredient]) {
-                    labels[s.ingredient] = s.ingredient_zh
-                        ? `${s.ingredient_zh} ${s.ingredient}`
+                    const zh = cleanSecondaryZhLabel(
+                        s.ingredient_zh || '',
+                        s.ingredient || ''
+                    );
+
+                    labels[s.ingredient] = zh
+                        ? `${zh} ${s.ingredient}`
                         : s.ingredient;
                 }
             });
         });
+
+        // 少數資料的中文欄位本身已含英文品牌詞，明確覆蓋避免重複。
+        Object.assign(labels, {
+            'Galliano': '香甜酒 Galliano',
+            'Banana Liqueur': '香蕉香甜酒 Banana Liqueur',
+            'Pineapple Juice': '鳳梨汁 Pineapple Juice',
+            'Coconut Cream': '椰奶油 Coconut Cream',
+            'Cream': '鮮奶油 Cream',
+            'Blue Curaçao Liqueur': '藍柑橘香甜酒 Blue Curaçao Liqueur',
+            'Green Crème de Menthe': '綠薄荷香甜酒 Green Crème de Menthe',
+            'Campari': '金巴利 Campari',
+            'Aperol': '阿佩羅 Aperol',
+            'Grenadine': '石榴糖漿 Grenadine',
+            'Cranberry Juice': '蔓越莓汁 Cranberry Juice',
+            'Orange Juice': '柳橙汁 Orange Juice',
+            'Tomato Juice': '番茄汁 Tomato Juice',
+            'Espresso': '義式濃縮咖啡 Espresso',
+            'Coffee': '咖啡 Coffee'
+        });
+
         return labels;
     }
 
