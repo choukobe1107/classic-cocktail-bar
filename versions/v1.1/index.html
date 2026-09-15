@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經典調酒吧 16-bit｜v1.1-test Multi-Source Images</title>
+    <title>經典調酒吧 16-bit｜v1.1-test Secondary Alcohol Filter</title>
     <!-- 引入支援中文的像素風格字體 -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
@@ -559,6 +559,11 @@
                     <option value="Pisco">皮斯可 Pisco</option>
                     <option value="Cachaca">卡莎薩 Cachaça</option>
                 </select>
+
+                <select id="secondaryAlcoholFilter" class="input-rpg" aria-label="副酒／利口酒">
+                    <option value="">-- 副酒／利口酒 --</option>
+                </select>
+
                 <select id="otherSpiritFilter" class="input-rpg hidden" aria-label="其他主要烈酒">
                     <option value="">-- 其他主要烈酒種類 --</option>
                 </select>
@@ -650,6 +655,7 @@
     const listContainer = document.getElementById('cocktail-list');
     const searchInput = document.getElementById('searchInput');
     const baseFilter = document.getElementById('baseFilter');
+    const secondaryAlcoholFilter = document.getElementById('secondaryAlcoholFilter');
     const otherSpiritFilter = document.getElementById('otherSpiritFilter');
     const techFilter = document.getElementById('techFilter');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -819,12 +825,60 @@
         return 'Other';
     }
 
+    function isAlcoholicIngredientName(name = '') {
+        const t = String(name).toLowerCase();
+        const keywords = [
+            'vermouth','liqueur','crème de','creme de','campari','aperol','amaro','chartreuse',
+            'bénédictine','benedictine','curacao','curaçao','cointreau','grand marnier','kahlúa','kahlua',
+            "bailey's",'baileys','drambuie','dubonnet','port','sherry','wine','champagne','prosecco',
+            'sparkling wine','schnapps','maraschino','absinthe','fernet','lillet','cynar','falernum',
+            'bitters','angostura','peychaud','gin','vodka','rum','rhum','ron','tequila','mezcal','pisco',
+            'cachaça','cachaca','aguardiente','grappa','brandy','cognac','calvados','whiskey','whisky',
+            'bourbon','rye','scotch','allspice st. elizabeth','cherry sangue morlacco','cherry brandy'
+        ];
+        return keywords.some(k => t.includes(k));
+    }
+
+    function isPrimarySpiritIngredient(name = '', primaryGroup = '', primarySpirit = '') {
+        const t = String(name).toLowerCase();
+        const exactPrimary = String(primarySpirit || '').toLowerCase();
+        if (exactPrimary && (t === exactPrimary || t.includes(exactPrimary))) return true;
+
+        const groupKeywords = {
+            Gin: ['gin'],
+            Vodka: ['vodka'],
+            Rum: ['rum','rhum','ron'],
+            Tequila: ['tequila'],
+            Whiskey: ['whiskey','whisky','bourbon','rye','scotch'],
+            Brandy: ['brandy','cognac','calvados']
+        };
+        const ks = groupKeywords[primaryGroup] || [];
+        return ks.some(k => t.includes(k));
+    }
+
+    function extractSecondaryAlcoholItems(ingredients = [], primaryGroup = '', primarySpirit = '') {
+        const seen = new Set();
+        const out = [];
+        ingredients.forEach(i => {
+            const name = i.name || '';
+            if (!name || !isAlcoholicIngredientName(name)) return;
+            if (isPrimarySpiritIngredient(name, primaryGroup, primarySpirit)) return;
+            if (seen.has(name)) return;
+            seen.add(name);
+            out.push({ name, name_zh: i.name_zh || '' });
+        });
+        return out;
+    }
+
     function normalizeV2Recipe(r) {
         const ingredients = (r.recipe?.ingredients || []).map(i => ({
             name: i.name_official || i.name || '',
             name_zh: i.name_zh || '',
             amount: i.amount_official || i.amount || ''
         }));
+        const primarySpirit = r.classification?.primary_spirit_search || '';
+        const primaryGroup = r.classification?.primary_spirit_group || 'Other';
+        const secondaryAlcoholItems = extractSecondaryAlcoholItems(ingredients, primaryGroup, primarySpirit);
 
         return {
             app_id: r.app_id,
@@ -833,8 +887,10 @@
             aliases: r.names?.aliases || [],
             category: r.classification?.official_category || '',
             learning_section: r.classification?.learning_section || '',
-            primary_spirit: r.classification?.primary_spirit_search || '',
-            primary_spirit_group: r.classification?.primary_spirit_group || 'Other',
+            primary_spirit: primarySpirit,
+            primary_spirit_group: primaryGroup,
+            secondary_alcohol_items: secondaryAlcoholItems,
+            secondary_alcohols: secondaryAlcoholItems.map(x => x.name),
             main_method: r.classification?.main_method_search || '',
             garnish_present: r.classification?.garnish_present === true,
             garnish_categories: r.classification?.garnish_categories || [],
@@ -885,12 +941,10 @@
             ['lemon','Lemon'],['lime','Lime'],['orange','Orange'],['grapefruit','Grapefruit'],
             ['olive','Olive'],['cherry','Cherry'],['pineapple','Pineapple'],['mint','Mint'],
             ['coffee','Coffee beans'],['nutmeg','Nutmeg'],['salt rim','Salt rim'],['celery','Celery'],
-            ['cucumber','Cucumber'],['ginger','Ginger'],['basil','Basil'],['cinnamon','Cinnamon'],
-            ['banana','Banana'],['cocoa','Cocoa'],['sugar rim','Sugar rim'],['kiwi','Kiwi'],
-            ['apple','Apple'],['onion','Onion']
+            ['cucumber','Cucumber'],['ginger','Ginger'],['basil','Basil'],['cinnamon','Cinnamon']
         ];
         pairs.forEach(([needle,label]) => { if (t.includes(needle)) out.push(label); });
-        return [...new Set(out)];
+        return out;
     }
     function normalizeTwLevelBRecipe(r) {
         const recipe = r.recipe || {};
@@ -917,6 +971,7 @@
         const primaryGroup = cls.primary_spirit_group || inferPrimarySpiritFromText(
             ingredients.map(i => i.name).join(' ')
         )[1];
+        const secondaryAlcoholItems = extractSecondaryAlcoholItems(ingredients, primaryGroup, primary);
 
         return {
             app_id: r.app_id || source.source_record_id || '',
@@ -928,12 +983,11 @@
             learning_section: cls.learning_section || source.source_group || '',
             primary_spirit: primary || '',
             primary_spirit_group: primaryGroup || 'Other',
+            secondary_alcohol_items: secondaryAlcoholItems,
+            secondary_alcohols: secondaryAlcoholItems.map(x => x.name),
             main_method: cls.main_method_search || '',
             garnish_present: cls.garnish_present ?? !!(garnishItems.length || (garnishEn && garnishEn !== 'N/A')),
-            garnish_categories:
-                Array.isArray(cls.garnish_categories) && cls.garnish_categories.length > 0
-                    ? cls.garnish_categories
-                    : garnishCategoriesFromText(garnishEn),
+            garnish_categories: cls.garnish_categories || garnishCategoriesFromText(garnishEn),
             auxiliary_operations: recipe.auxiliary_operations || [],
 
             ingredients,
@@ -1010,6 +1064,7 @@
         return {
             q: searchInput.value.trim().toLowerCase(),
             base: baseFilter.value,
+            secondaryAlcohol: secondaryAlcoholFilter?.value || '',
             otherSpirit: otherSpiritFilter?.value || '',
             tech: techFilter.value,
             category: categoryFilter.value,
@@ -1042,6 +1097,7 @@
 
         if (exceptKey !== 'q' && s.q && !searchable.includes(s.q)) return false;
         if (exceptKey !== 'base' && s.base && c.primary_spirit_group !== s.base) return false;
+        if (exceptKey !== 'secondaryAlcohol' && s.secondaryAlcohol && !(c.secondary_alcohols || []).includes(s.secondaryAlcohol)) return false;
         if (exceptKey !== 'otherSpirit' && s.otherSpirit && c.primary_spirit !== s.otherSpirit) return false;
         if (exceptKey !== 'tech' && s.tech && c.main_method !== s.tech) return false;
         if (exceptKey !== 'category' && s.category && c.category !== s.category) return false;
@@ -1082,6 +1138,18 @@
         const baseOrder = ["Gin","Vodka","Rum","Tequila","Whiskey","Brandy","Other"];
         baseValues.sort((a,b) => baseOrder.indexOf(a) - baseOrder.indexOf(b));
 
+        const secondaryAlcoholValues = [...new Set(
+            cocktails.filter(c => matchesExcept(c, 'secondaryAlcohol')).flatMap(c => c.secondary_alcohols || [])
+        )].sort((a,b) => String(a).localeCompare(String(b), 'en', { sensitivity: 'base' }));
+
+        const secondaryAlcoholLabels = {};
+        cocktails.forEach(c => (c.secondary_alcohol_items || []).forEach(item => {
+            if (!item?.name) return;
+            if (languageMode === 'en') secondaryAlcoholLabels[item.name] = item.name;
+            else if (languageMode === 'bilingual') secondaryAlcoholLabels[item.name] = item.name_zh ? `${item.name_zh}｜${item.name}` : item.name;
+            else secondaryAlcoholLabels[item.name] = item.name_zh ? `${item.name_zh} ${item.name}` : item.name;
+        }));
+
         const techValues = [...new Set(cocktails.filter(c => matchesExcept(c, 'tech')).map(c => c.main_method).filter(Boolean))];
         const techOrder = ["Shake","Stir","Build","Blend","Swizzle","Other"];
         techValues.sort((a,b) => techOrder.indexOf(a) - techOrder.indexOf(b));
@@ -1103,6 +1171,10 @@
             "Gin":"琴酒 Gin","Vodka":"伏特加 Vodka","Rum":"蘭姆酒 Rum","Tequila":"龍舌蘭 Tequila",
             "Whiskey":"威士忌 Whiskey","Brandy":"白蘭地 Brandy","Other":"其他主要烈酒"
         });
+
+        if (secondaryAlcoholFilter) {
+            refillSelect(secondaryAlcoholFilter, secondaryAlcoholValues, state.secondaryAlcohol, secondaryAlcoholLabels);
+        }
 
         if (otherSpiritFilter) {
             const otherSpiritValues = [...new Set(
@@ -1151,8 +1223,7 @@
                 "Lemon":"檸檬 Lemon","Lime":"萊姆 Lime","Orange":"柳橙 Orange","Grapefruit":"葡萄柚 Grapefruit",
                 "Olive":"橄欖 Olive","Cherry":"櫻桃 Cherry","Pineapple":"鳳梨 Pineapple","Mint":"薄荷 Mint",
                 "Coffee beans":"咖啡豆","Nutmeg":"肉豆蔻","Salt rim":"鹽口","Celery":"芹菜","Cucumber":"小黃瓜",
-                "Ginger":"薑","Basil":"羅勒","Cinnamon":"肉桂","Banana":"香蕉","Cocoa":"可可粉",
-                "Sugar rim":"糖口","Kiwi":"奇異果","Apple":"蘋果","Onion":"雞尾酒洋蔥","Other":"其他"
+                "Ginger":"薑","Basil":"羅勒","Cinnamon":"肉桂","Other":"其他"
             });
             const noGarnish = garnishPresenceFilter && garnishPresenceFilter.value === 'no';
             garnishTypeFilter.disabled = noGarnish;
@@ -1383,6 +1454,7 @@
         const push = (label, el) => { if (el && el.value) items.push(`${label}：${el.options[el.selectedIndex]?.text || el.value}`); };
 
         push('主酒', baseFilter);
+        push('副酒／利口酒', secondaryAlcoholFilter);
         push('其他主酒', otherSpiritFilter);
         push('製作法', techFilter);
         push(currentSource === 'iba' ? 'IBA' : '組別', categoryFilter);
@@ -1470,6 +1542,7 @@
 
         const searchTerm = searchInput.value.trim().toLowerCase();
         const base = baseFilter.value;
+        const secondaryAlcohol = secondaryAlcoholFilter ? secondaryAlcoholFilter.value : '';
         const otherSpirit = otherSpiritFilter ? otherSpiritFilter.value : '';
         const tech = techFilter.value;
         const category = categoryFilter.value;
@@ -1504,6 +1577,7 @@
 
             const matchSearch = !searchTerm || searchable.includes(searchTerm);
             const matchBase = !base || c.primary_spirit_group === base;
+            const matchSecondaryAlcohol = !secondaryAlcohol || (c.secondary_alcohols || []).includes(secondaryAlcohol);
             const matchOtherSpirit = !otherSpirit || c.primary_spirit === otherSpirit;
             const matchTech = !tech || c.main_method === tech;
             const matchCategory = !category || c.category === category;
@@ -1515,7 +1589,7 @@
             const matchGlassware = !glassware || c.glassware_group === glassware;
             const matchFav = currentTab === 'all' || favorites.includes(c.app_id);
 
-            return matchSearch && matchBase && matchOtherSpirit && matchTech &&
+            return matchSearch && matchBase && matchSecondaryAlcohol && matchOtherSpirit && matchTech &&
                    matchCategory && matchSection && matchGarnishPresence &&
                    matchGarnishType && matchGlassware && matchFav;
         });
@@ -1565,6 +1639,7 @@
     function clearFilters() {
         searchInput.value = '';
         baseFilter.value = '';
+        if (secondaryAlcoholFilter) secondaryAlcoholFilter.value = '';
         if (otherSpiritFilter) otherSpiritFilter.value = '';
         techFilter.value = '';
         categoryFilter.value = '';
@@ -1711,6 +1786,7 @@
 
     searchInput.addEventListener('input', renderList);
     baseFilter.addEventListener('change', renderList);
+    if (secondaryAlcoholFilter) secondaryAlcoholFilter.addEventListener('change', renderList);
     if (otherSpiritFilter) otherSpiritFilter.addEventListener('change', renderList);
     techFilter.addEventListener('change', renderList);
     categoryFilter.addEventListener('change', renderList);
